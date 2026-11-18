@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tuner</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #090A0A; color: #EEEDF0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="position: sticky; top: 0; z-index: 10; background: rgba(9,10,10,0.8); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; min-height: 44px; text-decoration: none; color: #EEEDF0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em">
+        <span style="width: 34px; height: 34px; border-radius: 999px; background: #39FF88; display: flex; align-items: center; justify-content: center; color: #090A0A">
+          <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17a8 8 0 0 1 16 0"></path><path d="M12 17l3.5-5.5"></path></svg>
+        </span>
+        Music Tools
+      </a>
+      <div role="group" aria-label="Language" style="display: flex; gap: 2px; padding: 4px; border-radius: 999px; background: #17191B">
+        <sc-for list="{{langs}}" as="l" hint-placeholder-count="2">
+          <button type="button" onClick="{{l.pick}}" aria-pressed="{{l.pressed}}" style="min-width: 48px; height: 36px; border: none; border-radius: 999px; font: 600 13px Inter, sans-serif; cursor: pointer; background: {{l.bg}}; color: {{l.fg}}">{{l.label}}</button>
+        </sc-for>
+      </div>
+    </div>
+  </header>
+
+  <main style="width: 100%; max-width: 1200px; box-sizing: border-box; margin: 0 auto; padding: 28px 24px 112px; display: flex; flex-direction: column; gap: 80px">
+    <section style="display: flex; flex-direction: column; gap: 34px">
+      <div style="display: flex; flex-direction: column; gap: 18px">
+        <nav aria-label="{{L.instruments}}" style="display: flex; gap: 6px; overflow-x: auto; padding: 2px 0">
+          <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="6">
+            <a href="{{tb.href}}" aria-current="{{tb.current}}" style="flex: none; min-height: 40px; display: flex; align-items: center; padding: 0 16px; border-radius: 999px; text-decoration: none; font-size: 14px; font-weight: 600; background: {{tb.bg}}; color: {{tb.fg}}">{{tb.label}}</a>
+          </sc-for>
+        </nav>
+        <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 18px">
+          <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(2.75rem, 6vw, 5rem); line-height: 1; letter-spacing: -0.035em">{{title}}</h1>
+          <sc-if value="{{hasPresets}}" hint-placeholder-val="{{ true }}">
+            <label style="display: flex; align-items: center; gap: 10px">
+              <span style="font-size: 14px; color: #B8BCC3">{{L.preset}}</span>
+              <select value="{{preset}}" onChange="{{onPreset}}" style="height: 44px; padding: 0 16px; border-radius: 999px; border: none; background: #17191B; color: #EEEDF0; font: 600 14px Inter, sans-serif; cursor: pointer">
+                <sc-for list="{{presets}}" as="p" hint-placeholder-count="5">
+                  <option value="{{p.id}}">{{p.label}}</option>
+                </sc-for>
+              </select>
+            </label>
+          </sc-if>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(34px, 6vw, 80px)">
+        <sc-if value="{{hasStrings}}" hint-placeholder-val="{{ true }}">
+          <div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 10px">
+            <div role="group" aria-label="{{L.strings}}" style="position: relative; width: 100%; max-width: 460px; aspect-ratio: 420 / {{hs.H}}">
+              <svg aria-hidden="true" viewBox="0 0 420 {{hs.H}}" style="position: absolute; inset: 0; width: 100%; height: 100%">
+                <defs>
+                  <linearGradient id="neckFade" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#090A0A" stop-opacity="0"></stop>
+                    <stop offset="1" stop-color="#090A0A" stop-opacity="1"></stop>
+                  </linearGradient>
+                </defs>
+                <sc-for list="{{hs.keys}}" as="k" hint-placeholder-count="6">
+                  <rect x="{{k.sx}}" y="{{k.sy}}" width="22" height="10" fill="#9AA0A6"></rect>
+                  <ellipse cx="{{k.cx}}" cy="{{k.cy}}" rx="{{k.rx}}" ry="{{k.ry}}" fill="{{k.fill}}"></ellipse>
+                  <ellipse cx="{{k.hx}}" cy="{{k.hy}}" rx="{{k.hrx}}" ry="{{k.hry}}" fill="{{k.hi}}"></ellipse>
+                </sc-for>
+                <rect x="{{hs.neckX}}" y="{{hs.nutY}}" width="{{hs.neckW}}" height="{{hs.neckH}}" fill="#2B1A11"></rect>
+                <sc-for list="{{hs.frets}}" as="fr" hint-placeholder-count="3">
+                  <rect x="{{hs.neckX}}" y="{{fr}}" width="{{hs.neckW}}" height="3" fill="#8F959B"></rect>
+                </sc-for>
+                <sc-if value="{{hs.scroll}}" hint-placeholder-val="{{ false }}">
+                  <circle cx="210" cy="50" r="36" fill="#6B3820" stroke="#E9DFC8" stroke-width="4"></circle>
+                  <circle cx="210" cy="50" r="22" fill="none" stroke="#3E1F10" stroke-width="5"></circle>
+                  <circle cx="210" cy="50" r="9" fill="#3E1F10"></circle>
+                </sc-if>
+                <path d="{{hs.body}}" fill="#6B3820" stroke="#E9DFC8" stroke-width="4" stroke-linejoin="round"></path>
+                <path d="{{hs.face}}" fill="none" stroke="#4A2614" stroke-width="2"></path>
+                <rect x="{{hs.neckX}}" y="{{hs.nutY}}" width="{{hs.neckW}}" height="9" fill="#E9DFC8"></rect>
+                <sc-for list="{{hs.strs}}" as="s" hint-placeholder-count="6">
+                  <path d="{{s.d}}" fill="none" stroke="{{s.c}}" stroke-width="{{s.w}}" stroke-linecap="round"></path>
+                </sc-for>
+                <sc-for list="{{hs.posts}}" as="po" hint-placeholder-count="6">
+                  <circle cx="{{po.x}}" cy="{{po.y}}" r="11" fill="#D5D8DC"></circle>
+                  <circle cx="{{po.x}}" cy="{{po.y}}" r="4" fill="#8A9096"></circle>
+                </sc-for>
+                <rect x="0" y="{{hs.fadeY}}" width="420" height="120" fill="url(#neckFade)"></rect>
+              </svg>
+              <sc-for list="{{strings}}" as="st" hint-placeholder-count="6">
+                <button type="button" onClick="{{st.pick}}" aria-pressed="{{st.pressed}}" aria-label="{{st.aria}}" style="position: absolute; transform: translate(-50%, -50%); width: 60px; height: 60px; border-radius: 999px; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; left: {{st.left}}%; top: {{st.top}}%; background: {{st.bg}}; color: {{st.fg}}; box-shadow: {{st.glow}}; transition: background 120ms">
+                  <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 21px; line-height: 1">{{st.name}}</span>
+                  <span style="font-size: 10px; font-weight: 700; line-height: 1; opacity: 0.8">{{st.mark}}</span>
+                </button>
+              </sc-for>
+            </div>
+            <p style="margin: 0; font-size: 14px; color: #B8BCC3; text-align: center">{{L.tapString}}</p>
+          </div>
+        </sc-if>
+
+        <div aria-live="polite" style="flex: 1 1 360px; min-width: 0; max-width: 520px; display: flex; flex-direction: column; align-items: center; gap: 18px">
+          <span style="display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 14px; border-radius: 999px; background: {{pillBg}}; color: {{pillFg}}; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums">
+            <span style="width: 8px; height: 8px; border-radius: 999px; background: {{pillDot}}"></span>
+            {{status}}
+          </span>
+          <div style="display: flex; align-items: flex-start; gap: 6px">
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(120px, 14vw, 200px); line-height: 0.85; letter-spacing: -0.05em; color: {{noteColor}}; transition: color 120ms">{{noteName}}</span>
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 36px; margin-top: 8px; color: #B8BCC3">{{octave}}</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; min-height: 44px">
+            <span style="font-size: 15px; color: #B8BCC3; font-variant-numeric: tabular-nums">{{subline}}</span>
+            <button type="button" onClick="{{playRef}}" aria-label="{{L.play}}" title="{{L.play}}" style="width: 44px; height: 44px; border-radius: 999px; border: none; background: #17191B; color: #EEEDF0; display: flex; align-items: center; justify-content: center; cursor: pointer">
+              <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M18.5 5.5a9 9 0 0 1 0 13"></path></svg>
+            </button>
+          </div>
+          <div role="img" aria-label="{{status}}" style="width: 100%; display: flex; flex-direction: column; gap: 10px">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 5px; height: 72px">
+              <sc-for list="{{bars}}" as="b" hint-placeholder-count="21">
+                <span style="flex: 1; border-radius: 999px; height: {{b.h}}px; background: {{b.c}}; transition: background 80ms"></span>
+              </sc-for>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #B8BCC3; font-variant-numeric: tabular-nums">
+              <span>♭ −50</span><span>0</span><span>+50 ♯</span>
+            </div>
+          </div>
+
+          <sc-if value="{{showNoMic}}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #B8BCC3; text-align: center">{{L.nomic}} <button type="button" onClick="{{startDemo}}" style="min-height: 44px; padding: 0; border: none; background: none; color: #A6FFC6; font: 600 14px Inter, sans-serif; text-decoration: underline; text-underline-offset: 3px; cursor: pointer">{{L.demo}}</button></p>
+          </sc-if>
+
+          <button type="button" onClick="{{toggleListen}}" style="width: 100%; max-width: 360px; height: 60px; border: none; border-radius: 999px; background: {{primaryBg}}; color: #090A0A; font: 700 17px Inter, sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: {{primaryShadow}}">
+            <sc-if value="{{active}}" hint-placeholder-val="{{ false }}">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="3"></rect></svg>
+            </sc-if>
+            <sc-if value="{{inactive}}" hint-placeholder-val="{{ true }}">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0"></path><path d="M12 18v3"></path></svg>
+            </sc-if>
+            {{primaryLabel}}
+          </button>
+
+          <button type="button" onClick="{{toggleMore}}" aria-expanded="{{moreStr}}" style="min-height: 44px; padding: 0 14px; border: none; border-radius: 999px; background: none; color: #B8BCC3; font: 600 14px Inter, sans-serif; cursor: pointer; display: flex; align-items: center; gap: 6px">
+            {{moreLabel}}
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate({{chev}}deg); transition: transform 150ms"><path d="M6 9l6 6 6-6"></path></svg>
+          </button>
+
+          <sc-if value="{{more}}" hint-placeholder-val="{{ false }}">
+            <div style="width: 100%; max-width: 360px; display: flex; flex-direction: column; gap: 6px">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px">
+                <span style="font-size: 15px; font-weight: 500">{{L.a4}}</span>
+                <div style="display: flex; align-items: center; gap: 4px; padding: 4px; border-radius: 999px; background: #17191B">
+                  <button type="button" onClick="{{a4Down}}" aria-label="{{L.a4Down}}" style="width: 40px; height: 40px; border-radius: 999px; border: none; background: none; color: #EEEDF0; font: 600 20px Inter, sans-serif; cursor: pointer">−</button>
+                  <span style="min-width: 70px; text-align: center; font-weight: 700; font-size: 16px; font-variant-numeric: tabular-nums">{{a4}} Hz</span>
+                  <button type="button" onClick="{{a4Up}}" aria-label="{{L.a4Up}}" style="width: 40px; height: 40px; border-radius: 999px; border: none; background: none; color: #EEEDF0; font: 600 20px Inter, sans-serif; cursor: pointer">+</button>
+                </div>
+              </div>
+              <sc-for list="{{switches}}" as="sw" hint-placeholder-count="1">
+                <div style="display: flex; align-items: center; justify-content: space-between">
+                  <span style="font-size: 15px; font-weight: 500">{{sw.label}}</span>
+                  <button type="button" role="switch" aria-checked="{{sw.checked}}" aria-label="{{sw.label}}" onClick="{{sw.toggle}}" style="width: 60px; height: 44px; padding: 0; border: none; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center">
+                    <span style="width: 48px; height: 28px; border-radius: 999px; background: {{sw.track}}; display: flex; align-items: center; padding: 3px; box-sizing: border-box; justify-content: {{sw.justify}}; transition: background 150ms">
+                      <span style="width: 22px; height: 22px; border-radius: 999px; background: {{sw.knob}}"></span>
+                    </span>
+                  </button>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 34px">
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(1.75rem, 3vw, 2.5rem); letter-spacing: -0.02em">{{L.how}}</h2>
+      <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 34px">
+        <li style="display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.6; color: #B8BCC3"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; color: #39FF88">01</span>{{L.how1}}</li>
+        <li style="display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.6; color: #B8BCC3"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; color: #39FF88">02</span>{{L.how2}}</li>
+        <li style="display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.6; color: #B8BCC3"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; color: #39FF88">03</span>{{L.how3}}</li>
+      </ol>
+      <a href="Metronome.dc.html" style="align-self: flex-start; min-height: 60px; display: flex; align-items: center; gap: 18px; text-decoration: none; color: #EEEDF0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.25rem); letter-spacing: -0.02em">
+        {{L.next}}
+        <span style="width: 52px; height: 52px; border-radius: 999px; background: #39FF88; color: #090A0A; display: flex; align-items: center; justify-content: center">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        </span>
+      </a>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"instrument":{"editor":"enum","options":["guitar","ukulele","violin","cello","bass","chromatic","cavaquinho"],"default":"guitar"},"$preview":{"width":1280,"height":1400}}'>
+var C = { bg: '#090A0A', inset: '#17191B', raised: '#26292D', ink: '#EEEDF0', muted: '#B8BCC3', track: '#1F2225', ok: '#1ECF9A', accent: '#39FF88', mint: '#A6FFC6', navy: '#090A0A' };
+var NOTE = { en: ['C','C♯','D','E♭','E','F','F♯','G','A♭','A','B♭','B'], pt: ['Dó','Dó♯','Ré','Mi♭','Mi','Fá','Fá♯','Sol','Lá♭','Lá','Si♭','Si'] };
+var HREF = { guitar: 'Tuner.dc.html', ukulele: 'TunerUkulele.dc.html', violin: 'TunerViolin.dc.html', cello: 'TunerCello.dc.html', bass: 'TunerBass.dc.html', chromatic: 'TunerChromatic.dc.html', cavaquinho: 'TunerCavaquinho.dc.html' };
+var INST = {
+  guitar: { en: 'Guitar', pt: 'Violão', presets: { standard: [40,45,50,55,59,64], dropd: [38,45,50,55,59,64], openg: [38,43,50,55,59,62], dadgad: [38,45,50,55,57,62], half: [39,44,49,54,58,63] } },
+  ukulele: { en: 'Ukulele', pt: 'Ukulele', presets: { standard: [67,60,64,69] } },
+  violin: { en: 'Violin', pt: 'Violino', presets: { standard: [55,62,69,76] } },
+  cello: { en: 'Cello', pt: 'Violoncelo', presets: { standard: [36,43,50,57] } },
+  bass: { en: 'Bass', pt: 'Baixo', presets: { standard: [28,33,38,43] } },
+  chromatic: { en: 'Chromatic', pt: 'Cromático', presets: { standard: [] } },
+  cavaquinho: { en: 'Cavaquinho', pt: 'Cavaquinho', presets: { standard: [62,67,71,74] } }
+};
+var TXT = {
+  en: { instruments: 'Instruments', tuner: function (n) { return n + ' Tuner'; }, preset: 'Tuning', presets: { standard: 'Standard', dropd: 'Drop D', openg: 'Open G', dadgad: 'DADGAD', half: 'Half-step down' },
+        start: 'Tap to tune', stop: 'Stop', idle: 'Ready', listening: 'Listening…', inTune: 'In tune', flat: 'Tune up', sharp: 'Tune down', allDone: 'All strings in tune',
+        string: 'String', strings: 'Strings', tapString: 'Tap a string to pick it and hear its note', more: 'More', less: 'Less', a4: 'A4 reference', a4Down: 'Lower A4 by 1 Hz', a4Up: 'Raise A4 by 1 Hz', sound: 'Reference tones',
+        nomic: 'No microphone access — tap a string to tune by ear.', demo: 'Try demo input', demoTag: 'Demo input', play: 'Play reference tone', any: 'Play any note',
+        how: 'How to use', how1: 'Tap “Tap to tune” and allow the microphone.', how2: 'Play one string. The meter shows if it is flat or sharp.', how3: 'Turn the peg until the centre bars turn green.', next: 'Next: Metronome' },
+  pt: { instruments: 'Instrumentos', tuner: function (n) { return n === 'Cromático' ? 'Afinador Cromático' : 'Afinador de ' + n; }, preset: 'Afinação', presets: { standard: 'Padrão', dropd: 'Drop D', openg: 'Open G', dadgad: 'DADGAD', half: 'Meio tom abaixo' },
+        start: 'Toque para afinar', stop: 'Parar', idle: 'Pronto', listening: 'Ouvindo…', inTune: 'Afinado', flat: 'Suba', sharp: 'Desça', allDone: 'Todas as cordas afinadas',
+        string: 'Corda', strings: 'Cordas', tapString: 'Toque numa corda para escolher e ouvir a nota', more: 'Mais', less: 'Menos', a4: 'Referência Lá4', a4Down: 'Baixar Lá4 em 1 Hz', a4Up: 'Subir Lá4 em 1 Hz', sound: 'Tons de referência',
+        nomic: 'Sem acesso ao microfone — toque numa corda para afinar de ouvido.', demo: 'Testar com entrada demo', demoTag: 'Entrada demo', play: 'Tocar tom de referência', any: 'Toque qualquer nota',
+        how: 'Como usar', how1: 'Toque em “Toque para afinar” e permita o microfone.', how2: 'Toque uma corda. O medidor mostra se está grave ou agudo.', how3: 'Gire a tarraxa até as barras do centro ficarem verdes.', next: 'Próximo: Metrônomo' }
+};
+
+function detectPitch(buf, sr) {
+  var n = buf.length, rms = 0, i, j;
+  for (i = 0; i < n; i++) rms += buf[i] * buf[i];
+  rms = Math.sqrt(rms / n);
+  if (rms < 0.012) return -1;
+  var r1 = 0, r2 = n - 1, thr = 0.2;
+  for (i = 0; i < n / 2; i++) { if (Math.abs(buf[i]) < thr) { r1 = i; break; } }
+  for (i = 1; i < n / 2; i++) { if (Math.abs(buf[n - i]) < thr) { r2 = n - i; break; } }
+  var b = buf.slice(r1, r2), m = b.length, c = new Float32Array(m);
+  for (i = 0; i < m; i++) { var sum = 0; for (j = 0; j < m - i; j++) sum += b[j] * b[j + i]; c[i] = sum; }
+  var d = 0; while (d < m - 1 && c[d] > c[d + 1]) d++;
+  var max = -1, pos = -1;
+  for (i = d; i < m; i++) { if (c[i] > max) { max = c[i]; pos = i; } }
+  if (pos <= 0 || pos >= m - 1) return -1;
+  var x1 = c[pos - 1], x2 = c[pos], x3 = c[pos + 1], A = (x1 + x3 - 2 * x2) / 2, B = (x3 - x1) / 2;
+  var T0 = A ? pos - B / (2 * A) : pos;
+  return sr / T0;
+}
+function rnd() { return (Math.random() < 0.5 ? -1 : 1) * (14 + Math.random() * 30); }
+
+// Illustrated headstock (or violin/cello scroll). Pegs sit in two columns; strings run from posts to the nut.
+function headstock(kind, n) {
+  var k = n / 2, scroll = kind === 'violin' || kind === 'cello';
+  var pegY = function (i) { return 120 + i * 88; };
+  var yEnd = 120 + (k - 1) * 88 + 50, nutY = yEnd + 70, H = nutY + 190;
+  var body, face, neckX, neckW, postL, postR, keys = [], cols = [];
+  if (!scroll) {
+    body = 'M210 18 C252 18 268 32 284 42 L302 64 L296 ' + yEnd + ' C292 ' + (yEnd + 32) + ' 256 ' + (yEnd + 48) + ' 254 ' + nutY + ' L166 ' + nutY + ' C164 ' + (yEnd + 48) + ' 128 ' + (yEnd + 32) + ' 124 ' + yEnd + ' L118 64 L136 42 C152 32 168 18 210 18 Z';
+    face = 'M210 30 C246 30 260 42 274 50 L288 68 L283 ' + (yEnd - 6) + ' C279 ' + (yEnd + 24) + ' 248 ' + (yEnd + 40) + ' 246 ' + (nutY - 6) + ' L174 ' + (nutY - 6) + ' C172 ' + (yEnd + 40) + ' 141 ' + (yEnd + 24) + ' 137 ' + (yEnd - 6) + ' L132 68 L146 50 C160 42 174 30 210 30 Z';
+    neckX = 166; neckW = 88; postL = 160; postR = 260;
+  } else {
+    body = 'M180 76 L240 76 L248 ' + yEnd + ' C248 ' + (yEnd + 30) + ' 238 ' + (yEnd + 50) + ' 236 ' + nutY + ' L184 ' + nutY + ' C182 ' + (yEnd + 50) + ' 172 ' + (yEnd + 30) + ' 172 ' + yEnd + ' Z';
+    face = 'M192 92 L228 92 L232 ' + (yEnd - 4) + ' L188 ' + (yEnd - 4) + ' Z';
+    neckX = 184; neckW = 52; postL = 196; postR = 224;
+  }
+  for (var i = 0; i < k; i++) {
+    cols.push({ idx: k - 1 - i, side: 'L', y: pegY(i) });
+    cols.push({ idx: k + i, side: 'R', y: pegY(i) });
+  }
+  cols.forEach(function (p) {
+    var L = p.side === 'L';
+    if (!scroll) keys.push({ sx: L ? 102 : 296, sy: p.y - 5, cx: L ? 92 : 328, cy: p.y, rx: 17, ry: 24, fill: '#C9CDD2', hx: L ? 88 : 324, hy: p.y - 7, hrx: 7, hry: 11, hi: '#F2F4F6' });
+    else keys.push({ sx: L ? 150 : 248, sy: p.y - 5, cx: L ? 132 : 288, cy: p.y, rx: 26, ry: 15, fill: '#2B1A11', hx: L ? 126 : 282, hy: p.y - 4, hrx: 10, hry: 4, hi: '#4A2E1E' });
+  });
+  var nutX = function (j) { var a = neckX + 10, b = neckX + neckW - 10; return n > 1 ? a + j * (b - a) / (n - 1) : (a + b) / 2; };
+  var frets = [nutY + 62, nutY + 118, nutY + 168];
+  return { H: H, body: body, face: face, neckX: neckX, neckW: neckW, nutY: nutY, neckH: H - nutY, fadeY: H - 120, frets: frets, scroll: scroll, keys: keys, cols: cols, postL: postL, postR: postR, nutX: nutX };
+}
+
+class Component extends DCLogic {
+  constructor(...a) {
+    super(...a);
+    this.state = Object.assign({}, this.state || {}, {
+      lang: 'en', preset: 'standard', sel: 0, manual: false, mode: 'idle', cents: null, freq: null, chrom: 69,
+      done: {}, allDone: false, a4: 440, sound: true, more: false
+    });
+  }
+  componentWillUnmount() { this.stopAll(); }
+  inst() { return INST[this.props.instrument] ? this.props.instrument : 'guitar'; }
+  strings() { var I = INST[this.inst()]; return I.presets[this.state.preset] || I.presets.standard; }
+  ac() { if (!this._ac) { var AC = window.AudioContext || window.webkitAudioContext; this._ac = new AC(); } if (this._ac.state === 'suspended') this._ac.resume(); return this._ac; }
+  tone(m) {
+    if (!this.state.sound) return;
+    try {
+      var ctx = this.ac(), f = this.state.a4 * Math.pow(2, (m - 69) / 12), t = ctx.currentTime, g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.35, t + 0.015); g.gain.exponentialRampToValueAtTime(0.0001, t + 2.4);
+      g.connect(ctx.destination);
+      [['triangle', 1, 1], ['sine', 2, 0.35], ['sine', 3, 0.12]].forEach(function (p) {
+        var o = ctx.createOscillator(), og = ctx.createGain(); o.type = p[0]; o.frequency.value = f * p[1]; og.gain.value = p[2];
+        o.connect(og); og.connect(g); o.start(t); o.stop(t + 2.5);
+      });
+    } catch (e) {}
+  }
+  stopAll() {
+    if (this.loop) { clearInterval(this.loop); this.loop = null; }
+    if (this.stream) { this.stream.getTracks().forEach(function (tr) { tr.stop(); }); this.stream = null; }
+    if (this.src) { try { this.src.disconnect(); } catch (e) {} this.src = null; }
+    this.sinceKey = null;
+  }
+  startMic() {
+    var self = this;
+    this.stopAll();
+    this.setState({ mode: 'asking', allDone: false, done: {}, cents: null, freq: null });
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { this.setState({ mode: 'nomic' }); return; }
+    navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false } }).then(function (stream) {
+      var ctx = self.ac(), src = ctx.createMediaStreamSource(stream), an = ctx.createAnalyser();
+      var low = self.inst() === 'bass' || self.inst() === 'cello';
+      an.fftSize = low ? 4096 : 2048; src.connect(an);
+      self.stream = stream; self.src = src; self.an = an; self.buf = new Float32Array(an.fftSize);
+      self.lastHeard = 0;
+      self.loop = setInterval(function () { self.micTick(); }, 70);
+      self.setState({ mode: 'listening' });
+    }).catch(function () { self.setState({ mode: 'nomic' }); });
+  }
+  micTick() {
+    this.an.getFloatTimeDomainData(this.buf);
+    var f = detectPitch(this.buf, this.ac().sampleRate);
+    if (f > 25 && f < 2200) this.onFreq(f);
+    else if (this.state.cents !== null && Date.now() - this.lastHeard > 700) this.setState({ cents: null, freq: null });
+  }
+  onFreq(f) {
+    var s = this.state, mf = 69 + 12 * Math.log2(f / s.a4), strings = this.strings(), sel = s.sel, target;
+    if (strings.length) {
+      if (!s.manual) { var bd = 1e9; strings.forEach(function (m, i) { var d = Math.abs(mf - m); if (d < bd) { bd = d; sel = i; } }); }
+      target = strings[sel];
+    } else target = Math.round(mf);
+    var c = (mf - target) * 100;
+    if (s.cents !== null && sel === s.sel && target === s.chrom) c = s.cents * 0.5 + c * 0.5;
+    var now = Date.now(), done = s.done, key = sel + '/' + target;
+    if (Math.abs(c) < 5) {
+      if (this.sinceKey !== key) { this.sinceKey = key; this.since = now; }
+      else if (strings.length && now - this.since > 800 && !done[sel]) { done = Object.assign({}, done); done[sel] = true; }
+    } else this.sinceKey = null;
+    this.lastHeard = now;
+    var all = strings.length > 0 && strings.every(function (_, i) { return done[i]; });
+    this.setState({ sel: sel, cents: c, freq: f, chrom: target, done: done, allDone: all });
+  }
+  startDemo() {
+    var self = this;
+    this.stopAll();
+    this.demo = { idx: 0, off: rnd(), held: 0, notes: [57, 62, 67, 64] };
+    this.setState({ mode: 'demo', manual: false, sel: 0, done: {}, allDone: false, cents: null });
+    this.loop = setInterval(function () { self.demoTick(); }, 70);
+  }
+  demoTick() {
+    var d = this.demo, strings = this.strings();
+    d.off += -d.off * 0.07 + (Math.random() - 0.5) * 1.4;
+    var target = strings.length ? strings[d.idx] : d.notes[d.idx % d.notes.length];
+    var f = this.state.a4 * Math.pow(2, (target + d.off / 100 - 69) / 12);
+    this.onFreq(f);
+    if (Math.abs(d.off) < 3) {
+      d.held += 70;
+      if (d.held > 1400) {
+        d.held = 0;
+        if (strings.length && d.idx >= strings.length - 1) { this.stopAll(); this.setState({ mode: 'idle', allDone: true }); return; }
+        d.idx++; d.off = rnd();
+      }
+    } else d.held = 0;
+  }
+  renderVals() {
+    var self = this, s = this.state, lang = s.lang, L = TXT[lang], names = NOTE[lang];
+    var id = this.inst(), I = INST[id], strings = this.strings(), n = strings.length;
+    var active = s.mode === 'listening' || s.mode === 'demo' || s.mode === 'asking';
+    var hasReading = active && s.cents !== null;
+    var c = hasReading ? Math.max(-50, Math.min(50, s.cents)) : 0;
+    var inTune = hasReading && Math.abs(s.cents) < 5;
+    var targetMidi = n ? strings[Math.min(s.sel, n - 1)] : (hasReading ? s.chrom : 69);
+
+    var noteName = (n || hasReading) ? names[targetMidi % 12] : '–';
+    var octave = (n || hasReading) ? String(Math.floor(targetMidi / 12) - 1) : '';
+    var subline;
+    if (hasReading) subline = s.freq.toFixed(1) + ' Hz' + (s.mode === 'demo' ? ' · ' + L.demoTag : '');
+    else if (n) subline = L.string + ' ' + (n - s.sel) + ' · ' + (s.a4 * Math.pow(2, (targetMidi - 69) / 12)).toFixed(1) + ' Hz';
+    else subline = L.any;
+
+    var status, good = false;
+    if (s.allDone && !hasReading) { status = L.allDone; good = true; }
+    else if (!active) status = L.idle;
+    else if (!hasReading) status = L.listening;
+    else if (inTune) { status = s.allDone ? L.allDone : L.inTune; good = true; }
+    else { var cr = Math.round(Math.abs(s.cents)); status = (s.cents < 0 ? L.flat + ' · ' + cr + '¢ ♭' : L.sharp + ' · ' + cr + '¢ ♯'); }
+
+    var bars = [], idx = hasReading ? Math.max(0, Math.min(20, Math.round(c / 5) + 10)) : 10;
+    for (var bi = 0; bi <= 20; bi++) {
+      var col = bi === 10 ? 'rgba(30,207,154,0.35)' : C.track;
+      if (hasReading) {
+        if (inTune && bi >= 9 && bi <= 11) col = C.ok;
+        else if (!inTune && bi >= Math.min(10, idx) && bi <= Math.max(10, idx)) col = bi === idx ? C.ink : '#6B7076';
+      }
+      bars.push({ h: bi === 10 ? 72 : (bi % 2 === 0 ? 50 : 34), c: col });
+    }
+    var pill;
+    if (good) pill = { bg: 'rgba(30,207,154,0.14)', fg: C.ok, dot: C.ok };
+    else if (active) pill = { bg: C.inset, fg: C.ink, dot: C.accent };
+    else pill = { bg: C.inset, fg: C.muted, dot: C.muted };
+
+    var hs = n ? headstock(id, n) : { H: 400, keys: [], frets: [], cols: [], posts: [], strs: [] };
+    var stringBtns = [], posts = [], strs = [];
+    if (n) {
+      hs.cols.forEach(function (p) {
+        var i = p.idx, m = strings[i], on = i === s.sel && (s.manual || active), ok = !!s.done[i];
+        var px = p.side === 'L' ? hs.postL : hs.postR;
+        posts.push({ x: px, y: p.y });
+        var nx = hs.nutX(i).toFixed(1);
+        strs.push({ d: 'M' + px + ' ' + p.y + ' L' + nx + ' ' + hs.nutY + ' L' + nx + ' ' + hs.H, c: on ? C.accent : (ok ? C.ok : '#C9CDD2'), w: on ? 3.5 : (2.8 - i * (1.2 / Math.max(1, n - 1))).toFixed(2) });
+        stringBtns.push({
+          name: names[m % 12], mark: ok ? '✓' : String(n - i), pressed: on ? 'true' : 'false',
+          aria: L.string + ' ' + (n - i) + ', ' + names[m % 12],
+          left: (p.side === 'L' ? 36 : 384) / 420 * 100, top: (p.y / hs.H * 100).toFixed(2),
+          bg: on ? C.accent : C.raised, fg: on ? C.navy : (ok ? C.ok : C.ink),
+          glow: on ? '0 0 0 6px rgba(57,255,136,0.14)' : 'none',
+          pick: function () { self.setState({ sel: i, manual: true, cents: active ? self.state.cents : null }); self.tone(m); }
+        });
+      });
+      hs.posts = posts; hs.strs = strs;
+    }
+
+    var tabs = Object.keys(INST).filter(function (k) { return k !== 'cavaquinho' || lang === 'pt' || id === 'cavaquinho'; }).map(function (k) {
+      var cur = k === id;
+      return { href: HREF[k], label: INST[k][lang], current: cur ? 'page' : 'false', bg: cur ? C.accent : C.inset, fg: cur ? C.navy : C.ink };
+    });
+    var presets = Object.keys(I.presets).map(function (pid) { return { id: pid, label: L.presets[pid] }; });
+    var langs = ['en', 'pt'].map(function (lid) {
+      var on = lid === lang;
+      return { label: lid.toUpperCase(), pressed: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', fg: on ? C.navy : C.ink, pick: function () { self.setState({ lang: lid }); } };
+    });
+    var sw = function (key, label) {
+      var on = !!s[key];
+      return { label: label, checked: on ? 'true' : 'false', track: on ? C.accent : C.raised, knob: on ? C.navy : C.ink, justify: on ? 'flex-end' : 'flex-start',
+        toggle: function () { var o = {}; o[key] = !self.state[key]; self.setState(o); } };
+    };
+
+    return {
+      L: L, langs: langs, tabs: tabs, bars: bars, hs: hs,
+      pillBg: pill.bg, pillFg: pill.fg, pillDot: pill.dot,
+      title: L.tuner(I[lang]),
+      hasPresets: presets.length > 1, presets: presets, preset: s.preset,
+      onPreset: function (e) { self.setState({ preset: e.target.value, sel: 0, done: {}, allDone: false }); },
+      noteName: noteName, octave: octave, subline: subline,
+      noteColor: inTune ? C.ok : (hasReading || !active ? C.ink : C.muted),
+      playRef: function () { self.tone(targetMidi); },
+      status: status,
+      hasStrings: n > 0, strings: stringBtns,
+      showNoMic: s.mode === 'nomic',
+      startDemo: function () { self.startDemo(); },
+      active: active, inactive: !active,
+      primaryLabel: active ? L.stop : L.start,
+      primaryBg: active ? '#FFFFFF' : C.accent,
+      primaryShadow: active ? 'none' : '0 10px 30px -10px rgba(57,255,136,0.55)',
+      toggleListen: function () { if (active) { self.stopAll(); self.setState({ mode: 'idle', cents: null, freq: null }); } else self.startMic(); },
+      more: s.more, moreStr: s.more ? 'true' : 'false', moreLabel: s.more ? L.less : L.more, chev: s.more ? 180 : 0,
+      toggleMore: function () { self.setState({ more: !self.state.more }); },
+      a4: s.a4,
+      a4Down: function () { self.setState({ a4: Math.max(430, self.state.a4 - 1) }); },
+      a4Up: function () { self.setState({ a4: Math.min(450, self.state.a4 + 1) }); },
+      switches: [sw('sound', L.sound)]
+    };
+  }
+}
+</script>
+</body>
+</html>

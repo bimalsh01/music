@@ -1,0 +1,216 @@
+{
+  "site": {
+    "name": "Music Tools",
+    "language": "Language",
+    "home": "Music Tools home",
+    "nav": {
+      "label": "Tools",
+      "tuner": "Tuner",
+      "metronome": "Metronome",
+      "chords": "Chords"
+    }
+  },
+  "meta": {
+    "home": {
+      "title": "Music Tools — Free online tuner, metronome and chords",
+      "description": "Simple music tools that work the second the page opens. Tune a guitar, ukulele, violin, cello or bass, keep time with a metronome and look up chords. No sign-up."
+    },
+    "guitar": {
+      "title": "Guitar Tuner — Free online tuner with mic",
+      "description": "Tune your guitar with your microphone. Standard, Drop D, Open G, DADGAD and half-step down. Works instantly, no sign-up."
+    },
+    "ukulele": {
+      "title": "Ukulele Tuner — Free online GCEA tuner",
+      "description": "Tune your ukulele (G C E A) with your microphone or by ear. Works instantly, no sign-up."
+    },
+    "violin": {
+      "title": "Violin Tuner — Free online G D A E tuner",
+      "description": "Tune your violin (G D A E) with your microphone or by ear. Works instantly, no sign-up."
+    },
+    "cello": {
+      "title": "Cello Tuner — Free online C G D A tuner",
+      "description": "Tune your cello (C G D A) with your microphone or by ear. Works instantly, no sign-up."
+    },
+    "bass": {
+      "title": "Bass Tuner — Free online E A D G tuner",
+      "description": "Tune your bass guitar (E A D G) with your microphone or by ear. Works instantly, no sign-up."
+    },
+    "chromatic": {
+      "title": "Chromatic Tuner — Tune any note online",
+      "description": "A free chromatic tuner for any instrument. Shows the note and how many cents sharp or flat you are."
+    },
+    "cavaquinho": {
+      "title": "Cavaquinho Tuner",
+      "description": "Tune your cavaquinho (D G B D)."
+    },
+    "metronome": {
+      "title": "Metronome — Free online metronome with tap tempo",
+      "description": "A free online metronome from 30 to 300 BPM with tap tempo, accents, subdivisions and a visual flash."
+    },
+    "chords": {
+      "title": "Chord Lookup — Guitar and piano chord charts",
+      "description": "Find any guitar or piano chord. See the fingering, hear it, try other shapes and transpose."
+    }
+  },
+  "instruments": {
+    "guitar": "Guitar",
+    "ukulele": "Ukulele",
+    "violin": "Violin",
+    "cello": "Cello",
+    "bass": "Bass",
+    "chromatic": "Chromatic",
+    "cavaquinho": "Cavaquinho"
+  },
+  "home": {
+    "eyebrow": "No sign-up · works instantly",
+    "h1a": "Play.",
+    "h1b": "Tune.",
+    "h1c": "Keep time.",
+    "sub": "Simple music tools that work the second the page opens.",
+    "cta": "Tune your guitar",
+    "tuners": "Every tuner",
+    "tuner": "Tuner",
+    "tunerSub": "Guitar, ukulele, violin, cello, bass",
+    "metronome": "Metronome",
+    "metroSub": "30–300 BPM · tap tempo",
+    "chords": "Chord Lookup",
+    "chordsSub": "Guitar and piano",
+    "any": "Any note"
+  },
+  "tuner": {
+    "titles": {
+      "guitar": "Guitar Tuner",
+      "ukulele": "Ukulele Tuner",
+      "violin": "Violin Tuner",
+      "cello": "Cello Tuner",
+      "bass": "Bass Tuner",
+      "chromatic": "Chromatic Tuner",
+      "cavaquinho": "Cavaquinho Tuner"
+    },
+    "instruments": "Instruments",
+    "preset": "Tuning",
+    "presets": {
+      "standard": "Standard",
+      "dropd": "Drop D",
+      "openg": "Open G",
+      "dadgad": "DADGAD",
+      "half": "Half-step down"
+    },
+    "start": "Tap to tune",
+    "stop": "Stop",
+    "idle": "Ready",
+    "listening": "Listening…",
+    "inTune": "In tune",
+    "flat": "Tune up",
+    "sharp": "Tune down",
+    "allDone": "All strings in tune",
+    "string": "String",
+    "strings": "Strings",
+    "tapString": "Tap a string to pick it and hear its note",
+    "more": "More",
+    "less": "Less",
+    "a4": "A4 reference",
+    "a4Down": "Lower A4 by 1 Hz",
+    "a4Up": "Raise A4 by 1 Hz",
+    "sound": "Reference tones",
+    "nomic": "No microphone access — tap a string to tune by ear.",
+    "demo": "Try demo input",
+    "demoTag": "Demo input",
+    "play": "Play reference tone",
+    "any": "Play any note",
+    "how": "How to use",
+    "how1": "Tap “Tap to tune” and allow the microphone.",
+    "how2": "Play one string. The meter shows if it is flat or sharp.",
+    "how3": "Turn the peg until the centre bars turn green.",
+    "next": "Next: Metronome"
+  },
+  "metronome": {
+    "visual": "Metronome pendulum",
+    "title": "Metronome",
+    "timeSig": "Time",
+    "slower": "Slower",
+    "faster": "Faster",
+    "tempo": "Tempo",
+    "beats": "Beats in the bar",
+    "beat": "Beat",
+    "accented": "accented",
+    "accentHint": "Tap a dot to accent that beat",
+    "tap": "Tap tempo",
+    "tapAgain": "Keep tapping",
+    "play": "Start metronome",
+    "stop": "Stop metronome",
+    "more": "More",
+    "less": "Less",
+    "sub": "Subdivision",
+    "subs": [
+      "1/4",
+      "1/8",
+      "Triplet",
+      "1/16"
+    ],
+    "volume": "Volume",
+    "flash": "Visual flash",
+    "how": "How to use",
+    "how1": "Set the tempo with the slider, the − / + buttons, or Tap tempo.",
+    "how2": "Press Play. The screen flashes on every beat.",
+    "how3": "Tap a beat dot to accent it.",
+    "next": "Next: Chord Lookup"
+  },
+  "chords": {
+    "title": "Chord Lookup",
+    "instrument": "Instrument",
+    "guitar": "Guitar",
+    "piano": "Piano",
+    "down": "Transpose down one semitone",
+    "up": "Transpose up one semitone",
+    "semi": "semitone",
+    "play": "Play",
+    "prev": "Previous variation",
+    "nextVar": "Next variation",
+    "pos": "Position {i} of {n}",
+    "inv": [
+      "Root position",
+      "1st inversion",
+      "2nd inversion",
+      "3rd inversion"
+    ],
+    "root": "Root note",
+    "type": "Chord type",
+    "types": {
+      "maj": "Major",
+      "min": "Minor",
+      "7": "7",
+      "maj7": "maj7",
+      "m7": "m7",
+      "sus2": "sus2",
+      "sus4": "sus4",
+      "dim": "dim",
+      "aug": "aug"
+    },
+    "suffix": {
+      "maj": "",
+      "min": "m",
+      "7": "7",
+      "maj7": "maj7",
+      "m7": "m7",
+      "sus2": "sus2",
+      "sus4": "sus4",
+      "dim": "dim",
+      "aug": "aug"
+    },
+    "more": "More",
+    "less": "Less",
+    "naming": "Note names",
+    "namings": {
+      "abc": "C D E",
+      "solfege": "Dó Ré Mi",
+      "german": "C D E H"
+    },
+    "how": "How to use",
+    "how1": "Pick a root note and a chord type.",
+    "how2": "Press Play to hear it. Arrows show other shapes.",
+    "how3": "Use −1 / +1 to move the chord by a semitone.",
+    "next": "Next: Tuner",
+    "chordOn": "chord diagram"
+  }
+}

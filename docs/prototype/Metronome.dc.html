@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Metronome</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: {{rootBg}}; color: #EEEDF0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; display: flex; flex-direction: column; transition: background 70ms ease-out">
+  <header style="position: sticky; top: 0; z-index: 10; background: rgba(9,10,10,0.8); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; min-height: 44px; text-decoration: none; color: #EEEDF0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em">
+        <span style="width: 34px; height: 34px; border-radius: 999px; background: #39FF88; display: flex; align-items: center; justify-content: center; color: #090A0A">
+          <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17a8 8 0 0 1 16 0"></path><path d="M12 17l3.5-5.5"></path></svg>
+        </span>
+        Music Tools
+      </a>
+      <div role="group" aria-label="Language" style="display: flex; gap: 2px; padding: 4px; border-radius: 999px; background: #17191B">
+        <sc-for list="{{langs}}" as="l" hint-placeholder-count="2">
+          <button type="button" onClick="{{l.pick}}" aria-pressed="{{l.pressed}}" style="min-width: 48px; height: 36px; border: none; border-radius: 999px; font: 600 13px Inter, sans-serif; cursor: pointer; background: {{l.bg}}; color: {{l.fg}}">{{l.label}}</button>
+        </sc-for>
+      </div>
+    </div>
+  </header>
+
+  <main style="width: 100%; max-width: 1200px; box-sizing: border-box; margin: 0 auto; padding: 28px 24px 112px; display: flex; flex-direction: column; gap: 80px">
+    <section style="display: flex; flex-direction: column; gap: 34px">
+      <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 18px">
+        <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(2.75rem, 6vw, 5rem); line-height: 1; letter-spacing: -0.035em">{{L.title}}</h1>
+        <div role="group" aria-label="{{L.timeSig}}" style="display: flex; flex-wrap: wrap; gap: 2px; padding: 4px; border-radius: 999px; background: #17191B">
+          <sc-for list="{{sigBtns}}" as="g" hint-placeholder-count="6">
+            <button type="button" onClick="{{g.pick}}" aria-pressed="{{g.pressed}}" style="min-width: 48px; height: 40px; padding: 0 10px; border: none; border-radius: 999px; font: 700 14px Inter, sans-serif; font-variant-numeric: tabular-nums; cursor: pointer; background: {{g.bg}}; color: {{g.fg}}">{{g.label}}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(34px, 6vw, 80px)">
+        <div style="flex: 1 1 340px; min-width: 0; display: flex; justify-content: center">
+          <svg role="img" aria-label="{{L.visual}}" viewBox="0 0 300 380" style="width: 100%; max-width: 380px; height: auto">
+            <rect x="26" y="342" width="248" height="24" fill="#3E1F10"></rect>
+            <path d="M112 22 L188 22 L264 342 L36 342 Z" fill="#6B3820" stroke="#E9DFC8" stroke-width="4" stroke-linejoin="round"></path>
+            <path d="M124 50 L176 50 L226 300 L74 300 Z" fill="#2B1A11"></path>
+            <sc-for list="{{ticks}}" as="tk" hint-placeholder-count="9">
+              <rect x="{{tk.x}}" y="{{tk.y}}" width="{{tk.w}}" height="2" fill="#8F959B"></rect>
+            </sc-for>
+            <g style="transform: rotate({{armDeg}}deg); transform-origin: 150px 300px; transition: transform {{armDur}}ms ease-in-out">
+              <rect x="148" y="34" width="4" height="266" fill="#D5D8DC"></rect>
+              <rect x="130" y="{{weightY}}" width="40" height="26" fill="#39FF88"></rect>
+            </g>
+            <circle cx="150" cy="300" r="10" fill="#C9CDD2"></circle>
+            <circle cx="150" cy="324" r="7" fill="{{led}}"></circle>
+          </svg>
+        </div>
+
+        <div style="flex: 1 1 380px; min-width: 0; max-width: 520px; display: flex; flex-direction: column; align-items: center; gap: 26px">
+          <div style="display: flex; align-items: center; justify-content: center; gap: clamp(12px, 3vw, 34px); width: 100%">
+            <button type="button" onClick="{{bpmDown}}" aria-label="{{L.slower}}" style="flex: none; width: 56px; height: 56px; border-radius: 999px; border: none; background: #17191B; color: #EEEDF0; font: 500 26px Inter, sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center">−</button>
+            <div style="display: flex; flex-direction: column; align-items: center; min-width: 0">
+              <output aria-live="off" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(110px, 13vw, 184px); line-height: 0.85; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; color: {{bpmColor}}; transition: color 70ms">{{bpm}}</output>
+              <span style="margin-top: 14px; font-size: 14px; font-weight: 600; color: #B8BCC3">BPM · {{tempoName}}</span>
+            </div>
+            <button type="button" onClick="{{bpmUp}}" aria-label="{{L.faster}}" style="flex: none; width: 56px; height: 56px; border-radius: 999px; border: none; background: #17191B; color: #EEEDF0; font: 500 26px Inter, sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center">+</button>
+          </div>
+          <label style="width: 100%; display: flex; flex-direction: column; gap: 2px">
+            <span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">{{L.tempo}}</span>
+            <input type="range" min="30" max="300" step="1" value="{{bpm}}" onChange="{{onSlider}}" style="width: 100%; height: 44px; margin: 0; accent-color: #39FF88; cursor: pointer">
+            <span style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #B8BCC3"><span>30</span><span>300</span></span>
+          </label>
+          <div style="width: 100%; display: flex; flex-direction: column; gap: 10px">
+            <div role="group" aria-label="{{L.beats}}" style="display: flex; gap: 6px">
+              <sc-for list="{{dots}}" as="d" hint-placeholder-count="4">
+                <button type="button" onClick="{{d.toggle}}" aria-pressed="{{d.pressed}}" aria-label="{{d.aria}}" style="flex: 1; min-width: 0; height: 64px; border-radius: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 0; border: none; background: {{d.bg}}; color: {{d.fg}}; transition: background 60ms">
+                  <span style="width: {{d.size}}px; height: {{d.size}}px; border-radius: 999px; background: {{d.dot}}"></span>
+                  <span style="font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums">{{d.num}}</span>
+                </button>
+              </sc-for>
+            </div>
+            <span style="text-align: center; font-size: 13px; color: #B8BCC3">{{L.accentHint}}</span>
+          </div>
+          <div style="width: 100%; display: flex; gap: 10px">
+            <button type="button" onClick="{{togglePlay}}" style="flex: 1.4; height: 60px; border-radius: 999px; border: none; background: {{playBg}}; color: #090A0A; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font: 700 17px Inter, sans-serif; box-shadow: {{playShadow}}">
+              <sc-if value="{{playing}}" hint-placeholder-val="{{ false }}">
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="3"></rect></svg>
+              </sc-if>
+              <sc-if value="{{stopped}}" hint-placeholder-val="{{ true }}">
+                <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10-6.5a1 1 0 0 0 0-1.72l-10-6.5A1 1 0 0 0 8 5.5z"></path></svg>
+              </sc-if>
+              {{playAria}}
+            </button>
+            <button type="button" onClick="{{tap}}" style="flex: 1; height: 60px; border-radius: 999px; border: none; background: #17191B; color: #EEEDF0; font: 600 16px Inter, sans-serif; cursor: pointer">{{tapLabel}}</button>
+          </div>
+
+          <button type="button" onClick="{{toggleMore}}" aria-expanded="{{moreStr}}" style="min-height: 44px; padding: 0 14px; border: none; border-radius: 999px; background: none; color: #B8BCC3; font: 600 14px Inter, sans-serif; cursor: pointer; display: flex; align-items: center; gap: 6px">
+            {{moreLabel}}
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate({{chev}}deg); transition: transform 150ms"><path d="M6 9l6 6 6-6"></path></svg>
+          </button>
+
+          <sc-if value="{{more}}" hint-placeholder-val="{{ false }}">
+            <div style="width: 100%; display: flex; flex-direction: column; gap: 12px">
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <span style="font-size: 15px; font-weight: 500">{{L.sub}}</span>
+                <div role="group" aria-label="{{L.sub}}" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; padding: 4px; border-radius: 999px; background: #17191B">
+                  <sc-for list="{{subs}}" as="u" hint-placeholder-count="4">
+                    <button type="button" onClick="{{u.pick}}" aria-pressed="{{u.pressed}}" style="height: 40px; border-radius: 999px; border: none; background: {{u.bg}}; color: {{u.fg}}; font: 600 13px Inter, sans-serif; cursor: pointer">{{u.label}}</button>
+                  </sc-for>
+                </div>
+              </div>
+              <label style="display: flex; align-items: center; gap: 12px">
+                <span style="font-size: 15px; font-weight: 500; flex: none">{{L.volume}}</span>
+                <input type="range" min="0" max="100" step="1" value="{{volPct}}" onChange="{{onVol}}" style="flex: 1; min-width: 0; height: 44px; margin: 0; accent-color: #39FF88; cursor: pointer">
+              </label>
+              <sc-for list="{{switches}}" as="sw" hint-placeholder-count="1">
+                <div style="display: flex; align-items: center; justify-content: space-between">
+                  <span style="font-size: 15px; font-weight: 500">{{sw.label}}</span>
+                  <button type="button" role="switch" aria-checked="{{sw.checked}}" aria-label="{{sw.label}}" onClick="{{sw.toggle}}" style="width: 60px; height: 44px; padding: 0; border: none; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center">
+                    <span style="width: 48px; height: 28px; border-radius: 999px; background: {{sw.track}}; display: flex; align-items: center; padding: 3px; box-sizing: border-box; justify-content: {{sw.justify}}; transition: background 150ms">
+                      <span style="width: 22px; height: 22px; border-radius: 999px; background: {{sw.knob}}"></span>
+                    </span>
+                  </button>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 34px">
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(1.75rem, 3vw, 2.5rem); letter-spacing: -0.02em">{{L.how}}</h2>
+      <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 34px">
+        <li style="display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.6; color: #B8BCC3"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; color: #39FF88">01</span>{{L.how1}}</li>
+        <li style="display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.6; color: #B8BCC3"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; color: #39FF88">02</span>{{L.how2}}</li>
+        <li style="display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.6; color: #B8BCC3"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; color: #39FF88">03</span>{{L.how3}}</li>
+      </ol>
+      <a href="Chords.dc.html" style="align-self: flex-start; min-height: 60px; display: flex; align-items: center; gap: 18px; text-decoration: none; color: #EEEDF0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.25rem); letter-spacing: -0.02em">
+        {{L.next}}
+        <span style="width: 52px; height: 52px; border-radius: 999px; background: #39FF88; color: #090A0A; display: flex; align-items: center; justify-content: center">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        </span>
+      </a>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1320}}'>
+var LIGHT = { flash: '#0D1F14', bg: '#090A0A', inset: '#17191B', raised: '#26292D', ink: '#EEEDF0', muted: '#B8BCC3', track: '#26292D' };
+var DARK = LIGHT;
+var SIGS = ['2/4', '3/4', '4/4', '5/4', '6/8', '7/8'];
+var TXT = {
+  en: { visual: 'Metronome pendulum', title: 'Metronome', timeSig: 'Time', slower: 'Slower', faster: 'Faster', tempo: 'Tempo', beats: 'Beats in the bar', beat: 'Beat', accented: 'accented',
+        accentHint: 'Tap a dot to accent that beat', tap: 'Tap tempo', tapAgain: 'Keep tapping', play: 'Start metronome', stop: 'Stop metronome',
+        more: 'More', less: 'Less', sub: 'Subdivision', subs: ['1/4', '1/8', 'Triplet', '1/16'], volume: 'Volume', flash: 'Visual flash', stage: 'Stage mode (black)',
+        how: 'How to use', how1: 'Set the tempo with the slider, the − / + buttons, or Tap tempo.', how2: 'Press Play. The screen flashes on every beat.', how3: 'Tap a beat dot to accent it.', next: 'Next: Chord Lookup' },
+  pt: { visual: 'Pêndulo do metrônomo', title: 'Metrônomo', timeSig: 'Compasso', slower: 'Mais lento', faster: 'Mais rápido', tempo: 'Andamento', beats: 'Tempos do compasso', beat: 'Tempo', accented: 'acentuado',
+        accentHint: 'Toque num ponto para acentuar o tempo', tap: 'Tocar tempo', tapAgain: 'Continue', play: 'Iniciar metrônomo', stop: 'Parar metrônomo',
+        more: 'Mais', less: 'Menos', sub: 'Subdivisão', subs: ['1/4', '1/8', 'Tercina', '1/16'], volume: 'Volume', flash: 'Flash visual', stage: 'Modo palco (preto)',
+        how: 'Como usar', how1: 'Ajuste o andamento no controle, nos botões − / + ou tocando o tempo.', how2: 'Aperte Play. A tela pisca a cada tempo.', how3: 'Toque num ponto para acentuar o tempo.', next: 'Próximo: Acordes' }
+};
+function tempoName(b) {
+  if (b < 60) return 'Largo'; if (b < 76) return 'Adagio'; if (b < 108) return 'Andante'; if (b < 120) return 'Moderato';
+  if (b < 168) return 'Allegro'; if (b < 200) return 'Presto'; return 'Prestissimo';
+}
+function defaultAccents(sig) {
+  var n = parseInt(sig, 10), a = []; for (var i = 0; i < n; i++) a.push(i === 0);
+  if (sig === '6/8') a[3] = true;
+  return a;
+}
+class Component extends DCLogic {
+  constructor(...a) {
+    super(...a);
+    this.state = Object.assign({}, this.state || {}, {
+      lang: 'en', bpm: 100, playing: false, beat: -1, sig: '4/4', accents: defaultAccents('4/4'), sub: 1,
+      vol: 0.8, flash: true, flashOn: false, swing: 0, dark: false, more: false, taps: []
+    });
+  }
+  componentWillUnmount() { this.stop(); }
+  ac() { if (!this._ac) { var AC = window.AudioContext || window.webkitAudioContext; this._ac = new AC(); } if (this._ac.state === 'suspended') this._ac.resume(); return this._ac; }
+  start() {
+    var self = this, ctx;
+    try { ctx = this.ac(); } catch (e) { return; }
+    this.nextTime = ctx.currentTime + 0.08; this.beatIdx = 0; this.subIdx = 0; this.run = true;
+    this.timer = setInterval(function () { self.schedule(); }, 25);
+    this.setState({ playing: true, beat: -1 });
+  }
+  stop() {
+    this.run = false;
+    if (this.timer) { clearInterval(this.timer); this.timer = null; }
+    (this.timeouts || []).forEach(clearTimeout); this.timeouts = [];
+    if (this.state.playing) this.setState({ playing: false, beat: -1, flashOn: false });
+  }
+  schedule() {
+    var ctx = this._ac;
+    while (this.nextTime < ctx.currentTime + 0.12) {
+      var beats = this.state.accents.length;
+      if (this.beatIdx >= beats) this.beatIdx = 0;
+      this.click(this.nextTime, this.beatIdx, this.subIdx);
+      var sub = this.state.sub;
+      this.nextTime += 60 / this.state.bpm / sub;
+      this.subIdx++;
+      if (this.subIdx >= sub) { this.subIdx = 0; this.beatIdx = (this.beatIdx + 1) % beats; }
+    }
+  }
+  click(time, b, sIdx) {
+    var self = this, ctx = this._ac, accent = sIdx === 0 && this.state.accents[b];
+    var freq = sIdx > 0 ? 900 : (accent ? 1760 : 1180);
+    var peak = Math.max(0.0002, this.state.vol * (sIdx > 0 ? 0.3 : (accent ? 0.9 : 0.6)));
+    var o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = 'triangle'; o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, time); g.gain.exponentialRampToValueAtTime(peak, time + 0.002); g.gain.exponentialRampToValueAtTime(0.0001, time + 0.06);
+    o.connect(g); g.connect(ctx.destination); o.start(time); o.stop(time + 0.07);
+    if (sIdx === 0) {
+      var delay = Math.max(0, (time - ctx.currentTime) * 1000);
+      this.timeouts = (this.timeouts || []).slice(-16);
+      this.timeouts.push(setTimeout(function () {
+        if (!self.run) return;
+        self.setState({ beat: b, flashOn: true, swing: (self.state.swing || 0) + 1 });
+        self.timeouts.push(setTimeout(function () { if (self.run) self.setState({ flashOn: false }); }, 90));
+      }, delay));
+    }
+  }
+  setBpm(v) { this.setState({ bpm: Math.max(30, Math.min(300, Math.round(v))) }); }
+  tap() {
+    var now = performance.now(), taps = this.state.taps.filter(function (x) { return now - x < 2000; });
+    if (taps.length && now - taps[taps.length - 1] > 2000) taps = [];
+    taps.push(now); taps = taps.slice(-5);
+    var upd = { taps: taps };
+    if (taps.length >= 2) {
+      var sum = 0; for (var i = 1; i < taps.length; i++) sum += taps[i] - taps[i - 1];
+      upd.bpm = Math.max(30, Math.min(300, Math.round(60000 / (sum / (taps.length - 1)))));
+    }
+    this.setState(upd);
+    var self = this; clearTimeout(this.tapReset);
+    this.tapReset = setTimeout(function () { self.setState({ taps: [] }); }, 2100);
+  }
+  renderVals() {
+    var self = this, s = this.state, L = TXT[s.lang], t = s.dark ? DARK : LIGHT;
+    var flashing = s.playing && s.flash && s.flashOn;
+    var dots = s.accents.map(function (acc, i) {
+      var cur = s.playing && s.beat === i;
+      return {
+        pressed: acc ? 'true' : 'false', aria: L.beat + ' ' + (i + 1) + (acc ? ', ' + L.accented : ''),
+        bg: cur ? '#39FF88' : t.inset, fg: cur ? '#090A0A' : t.muted, num: String(i + 1),
+        dot: cur ? '#090A0A' : (acc ? t.ink : t.muted), size: acc ? 14 : 7, scale: cur ? 1.04 : 1,
+        toggle: function () { var a = self.state.accents.slice(); a[i] = !a[i]; self.setState({ accents: a }); }
+      };
+    });
+    var subs = [1, 2, 3, 4].map(function (v, i) {
+      var on = s.sub === v;
+      return { label: L.subs[i], pressed: on ? 'true' : 'false', bg: on ? '#39FF88' : 'transparent', fg: on ? '#090A0A' : t.ink, pick: function () { self.setState({ sub: v }); } };
+    });
+    var sw = function (key, label) {
+      var on = !!s[key];
+      return { label: label, checked: on ? 'true' : 'false', track: on ? '#39FF88' : t.track, knob: on ? '#090A0A' : t.ink, justify: on ? 'flex-end' : 'flex-start',
+        toggle: function () { var o = {}; o[key] = !self.state[key]; self.setState(o); } };
+    };
+    var langs = ['en', 'pt'].map(function (lid) {
+      var on = lid === s.lang;
+      return { label: lid.toUpperCase(), pressed: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#090A0A' : t.ink, pick: function () { self.setState({ lang: lid }); } };
+    });
+    return {
+      t: t, L: L, langs: langs,
+      rootBg: flashing ? t.flash : t.bg,
+      sigBtns: SIGS.map(function (g) {
+        var on = g === s.sig;
+        return { label: g, pressed: on ? 'true' : 'false', bg: on ? '#39FF88' : 'transparent', fg: on ? '#090A0A' : t.ink,
+          pick: function () { self.setState({ sig: g, accents: defaultAccents(g), beat: -1 }); } };
+      }),
+      playShadow: s.playing ? 'none' : '0 10px 30px -10px rgba(57,255,136,0.55)',
+      armDeg: s.playing ? ((s.swing || 0) % 2 ? 26 : -26) : 0,
+      armDur: s.playing ? Math.round(60000 / s.bpm) : 300,
+      weightY: Math.round(64 + (s.bpm - 30) / 270 * 160),
+      led: flashing ? '#39FF88' : '#3E1F10',
+      ticks: [70, 92, 114, 136, 158, 180, 202, 224, 246].map(function (y, i) { return { x: i % 2 ? 144 : 138, y: y, w: i % 2 ? 12 : 24 }; }),
+      onSig: function (e) { var v = e.target.value; self.setState({ sig: v, accents: defaultAccents(v), beat: -1 }); },
+      bpm: s.bpm, tempoName: tempoName(s.bpm), bpmColor: flashing ? '#39FF88' : t.ink,
+      bpmDown: function () { self.setBpm(self.state.bpm - 1); },
+      bpmUp: function () { self.setBpm(self.state.bpm + 1); },
+      onSlider: function (e) { self.setBpm(Number(e.target.value)); },
+      dots: dots,
+      tap: function () { self.tap(); }, tapLabel: s.taps.length ? L.tapAgain : L.tap,
+      playing: s.playing, stopped: !s.playing, playAria: s.playing ? L.stop : L.play,
+      playBg: s.playing ? '#FFFFFF' : '#39FF88',
+      togglePlay: function () { if (self.state.playing) self.stop(); else self.start(); },
+      more: s.more, moreStr: s.more ? 'true' : 'false', moreLabel: s.more ? L.less : L.more, chev: s.more ? 180 : 0,
+      toggleMore: function () { self.setState({ more: !self.state.more }); },
+      subs: subs, volPct: Math.round(s.vol * 100),
+      onVol: function (e) { self.setState({ vol: Number(e.target.value) / 100 }); },
+      switches: [sw('flash', L.flash)]
+    };
+  }
+}
+</script>
+</body>
+</html>

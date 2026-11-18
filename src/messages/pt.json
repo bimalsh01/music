@@ -1,0 +1,216 @@
+{
+  "site": {
+    "name": "Music Tools",
+    "language": "Idioma",
+    "home": "Início do Music Tools",
+    "nav": {
+      "label": "Ferramentas",
+      "tuner": "Afinador",
+      "metronome": "Metrônomo",
+      "chords": "Acordes"
+    }
+  },
+  "meta": {
+    "home": {
+      "title": "Music Tools — Afinador, metrônomo e acordes grátis",
+      "description": "Ferramentas de música simples que funcionam assim que a página abre. Afine violão, cavaquinho, ukulele, violino, violoncelo ou baixo, use o metrônomo e veja acordes. Sem cadastro."
+    },
+    "guitar": {
+      "title": "Afinador de Violão Online — Grátis com microfone",
+      "description": "Afine seu violão pelo microfone. Afinação padrão, Drop D, Open G, DADGAD e meio tom abaixo. Funciona na hora, sem cadastro."
+    },
+    "ukulele": {
+      "title": "Afinador de Ukulele Online — Grátis (Sol Dó Mi Lá)",
+      "description": "Afine seu ukulele (Sol Dó Mi Lá) pelo microfone ou de ouvido. Funciona na hora, sem cadastro."
+    },
+    "violin": {
+      "title": "Afinador de Violino Online — Grátis (Sol Ré Lá Mi)",
+      "description": "Afine seu violino (Sol Ré Lá Mi) pelo microfone ou de ouvido. Funciona na hora, sem cadastro."
+    },
+    "cello": {
+      "title": "Afinador de Violoncelo Online — Grátis (Dó Sol Ré Lá)",
+      "description": "Afine seu violoncelo (Dó Sol Ré Lá) pelo microfone ou de ouvido. Funciona na hora, sem cadastro."
+    },
+    "bass": {
+      "title": "Afinador de Baixo Online — Grátis (Mi Lá Ré Sol)",
+      "description": "Afine seu contrabaixo (Mi Lá Ré Sol) pelo microfone ou de ouvido. Funciona na hora, sem cadastro."
+    },
+    "chromatic": {
+      "title": "Afinador Cromático Online — Afine qualquer nota",
+      "description": "Afinador cromático grátis para qualquer instrumento. Mostra a nota e quantos cents está grave ou agudo."
+    },
+    "cavaquinho": {
+      "title": "Afinador de Cavaquinho Online — Grátis (Ré Sol Si Ré)",
+      "description": "Afine seu cavaquinho (Ré Sol Si Ré) pelo microfone ou de ouvido. Funciona na hora, sem cadastro."
+    },
+    "metronome": {
+      "title": "Metrônomo Online — Grátis com toque de tempo",
+      "description": "Metrônomo online grátis de 30 a 300 BPM, com toque de tempo, acentos, subdivisões e flash visual."
+    },
+    "chords": {
+      "title": "Acordes — Dicionário de acordes de violão e piano",
+      "description": "Encontre qualquer acorde de violão ou piano. Veja a posição, ouça, troque a forma e transponha."
+    }
+  },
+  "instruments": {
+    "guitar": "Violão",
+    "ukulele": "Ukulele",
+    "violin": "Violino",
+    "cello": "Violoncelo",
+    "bass": "Baixo",
+    "chromatic": "Cromático",
+    "cavaquinho": "Cavaquinho"
+  },
+  "home": {
+    "eyebrow": "Sem cadastro · funciona na hora",
+    "h1a": "Toque.",
+    "h1b": "Afine.",
+    "h1c": "Mantenha o tempo.",
+    "sub": "Ferramentas de música simples que funcionam assim que a página abre.",
+    "cta": "Afinar o violão",
+    "tuners": "Todos os afinadores",
+    "tuner": "Afinador",
+    "tunerSub": "Violão, ukulele, violino, violoncelo, baixo",
+    "metronome": "Metrônomo",
+    "metroSub": "30–300 BPM · toque o tempo",
+    "chords": "Acordes",
+    "chordsSub": "Violão e piano",
+    "any": "Qualquer nota"
+  },
+  "tuner": {
+    "titles": {
+      "guitar": "Afinador de Violão",
+      "ukulele": "Afinador de Ukulele",
+      "violin": "Afinador de Violino",
+      "cello": "Afinador de Violoncelo",
+      "bass": "Afinador de Baixo",
+      "chromatic": "Afinador Cromático",
+      "cavaquinho": "Afinador de Cavaquinho"
+    },
+    "instruments": "Instrumentos",
+    "preset": "Afinação",
+    "presets": {
+      "standard": "Padrão",
+      "dropd": "Drop D",
+      "openg": "Open G",
+      "dadgad": "DADGAD",
+      "half": "Meio tom abaixo"
+    },
+    "start": "Toque para afinar",
+    "stop": "Parar",
+    "idle": "Pronto",
+    "listening": "Ouvindo…",
+    "inTune": "Afinado",
+    "flat": "Suba",
+    "sharp": "Desça",
+    "allDone": "Todas as cordas afinadas",
+    "string": "Corda",
+    "strings": "Cordas",
+    "tapString": "Toque numa corda para escolher e ouvir a nota",
+    "more": "Mais",
+    "less": "Menos",
+    "a4": "Referência Lá4",
+    "a4Down": "Baixar Lá4 em 1 Hz",
+    "a4Up": "Subir Lá4 em 1 Hz",
+    "sound": "Tons de referência",
+    "nomic": "Sem acesso ao microfone — toque numa corda para afinar de ouvido.",
+    "demo": "Testar com entrada demo",
+    "demoTag": "Entrada demo",
+    "play": "Tocar tom de referência",
+    "any": "Toque qualquer nota",
+    "how": "Como usar",
+    "how1": "Toque em “Toque para afinar” e permita o microfone.",
+    "how2": "Toque uma corda. O medidor mostra se está grave ou agudo.",
+    "how3": "Gire a tarraxa até as barras do centro ficarem verdes.",
+    "next": "Próximo: Metrônomo"
+  },
+  "metronome": {
+    "visual": "Pêndulo do metrônomo",
+    "title": "Metrônomo",
+    "timeSig": "Compasso",
+    "slower": "Mais lento",
+    "faster": "Mais rápido",
+    "tempo": "Andamento",
+    "beats": "Tempos do compasso",
+    "beat": "Tempo",
+    "accented": "acentuado",
+    "accentHint": "Toque num ponto para acentuar o tempo",
+    "tap": "Tocar tempo",
+    "tapAgain": "Continue",
+    "play": "Iniciar metrônomo",
+    "stop": "Parar metrônomo",
+    "more": "Mais",
+    "less": "Menos",
+    "sub": "Subdivisão",
+    "subs": [
+      "1/4",
+      "1/8",
+      "Tercina",
+      "1/16"
+    ],
+    "volume": "Volume",
+    "flash": "Flash visual",
+    "how": "Como usar",
+    "how1": "Ajuste o andamento no controle, nos botões − / + ou tocando o tempo.",
+    "how2": "Aperte Play. A tela pisca a cada tempo.",
+    "how3": "Toque num ponto para acentuar o tempo.",
+    "next": "Próximo: Acordes"
+  },
+  "chords": {
+    "title": "Acordes",
+    "instrument": "Instrumento",
+    "guitar": "Violão",
+    "piano": "Piano",
+    "down": "Transpor meio tom abaixo",
+    "up": "Transpor meio tom acima",
+    "semi": "½ tom",
+    "play": "Tocar",
+    "prev": "Variação anterior",
+    "nextVar": "Próxima variação",
+    "pos": "Posição {i} de {n}",
+    "inv": [
+      "Posição fundamental",
+      "1ª inversão",
+      "2ª inversão",
+      "3ª inversão"
+    ],
+    "root": "Nota fundamental",
+    "type": "Tipo de acorde",
+    "types": {
+      "maj": "Maior",
+      "min": "Menor",
+      "7": "7",
+      "maj7": "7M",
+      "m7": "m7",
+      "sus2": "sus2",
+      "sus4": "sus4",
+      "dim": "dim",
+      "aug": "aum"
+    },
+    "suffix": {
+      "maj": "",
+      "min": "m",
+      "7": "7",
+      "maj7": "7M",
+      "m7": "m7",
+      "sus2": "sus2",
+      "sus4": "sus4",
+      "dim": "dim",
+      "aug": "aum"
+    },
+    "more": "Mais",
+    "less": "Menos",
+    "naming": "Nome das notas",
+    "namings": {
+      "abc": "C D E",
+      "solfege": "Dó Ré Mi",
+      "german": "C D E H"
+    },
+    "how": "Como usar",
+    "how1": "Escolha a nota fundamental e o tipo de acorde.",
+    "how2": "Aperte Tocar para ouvir. As setas mostram outras formas.",
+    "how3": "Use −1 / +1 para mover o acorde meio tom.",
+    "next": "Próximo: Afinador",
+    "chordOn": "diagrama do acorde"
+  }
+}

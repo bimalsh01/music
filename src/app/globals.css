@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* Design tokens — copied from the "Music Tools Prototype" design. */
+@theme {
+  --color-bg: #090a0a;
+  --color-surface: #111213;
+  --color-inset: #17191b;
+  --color-raised: #26292d;
+  --color-track: #1f2225;
+  --color-ink: #eeedf0;
+  --color-muted: #b8bcc3;
+  --color-accent: #39ff88;
+  --color-ok: #1ecf9a;
+  --color-mint: #a6ffc6;
+  --color-flash: #0d1f14;
+  --color-needle-fill: #6b7076;
+
+  /* Wood + metal illustration palette */
+  --color-wood: #6b3820;
+  --color-wood-dark: #2b1a11;
+  --color-wood-deep: #3e1f10;
+  --color-wood-line: #4a2614;
+  --color-bone: #e9dfc8;
+  --color-fret: #8f959b;
+  --color-string: #c9cdd2;
+  --color-post: #d5d8dc;
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-glow: 0 10px 30px -10px rgba(57, 255, 136, 0.55);
+  --shadow-ring: 0 0 0 6px rgba(57, 255, 136, 0.14);
+}
+
+@layer base {
+  html {
+    background: var(--color-bg);
+    color-scheme: dark;
+  }
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  /* The prototype has no focus styles; keyboard users get an accent ring. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+  input[type="range"] {
+    accent-color: var(--color-accent);
+  }
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Tool hero: every playable control sits inside the first screen.
+ * On desktop (≥ 860px wide) the tool section is exactly one screen tall (below the 72px header)
+ * and its illustration (headstock / pendulum) scales to the room that is left. Phones stack the
+ * controls first instead (see the components).
+ */
+:root {
+  --header-h: 72px;
+  --hero-pt: clamp(12px, 2.5svh, 28px);
+}
+
+@layer components {
+  @media (width >= 860px) {
+    /* min-height (not height): if a very short window can't fit the controls, the hero grows
+       instead of overlapping the how-to section below it. */
+    .tool-hero {
+      min-height: max(480px, calc(100svh - var(--header-h) - var(--hero-pt) - 20px));
+    }
+  }
+
+  /* Chord diagrams are drawn in fixed px; shrink them on short screens so the hero still fits. */
+  @media (width >= 860px) and (height <= 760px) {
+    .chord-diagram {
+      zoom: 0.8;
+    }
+  }
+  @media (width >= 860px) and (height <= 640px) {
+    .chord-diagram {
+      zoom: 0.68;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+  }
+}
