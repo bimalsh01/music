@@ -4,12 +4,13 @@ import { setRequestLocale } from "next-intl/server";
 import { ChordLookup } from "@/components/chords/ChordLookup";
 import { Metronome } from "@/components/metronome/Metronome";
 import { HowTo, PageMain } from "@/components/shell/HowTo";
+import { SeoContent } from "@/components/shell/SeoContent";
 import { SiteHeader } from "@/components/shell/SiteHeader";
 import { Tuner, type InstrumentTab } from "@/components/tuner/Tuner";
 import { getDictionary } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/routing";
 import { INSTRUMENT_IDS, type InstrumentId } from "@/lib/music/instruments";
-import { pageMetadata, toolJsonLd } from "@/lib/seo";
+import { faqJsonLd, pageMetadata, toolJsonLd } from "@/lib/seo";
 import { toolBySlug, toolPath, toolsFor } from "@/tools/registry";
 
 export const dynamicParams = false;
@@ -51,13 +52,16 @@ export default async function ToolPage({ params }: PageProps<"/[locale]/[tool]">
     text = d.chords;
   }
 
+  const faq = faqJsonLd(locale, tool.id);
   return (
     <div className="flex min-h-dvh flex-col text-ink">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toolJsonLd(locale, tool.id) }} />
+      {faq && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faq }} />}
       <SiteHeader locale={locale} toolId={tool.id} site={d.site} />
       <PageMain>
         {body}
         <HowTo title={text.how} steps={[text.how1, text.how2, text.how3]} nextLabel={text.next} nextHref={toolPath(locale, tool.next)!} />
+        <SeoContent locale={locale} page={tool.id} />
       </PageMain>
     </div>
   );

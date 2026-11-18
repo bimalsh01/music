@@ -4,12 +4,13 @@ import { setRequestLocale } from "next-intl/server";
 import { FretboardArt, HeadstockArt, MetronomeArt } from "@/components/home/illustrations";
 import { ArrowRight, ArrowUpRight } from "@/components/shell/icons";
 import { PageMain } from "@/components/shell/HowTo";
+import { SeoContent } from "@/components/shell/SeoContent";
 import { SiteHeader } from "@/components/shell/SiteHeader";
 import { getDictionary } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/routing";
 import { INSTRUMENT_IDS, stringsFor } from "@/lib/music/instruments";
 import { namingFor, noteName } from "@/lib/music/notes";
-import { pageMetadata } from "@/lib/seo";
+import { faqJsonLd, pageMetadata } from "@/lib/seo";
 import { toolPath } from "@/tools/registry";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]">): Promise<Metadata> {
@@ -37,8 +38,10 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
     return [{ id, href, name: d.instruments[id], notes: notes.length ? notes : [t.any] }];
   });
 
+  const faq = faqJsonLd(locale, null);
   return (
     <div className="flex min-h-dvh flex-col bg-bg text-ink">
+      {faq && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faq }} />}
       <SiteHeader locale={locale} toolId={null} site={d.site} />
       <PageMain top="pt-20">
         <div className="flex flex-col items-center gap-[26px] text-center">
@@ -102,6 +105,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
             ))}
           </div>
         </section>
+        <SeoContent locale={locale} page="home" />
       </PageMain>
     </div>
   );
