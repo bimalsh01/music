@@ -38,7 +38,7 @@ async function openPage(browser: Browser, path: string, micHz?: number): Promise
 }
 
 const readout = (page: Page) => page.locator(".tool-hero span[class*='leading-[0.85]']").first();
-const status = (page: Page) => page.locator(".tool-hero span.h-8").first();
+const status = (page: Page) => page.locator(".tool-hero [data-status]").first();
 
 test.describe("tuner with a simulated microphone", () => {
   test("chromatic tuner hears A4 = 440 Hz and shows In tune", async () => {
@@ -55,7 +55,7 @@ test.describe("tuner with a simulated microphone", () => {
     const browser = await launch();
     const page = await openPage(browser, "/en/chromatic-tuner/", 440 * 2 ** (20 / 1200));
     await page.locator(".tool-hero .shadow-glow").click();
-    await expect(status(page)).toHaveText(/Tune down · (1[7-9]|2[0-3])¢/, { timeout: 8000 });
+    await expect(status(page)).toHaveText(/Tune down\s*\+(1[7-9]|2[0-3])¢/, { timeout: 8000 });
     await browser.close();
   });
 

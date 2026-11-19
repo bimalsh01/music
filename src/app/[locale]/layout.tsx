@@ -24,6 +24,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: "#090A0A",
   colorScheme: "dark",
+  // Draw under the iPhone home indicator; the bottom tab bar pads itself with safe-area insets.
+  viewportFit: "cover",
 };
 
 export default async function LocaleLayout({ children, params }: LayoutProps<"/[locale]">) {

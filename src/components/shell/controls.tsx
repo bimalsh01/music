@@ -1,7 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { ChevronDown } from "./icons";
+import { useEffect, useRef, type ReactNode } from "react";
+import { ChevronDown, CloseIcon, SlidersIcon } from "./icons";
 
 /** Pill-shaped segmented control on an inset track (time signatures, subdivision, naming…). */
 export function Segmented<T extends string | number>({
@@ -61,7 +61,7 @@ export function PrimaryButton({
       type="button"
       onClick={onClick}
       aria-label={ariaLabel}
-      className={`flex h-[60px] cursor-pointer items-center justify-center gap-2.5 rounded-full border-none text-[17px] font-bold ${
+      className={`flex h-[60px] cursor-pointer items-center justify-center gap-2.5 rounded-full border-none text-[17px] font-bold [&>svg]:flex-none ${
         active ? "bg-pill text-on-pill shadow-none" : "bg-accent text-on-accent shadow-glow"
       } ${className}`}
     >
@@ -147,5 +147,80 @@ export function RoundButton({
     >
       {children}
     </button>
+  );
+}
+
+/** Phones only: round button that opens a tool's settings sheet (replaces "More" there). */
+export function SettingsButton({ label, onClick, className = "" }: { label: string; onClick: () => void; className?: string }) {
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      title={label}
+      aria-haspopup="dialog"
+      onClick={onClick}
+      className={`flex size-11 flex-none cursor-pointer items-center justify-center rounded-full border-none bg-inset text-ink min-[860px]:hidden ${className}`}
+    >
+      <SlidersIcon />
+    </button>
+  );
+}
+
+/**
+ * Phones only: a panel that slides up from the bottom over a dimmed page, for settings that would
+ * otherwise push the one-screen layout down. Closes on the backdrop, the × button or Escape.
+ */
+export function BottomSheet({
+  open,
+  title,
+  closeLabel,
+  onClose,
+  children,
+}: {
+  open: boolean;
+  title: string;
+  closeLabel: string;
+  onClose: () => void;
+  children: ReactNode;
+}) {
+  const panel = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const back = document.activeElement as HTMLElement | null;
+    panel.current?.focus();
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      back?.focus();
+    };
+  }, [open, onClose]);
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-30 flex items-end justify-center min-[860px]:hidden">
+      <div aria-hidden="true" className="absolute inset-0 bg-black/55" onClick={onClose} />
+      <div
+        ref={panel}
+        role="dialog"
+        aria-modal="true"
+        aria-label={title}
+        tabIndex={-1}
+        className="relative box-border flex max-h-[85dvh] w-full max-w-[520px] animate-[sheet-in_180ms_ease-out] flex-col gap-4 overflow-y-auto rounded-t-[28px] bg-surface px-6 pt-3 pb-[calc(24px+var(--safe-b))] outline-none"
+      >
+        <span aria-hidden="true" className="mx-auto h-1 w-10 flex-none rounded-full bg-raised" />
+        <div className="flex items-center justify-between">
+          <h2 className="m-0 font-display text-xl font-bold">{title}</h2>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label={closeLabel}
+            className="flex size-11 cursor-pointer items-center justify-center rounded-full border-none bg-inset text-ink"
+          >
+            <CloseIcon />
+          </button>
+        </div>
+        {children}
+      </div>
+    </div>
   );
 }

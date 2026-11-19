@@ -18,6 +18,9 @@ export interface PegSlot {
 
 export interface Headstock {
   H: number;
+  /** Visible slice of the 420-wide viewBox: left edge and width (electric trims the empty left). */
+  vx: number;
+  W: number;
   body: string;
   face: string;
   neckX: number;
@@ -27,6 +30,9 @@ export interface Headstock {
   fadeY: number;
   frets: number[];
   scroll: boolean;
+  /** Colours of the headstock wood (acoustic) or finish (electric). */
+  bodyFill: string;
+  faceStroke: string;
   keys: PegKey[];
   slots: PegSlot[];
   postL: number;
@@ -34,7 +40,8 @@ export interface Headstock {
   nutX: (j: number) => number;
 }
 
-export function headstock(kind: string, n: number): Headstock {
+export function headstock(kind: string, n: number, electric = false): Headstock {
+  if (electric) return inlineHeadstock(n);
   const k = n / 2;
   const scroll = kind === "violin" || kind === "cello";
   const pegY = (i: number) => 120 + i * 88;
@@ -75,5 +82,42 @@ export function headstock(kind: string, n: number): Headstock {
   };
   const frets = [nutY + 62, nutY + 118, nutY + 168];
 
-  return { H, body, face, neckX, neckW, nutY, neckH: H - nutY, fadeY: H - 120, frets, scroll, keys, slots, postL, postR, nutX };
+  return {
+    H, vx: 0, W: 420, body, face, neckX, neckW, nutY, neckH: H - nutY, fadeY: H - 120, frets, scroll,
+    bodyFill: "#6B3820", faceStroke: "#4A2614", keys, slots, postL, postR, nutX,
+  };
+}
+
+/**
+ * Electric-style headstock: every tuner in one line on the right, lowest string at the top,
+ * black finish. Same neck, nut and fret layout as the acoustic one so the strings line up.
+ */
+function inlineHeadstock(n: number): Headstock {
+  const neckX = 166;
+  const neckW = 88;
+  const post = 270;
+  const gap = 64;
+  const pegY = (i: number) => 100 + i * gap;
+  const last = pegY(n - 1);
+  const nutY = last + 70;
+  const H = nutY + 190;
+  const body = `M166 ${nutY} L160 140 C156 80 180 40 230 36 C270 34 296 48 300 76 L304 ${last + 20} C304 ${last + 56} 276 ${nutY - 30} 254 ${nutY - 6} L254 ${nutY} Z`;
+  const face = `M176 ${nutY - 6} L172 144 C170 92 190 52 230 48 C264 46 284 58 288 82 L292 ${last + 16} C292 ${last + 48} 268 ${nutY - 36} 246 ${nutY - 12}`;
+  const slots: PegSlot[] = [];
+  const keys: PegKey[] = [];
+  for (let i = 0; i < n; i++) {
+    const y = pegY(i);
+    slots.push({ idx: i, side: "R", y });
+    keys.push({ sx: 300, sy: y - 5, cx: 326, cy: y, rx: 13, ry: 17, fill: "#C9CDD2", hx: 323, hy: y - 5, hrx: 5, hry: 8, hi: "#F2F4F6" });
+  }
+  const nutX = (j: number) => {
+    const a = neckX + 10;
+    const b = neckX + neckW - 10;
+    return n > 1 ? a + (j * (b - a)) / (n - 1) : (a + b) / 2;
+  };
+  return {
+    H, vx: 148, W: 272, body, face, neckX, neckW, nutY, neckH: H - nutY, fadeY: H - 120,
+    frets: [nutY + 62, nutY + 118, nutY + 168], scroll: false,
+    bodyFill: "#1C1E21", faceStroke: "#3A3E44", keys, slots, postL: post, postR: post, nutX,
+  };
 }

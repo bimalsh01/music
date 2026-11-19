@@ -66,6 +66,23 @@ describe("tuner logic", () => {
     r = applyFrequency(r, midiToFreq(64.01), guitar, 440, false, 900);
     expect(r.done[5]).toBe(true);
   });
+  it("auto mode ignores a stray reading but follows a new string after 3 in a row", () => {
+    let r = applyFrequency(EMPTY_READING, midiToFreq(45.1), guitar, 440, false, 0);
+    expect(r.sel).toBe(1);
+    const before = r.cents;
+    r = applyFrequency(r, midiToFreq(57), guitar, 440, false, 70); // one overtone blip near G3
+    expect(r.sel).toBe(1);
+    expect(r.cents).toBe(before); // the blip doesn't flash a huge cents value
+    r = applyFrequency(r, midiToFreq(45.1), guitar, 440, false, 140);
+    expect(r.pending).toBeNull();
+    for (let t = 210; t <= 350; t += 70) r = applyFrequency(r, midiToFreq(50.2), guitar, 440, false, t);
+    expect(r.sel).toBe(2);
+  });
+  it("manual mode stays on the picked string however far off the note is", () => {
+    const r = applyFrequency({ ...EMPTY_READING, sel: 0 }, midiToFreq(45), guitar, 440, true, 0);
+    expect(r.sel).toBe(0);
+    expect(r.cents).toBeCloseTo(500, 5);
+  });
   it("uses the nearest semitone for the chromatic tuner", () => {
     const r = applyFrequency(EMPTY_READING, midiToFreq(61.3), [], 440, false, 0);
     expect(r.chrom).toBe(61);

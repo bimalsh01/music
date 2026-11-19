@@ -36,9 +36,9 @@ export function PageMain({ children, top = "pt-[var(--hero-pt)]" }: { children: 
   );
 }
 
-export function PageTitle({ children }: { children: React.ReactNode }) {
+export function PageTitle({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <h1 className="m-0 font-display text-[clamp(2.75rem,min(6vw,8svh),5rem)] leading-none font-extrabold tracking-[-0.035em]">
+    <h1 className={`m-0 min-w-0 font-display text-[24px] leading-tight ${className} font-extrabold tracking-[-0.03em] min-[860px]:text-[clamp(2.75rem,min(6vw,8svh),5rem)] min-[860px]:leading-none min-[860px]:tracking-[-0.035em]`}>
       {children}
     </h1>
   );

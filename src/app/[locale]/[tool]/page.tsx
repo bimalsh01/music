@@ -6,7 +6,7 @@ import { Metronome } from "@/components/metronome/Metronome";
 import { HowTo, PageMain } from "@/components/shell/HowTo";
 import { SeoContent } from "@/components/shell/SeoContent";
 import { SiteFooter } from "@/components/shell/SiteFooter";
-import { SiteHeader } from "@/components/shell/SiteHeader";
+import { BottomNav, SiteHeader } from "@/components/shell/SiteHeader";
 import { Tuner, type InstrumentTab } from "@/components/tuner/Tuner";
 import { getDictionary } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/routing";
@@ -43,13 +43,13 @@ export default async function ToolPage({ params }: PageProps<"/[locale]/[tool]">
       const href = toolPath(locale, id);
       return href ? [{ id, label: d.instruments[id], href }] : [];
     });
-    body = <Tuner locale={locale} instrument={instrument} title={d.tuner.titles[instrument]} tabs={tabs} L={d.tuner} />;
+    body = <Tuner locale={locale} instrument={instrument} title={d.tuner.titles[instrument]} tabs={tabs} L={d.tuner} ui={d.site} />;
     text = d.tuner;
   } else if (tool.kind === "metronome") {
-    body = <Metronome L={d.metronome} />;
+    body = <Metronome L={d.metronome} ui={d.site} />;
     text = d.metronome;
   } else {
-    body = <ChordLookup locale={locale} L={d.chords} />;
+    body = <ChordLookup locale={locale} L={d.chords} ui={d.site} />;
     text = d.chords;
   }
 
@@ -65,6 +65,7 @@ export default async function ToolPage({ params }: PageProps<"/[locale]/[tool]">
         <SeoContent locale={locale} page={tool.id} />
       </PageMain>
       <SiteFooter locale={locale} toolId={tool.id} d={d} />
+      <BottomNav locale={locale} toolId={tool.id} site={d.site} />
     </div>
   );
 }

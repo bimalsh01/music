@@ -6,7 +6,7 @@ import { ArrowRight, ArrowUpRight } from "@/components/shell/icons";
 import { PageMain } from "@/components/shell/HowTo";
 import { SeoContent } from "@/components/shell/SeoContent";
 import { SiteFooter } from "@/components/shell/SiteFooter";
-import { SiteHeader } from "@/components/shell/SiteHeader";
+import { BottomNav, SiteHeader } from "@/components/shell/SiteHeader";
 import { getDictionary } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/routing";
 import { INSTRUMENT_IDS, stringsFor } from "@/lib/music/instruments";
@@ -109,6 +109,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
         <SeoContent locale={locale} page="home" />
       </PageMain>
       <SiteFooter locale={locale} toolId={null} d={d} />
+      <BottomNav locale={locale} toolId={null} site={d.site} />
     </div>
   );
 }

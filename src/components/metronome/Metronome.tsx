@@ -20,14 +20,14 @@ import {
   type TimeSignature,
 } from "@/lib/music/metronome";
 import { useRehydrateSettings, useSettings } from "@/lib/store";
-import { MoreToggle, PrimaryButton, Segmented, Switch } from "@/components/shell/controls";
+import { BottomSheet, MoreToggle, PrimaryButton, Segmented, SettingsButton, Switch } from "@/components/shell/controls";
 import { PlayTriangle, StopSquare } from "@/components/shell/icons";
 import { PageTitle } from "@/components/shell/HowTo";
 
 const FLASH_MS = 90;
 const TICKS = [70, 92, 114, 136, 158, 180, 202, 224, 246];
 
-export function Metronome({ L }: { L: MetronomeText }) {
+export function Metronome({ L, ui }: { L: MetronomeText; ui: { settings: string; close: string } }) {
   useRehydrateSettings();
   const volume = useSettings((s) => s.volume);
   const flash = useSettings((s) => s.flash);
@@ -43,6 +43,8 @@ export function Metronome({ L }: { L: MetronomeText }) {
   const [flashOn, setFlashOn] = useState(false);
   const [taps, setTaps] = useState<number[]>([]);
   const [more, setMore] = useState(false);
+  const [sheet, setSheet] = useState(false);
+  const closeSheet = useCallback(() => setSheet(false), []);
 
   const settings = useRef<SchedulerSettings & { volume: number }>({ bpm, sub, accents, volume });
   useEffect(() => {
@@ -109,15 +111,44 @@ export function Metronome({ L }: { L: MetronomeText }) {
   const armDeg = playing ? (swing % 2 ? 26 : -26) : 0;
   const armDur = playing ? Math.round(60000 / bpm) : 300;
 
+  const settingsBody = (
+    <>
+      <div className="flex flex-col gap-2">
+        <span className="text-[15px] font-medium">{L.sub}</span>
+        <Segmented
+          label={L.sub}
+          items={SUBDIVISIONS.map((v, i) => ({ id: v, label: L.subs[i] }))}
+          value={sub}
+          onChange={setSub}
+          className="grid grid-cols-4 gap-0.5"
+          itemClassName="h-10 text-[13px] font-semibold"
+        />
+      </div>
+      <label className="flex items-center gap-3">
+        <span className="flex-none text-[15px] font-medium">{L.volume}</span>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          step={1}
+          value={Math.round(volume * 100)}
+          onChange={(e) => setSettings({ volume: Number(e.target.value) / 100 })}
+          className="m-0 h-11 min-w-0 flex-1 cursor-pointer"
+        />
+      </label>
+      <Switch label={L.flash} checked={flash} onChange={(v) => setSettings({ flash: v })} />
+    </>
+  );
+
   return (
-    <section className="tool-hero flex flex-col gap-[22px] min-[860px]:gap-[clamp(14px,2.6svh,34px)]">
+    <section className="tool-hero flex flex-col gap-3 min-[860px]:gap-[clamp(14px,2.6svh,34px)]">
       {/* Full-screen beat flash behind the page content. */}
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 -z-10 bg-flash transition-opacity duration-[70ms] ease-out"
         style={{ opacity: flashing ? 1 : 0 }}
       />
-      <div className="flex flex-wrap items-end justify-between gap-[18px]">
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2.5 min-[860px]:items-end min-[860px]:gap-[18px]">
         <PageTitle>{L.title}</PageTitle>
         <Segmented
           label={L.timeSig}
@@ -128,22 +159,25 @@ export function Metronome({ L }: { L: MetronomeText }) {
             setAccents(defaultAccents(g));
             setBeat(-1);
           }}
+          className="grid w-full grid-cols-6 gap-0.5 min-[860px]:flex min-[860px]:w-auto min-[860px]:flex-wrap"
+          itemClassName="h-9 min-w-0 px-1 text-sm font-bold min-[860px]:h-10 min-[860px]:min-w-12 min-[860px]:px-2.5"
         />
       </div>
 
       {/*
-        Below 860px the columns stack with the controls (BPM, beats, Play) first, so the metronome
-        is usable without scrolling on a phone. From 860px up it's the prototype's side-by-side row,
-        filling the rest of the one-screen hero; the pendulum scales to the height that is left.
+        Desktop (≥ 860px): the prototype's side-by-side row, filling the rest of the one-screen hero;
+        the pendulum scales to the height that is left. Phones: one screen like an app. The controls
+        column turns into `display: contents` so its parts can sit around the pendulum: BPM on top,
+        pendulum in the middle (it takes the height that is left), beats + Play at the bottom.
       */}
-      <div className="flex flex-col items-center gap-[clamp(34px,6vw,80px)] min-[860px]:min-h-0 min-[860px]:flex-1 min-[860px]:flex-row min-[860px]:items-stretch min-[860px]:justify-center">
-        <div className="flex w-full min-w-0 justify-center [container-type:inline-size] min-[860px]:w-auto min-[860px]:flex-[1_1_340px] min-[860px]:items-center min-[860px]:[container-type:size]">
+      <div className="flex min-h-0 flex-1 flex-col items-center gap-3 min-[860px]:flex-row min-[860px]:items-stretch min-[860px]:justify-center min-[860px]:gap-[clamp(34px,6vw,80px)]">
+        <div className="flex min-h-0 w-full min-w-0 flex-1 items-center justify-center [container-type:size] max-[859px]:order-2 min-[860px]:w-auto min-[860px]:flex-[1_1_340px]">
           <svg
             role="img"
             aria-label={L.visual}
             viewBox="0 0 300 380"
             className="flex-none"
-            // Fit the available height (desktop hero), the column width, and the prototype's 380px max.
+            // Fit the available height, the column width, and the prototype's 380px max.
             style={{ aspectRatio: "300 / 380", width: "auto", height: "min(100cqh, 126.667cqw, 481px)" }}
           >
             <rect x="26" y="342" width="248" height="24" fill="#3E1F10" />
@@ -167,37 +201,37 @@ export function Metronome({ L }: { L: MetronomeText }) {
           </svg>
         </div>
 
-        <div className="order-first flex w-full min-w-0 max-w-[520px] flex-col items-center gap-[26px] min-[860px]:order-none min-[860px]:w-auto min-[860px]:flex-[1_1_380px] min-[860px]:justify-center min-[860px]:gap-[clamp(10px,2.2svh,26px)]">
-          <div className="flex w-full items-center justify-center gap-[clamp(12px,3vw,34px)]">
+        <div className="flex w-full min-w-0 max-w-[520px] flex-col items-center gap-[26px] max-[859px]:contents min-[860px]:w-auto min-[860px]:flex-[1_1_380px] min-[860px]:justify-center min-[860px]:gap-[clamp(10px,2.2svh,26px)]">
+          <div className="flex w-full items-center justify-center gap-[clamp(12px,3vw,34px)] max-[859px]:order-1">
             <button
               type="button"
               onClick={() => setBpm(bpm - 1)}
               aria-label={L.slower}
-              className="flex size-14 flex-none cursor-pointer items-center justify-center rounded-full border-none bg-inset text-[26px] font-medium text-ink"
+              className="flex size-12 flex-none cursor-pointer items-center justify-center rounded-full border-none bg-inset text-[26px] font-medium text-ink min-[860px]:size-14"
             >
               −
             </button>
             <div className="flex min-w-0 flex-col items-center">
               <output
                 aria-live="off"
-                className="font-display text-[clamp(110px,13vw,184px)] leading-[0.85] min-[860px]:text-[clamp(72px,min(13vw,15svh),184px)] font-extrabold tracking-[-0.05em] tabular transition-colors duration-[70ms]"
+                className="font-display text-[clamp(64px,min(22vw,11svh),110px)] leading-[0.85] min-[860px]:text-[clamp(72px,min(13vw,15svh),184px)] font-extrabold tracking-[-0.05em] tabular transition-colors duration-[70ms]"
                 style={{ color: flashing ? "var(--color-accent-text)" : "var(--color-ink)" }}
               >
                 {bpm}
               </output>
-              <span className="mt-3.5 text-sm font-semibold text-muted">BPM · {tempoName(bpm)}</span>
+              <span className="mt-1.5 text-sm font-semibold text-muted min-[860px]:mt-3.5">BPM · {tempoName(bpm)}</span>
             </div>
             <button
               type="button"
               onClick={() => setBpm(bpm + 1)}
               aria-label={L.faster}
-              className="flex size-14 flex-none cursor-pointer items-center justify-center rounded-full border-none bg-inset text-[26px] font-medium text-ink"
+              className="flex size-12 flex-none cursor-pointer items-center justify-center rounded-full border-none bg-inset text-[26px] font-medium text-ink min-[860px]:size-14"
             >
               +
             </button>
           </div>
 
-          <label className="flex w-full flex-col gap-0.5">
+          <label className="flex w-full flex-col gap-0.5 max-[859px]:order-3">
             <span className="sr-only">{L.tempo}</span>
             <input
               type="range"
@@ -208,13 +242,13 @@ export function Metronome({ L }: { L: MetronomeText }) {
               onChange={(e) => setBpm(Number(e.target.value))}
               className="m-0 h-11 w-full cursor-pointer"
             />
-            <span aria-hidden="true" className="flex justify-between text-xs font-semibold text-muted">
+            <span aria-hidden="true" className="flex justify-between text-xs font-semibold text-muted max-[859px]:hidden">
               <span>{MIN_BPM}</span>
               <span>{MAX_BPM}</span>
             </span>
           </label>
 
-          <div className="flex w-full flex-col gap-2.5">
+          <div className="flex w-full flex-col gap-2.5 max-[859px]:order-4">
             <div role="group" aria-label={L.beats} className="flex gap-1.5">
               {accents.map((acc, i) => {
                 const cur = playing && beat === i;
@@ -225,7 +259,7 @@ export function Metronome({ L }: { L: MetronomeText }) {
                     aria-pressed={acc}
                     aria-label={`${L.beat} ${i + 1}${acc ? `, ${L.accented}` : ""}`}
                     onClick={() => setAccents(accents.map((a, j) => (j === i ? !a : a)))}
-                    className="flex h-16 min-w-0 flex-1 cursor-pointer min-[860px]:h-[clamp(44px,7svh,64px)] flex-col items-center justify-center gap-1.5 border-none p-0 transition-colors duration-[60ms]"
+                    className="flex h-12 min-w-0 flex-1 cursor-pointer min-[860px]:h-[clamp(44px,7svh,64px)] flex-col items-center justify-center gap-1.5 border-none p-0 transition-colors duration-[60ms]"
                     style={{ background: cur ? "var(--color-accent)" : "var(--color-inset)", color: cur ? "var(--color-on-accent)" : "var(--color-muted)" }}
                   >
                     <span
@@ -241,54 +275,43 @@ export function Metronome({ L }: { L: MetronomeText }) {
                 );
               })}
             </div>
-            <span className="text-center text-[13px] text-muted">{L.accentHint}</span>
+            <span className="text-center text-[13px] text-muted max-[859px]:hidden">{L.accentHint}</span>
           </div>
 
-          <div className="flex w-full gap-2.5">
-            <PrimaryButton active={playing} className="flex-[1.4]" onClick={() => (playing ? stop() : start())}>
+          <div className="flex w-full gap-2.5 max-[859px]:order-5">
+            <PrimaryButton active={playing} className="min-w-0 flex-[1.4] whitespace-nowrap max-[859px]:h-[52px] max-[859px]:flex-[2] max-[859px]:gap-2 max-[859px]:px-3 max-[859px]:text-[15px]" onClick={() => (playing ? stop() : start())}>
               {playing ? <StopSquare size={20} /> : <PlayTriangle />}
               {playing ? L.stop : L.play}
             </PrimaryButton>
             <button
               type="button"
               onClick={tap}
-              className="h-[60px] flex-1 cursor-pointer rounded-full border-none bg-inset text-base font-semibold text-ink"
+              className="h-[52px] min-w-0 flex-1 cursor-pointer rounded-full border-none bg-inset px-2 text-[15px] font-semibold whitespace-nowrap text-ink min-[860px]:h-[60px] min-[860px]:text-base"
             >
               {taps.length ? L.tapAgain : L.tap}
             </button>
+            <SettingsButton label={ui.settings} onClick={() => setSheet(true)} className="size-[52px]" />
           </div>
 
-          <MoreToggle open={more} onToggle={() => setMore(!more)} more={L.more} less={L.less} controls="metronome-more" />
+          <MoreToggle
+            open={more}
+            onToggle={() => setMore(!more)}
+            more={L.more}
+            less={L.less}
+            controls="metronome-more"
+            className="px-3.5 max-[859px]:hidden"
+          />
           {more && (
-            <div id="metronome-more" className="flex w-full flex-col gap-3">
-              <div className="flex flex-col gap-2">
-                <span className="text-[15px] font-medium">{L.sub}</span>
-                <Segmented
-                  label={L.sub}
-                  items={SUBDIVISIONS.map((v, i) => ({ id: v, label: L.subs[i] }))}
-                  value={sub}
-                  onChange={setSub}
-                  className="grid grid-cols-4 gap-0.5"
-                  itemClassName="h-10 text-[13px] font-semibold"
-                />
-              </div>
-              <label className="flex items-center gap-3">
-                <span className="flex-none text-[15px] font-medium">{L.volume}</span>
-                <input
-                  type="range"
-                  min={0}
-                  max={100}
-                  step={1}
-                  value={Math.round(volume * 100)}
-                  onChange={(e) => setSettings({ volume: Number(e.target.value) / 100 })}
-                  className="m-0 h-11 min-w-0 flex-1 cursor-pointer"
-                />
-              </label>
-              <Switch label={L.flash} checked={flash} onChange={(v) => setSettings({ flash: v })} />
+            <div id="metronome-more" className="flex w-full flex-col gap-3 max-[859px]:hidden">
+              {settingsBody}
             </div>
           )}
         </div>
       </div>
+
+      <BottomSheet open={sheet} title={ui.settings} closeLabel={ui.close} onClose={closeSheet}>
+        {settingsBody}
+      </BottomSheet>
     </section>
   );
 }

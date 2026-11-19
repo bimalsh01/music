@@ -11,6 +11,8 @@
   --color-muted: #b8bcc3;
   --color-accent: #39ff88;
   --color-ok: #1ecf9a;
+  /* Off target (tuner graph). */
+  --color-bad: #ff5c5c;
   --color-mint: #a6ffc6;
   --color-flash: #0d1f14;
   --color-needle-fill: #6b7076;
@@ -52,6 +54,7 @@
   --color-ink: #1a1d21;
   --color-muted: #615d55;
   --color-ok: #0b7f57;
+  --color-bad: #c62828;
   --color-mint: #08733b;
   --color-flash: #dff5e7;
   --color-needle-fill: #a8a296;
@@ -86,8 +89,45 @@
   input[type="range"] {
     accent-color: var(--color-accent);
   }
-  button {
+  button,
+  a {
     -webkit-tap-highlight-color: transparent;
+    /* No double-tap-to-zoom delay on taps. */
+    touch-action: manipulation;
+  }
+}
+
+/* Live pitch graph (PitchTrace): fade out at the bottom; desktop also fades the left/right edges. */
+.trace-mask {
+  mask-image: var(--mask-down);
+  -webkit-mask-image: var(--mask-down);
+}
+.trace-mask-sides {
+  mask-image: var(--mask-down), var(--mask-sides);
+  -webkit-mask-image: var(--mask-down), var(--mask-sides);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+}
+@media (width >= 860px) {
+  .trace-mask {
+    mask-image: var(--mask-down), var(--mask-sides);
+    -webkit-mask-image: var(--mask-down), var(--mask-sides);
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+/* Sideways-scrolling chip rows: scroll by swipe, no scrollbar. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -104,9 +144,34 @@
 :root {
   --header-h: 72px;
   --hero-pt: clamp(12px, 2.5svh, 28px);
+  /* Phones: slim top bar + fixed bottom tab bar (plus the iPhone home-indicator area). */
+  --m-header-h: 56px;
+  --m-nav-h: 64px;
+  --safe-b: env(safe-area-inset-bottom, 0px);
+}
+
+@media (width < 860px) {
+  :root {
+    --hero-pt: 6px;
+  }
+  /* Keep the last bit of the page clear of the fixed bottom tab bar. */
+  body {
+    padding-bottom: calc(var(--m-nav-h) + var(--safe-b));
+  }
 }
 
 @layer components {
+  /*
+   * Phones: the tool is exactly one screen, between the top bar and the bottom tab bar, like an
+   * app. dvh follows the browser's address bar. The illustration takes whatever height is left;
+   * a very short (landscape) screen falls back to scrolling instead of squashing the controls.
+   */
+  @media (width < 860px) {
+    .tool-hero {
+      height: calc(100dvh - var(--m-header-h) - var(--m-nav-h) - var(--safe-b) - var(--hero-pt) - 10px);
+      min-height: 500px;
+    }
+  }
   @media (width >= 860px) {
     /* min-height (not height): if a very short window can't fit the controls, the hero grows
        instead of overlapping the how-to section below it. */
@@ -115,12 +180,8 @@
     }
   }
 
-  /* Chord diagrams are drawn in fixed px; shrink them on short screens so the hero still fits. */
-  @media (width < 860px) and (height <= 760px) {
-    .chord-diagram {
-      zoom: 0.85;
-    }
-  }
+  /* Chord diagrams are drawn in fixed px; shrink them on short screens so the hero still fits.
+     (Phones scale them to the room that is left instead: see FitBox in ChordLookup.) */
   @media (width >= 860px) and (height <= 760px) {
     .chord-diagram {
       zoom: 0.8;

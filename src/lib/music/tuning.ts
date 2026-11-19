@@ -18,7 +18,12 @@ export interface TunerReading {
   /** Hold tracking for the "in tune for 800 ms" tick. */
   holdKey: string | null;
   holdSince: number;
+  /** Auto mode: a different string heard recently, and for how many readings in a row. */
+  pending: { idx: number; count: number } | null;
 }
+
+/** Auto mode only moves to another string after this many readings in a row agree (~200 ms). */
+export const SWITCH_READINGS = 3;
 
 export const EMPTY_READING: TunerReading = {
   sel: 0,
@@ -29,12 +34,17 @@ export const EMPTY_READING: TunerReading = {
   allDone: false,
   holdKey: null,
   holdSince: 0,
+  pending: null,
 };
 
 /**
  * Fold one detected frequency into the tuner reading (port of the prototype's onFreq):
  * auto-picks the nearest string unless the user picked one, smooths cents 50/50 while the
  * target is unchanged, and ticks a string off after HOLD_MS within ±5 cents.
+ *
+ * In auto mode a new string only takes over after SWITCH_READINGS readings in a row, so a stray
+ * overtone or the tail of a fading pluck doesn't make the highlight jump. The first reading
+ * after silence switches straight away.
  */
 export function applyFrequency(
   prev: TunerReading,
@@ -46,18 +56,28 @@ export function applyFrequency(
 ): TunerReading {
   const mf = freqToMidi(freq, a4);
   let sel = prev.sel;
+  let pending: TunerReading["pending"] = null;
   let target: number;
   if (strings.length) {
     if (!manual) {
+      let nearest = sel;
       let best = Infinity;
       strings.forEach((m, i) => {
         const d = Math.abs(mf - m);
         if (d < best) {
           best = d;
-          sel = i;
+          nearest = i;
         }
       });
+      if (nearest !== sel) {
+        const count = prev.pending?.idx === nearest ? prev.pending.count + 1 : 1;
+        if (prev.cents === null || count >= SWITCH_READINGS) sel = nearest;
+        else pending = { idx: nearest, count };
+      }
     }
+    // While a switch to another string is pending, keep showing the last reading: measuring the
+    // new note against the old string would flash a huge, meaningless cents value.
+    if (pending) return { ...prev, pending };
     target = strings[Math.min(sel, strings.length - 1)];
   } else {
     target = Math.round(mf);
@@ -84,7 +104,7 @@ export function applyFrequency(
   }
 
   const allDone = strings.length > 0 && strings.every((_, i) => done[i]);
-  return { sel, cents, freq, chrom: target, done, allDone, holdKey, holdSince };
+  return { sel, cents, freq, chrom: target, done, allDone, holdKey, holdSince, pending };
 }
 
 export type BarTone = "center" | "track" | "ok" | "fill" | "needle";

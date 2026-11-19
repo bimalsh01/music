@@ -22,6 +22,8 @@ interface Settings {
   naming: Naming | null;
   volume: number;
   flash: boolean;
+  /** Guitar/bass tuner picture: acoustic (3+3 pegs) or electric (pegs in one line). */
+  body: "acoustic" | "electric";
   set: (patch: Partial<Omit<Settings, "set">>) => void;
 }
 
@@ -33,13 +35,14 @@ export const useSettings = create<Settings>()(
       naming: null,
       volume: 0.8,
       flash: true,
+      body: "acoustic",
       set: (patch) => set(patch),
     }),
     {
       name: "music-tools-settings",
       // Only touch localStorage in the browser (the static build runs this module in Node).
       storage: createJSONStorage(() => (typeof window === "undefined" ? noStorage : window.localStorage)),
-      partialize: ({ a4, sound, naming, volume, flash }) => ({ a4, sound, naming, volume, flash }),
+      partialize: ({ a4, sound, naming, volume, flash, body }) => ({ a4, sound, naming, volume, flash, body }),
       // Rehydrate after mount so the static HTML and the first client render match.
       skipHydration: true,
     },

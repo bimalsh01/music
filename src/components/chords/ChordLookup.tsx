@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import type { ChordsText } from "@/i18n/dictionary";
 import { format } from "@/i18n/format";
 import type { Locale } from "@/i18n/routing";
@@ -18,13 +18,21 @@ import {
 } from "@/lib/music/chords";
 import { namingChoices, namingFor, namingLabel, ROOTS, type Naming } from "@/lib/music/notes";
 import { useRehydrateSettings, useSettings } from "@/lib/store";
-import { MoreToggle, Segmented } from "@/components/shell/controls";
+import { BottomSheet, MoreToggle, Segmented, SettingsButton } from "@/components/shell/controls";
 import { ChevronLeft, ChevronRight, PlayTriangle } from "@/components/shell/icons";
 import { PageTitle } from "@/components/shell/HowTo";
 
 type Inst = "guitar" | "piano";
 
-export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
+export function ChordLookup({
+  locale,
+  L,
+  ui,
+}: {
+  locale: Locale;
+  L: ChordsText;
+  ui: { settings: string; close: string };
+}) {
   useRehydrateSettings();
   const namingOverride = useSettings((s) => s.naming);
   const setSettings = useSettings((s) => s.set);
@@ -35,6 +43,8 @@ export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
   const [type, setType] = useState<ChordType>("maj");
   const [vi, setVi] = useState(0);
   const [more, setMore] = useState(false);
+  const [sheet, setSheet] = useState(false);
+  const closeSheet = useCallback(() => setSheet(false), []);
 
   const { rootName, name, pcs } = chordSpeller(root, type, naming);
   const chordName = rootName + L.suffix[type];
@@ -56,9 +66,23 @@ export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
   };
   const diagramAria = `${chordName} ${L.chordOn}: ${spelled}`;
 
+  const settingsBody = (
+    <div className="flex flex-col gap-2.5">
+      <span className="text-[15px] font-medium">{L.naming}</span>
+      <Segmented
+        label={L.naming}
+        items={namingChoices(locale).map((id) => ({ id, label: namingLabel(id) }))}
+        value={naming}
+        onChange={(id) => setSettings({ naming: id })}
+        className="grid grid-cols-3 gap-0.5"
+        itemClassName="h-10 text-[13px] font-semibold"
+      />
+    </div>
+  );
+
   return (
-    <section className="tool-hero flex flex-col gap-[22px] min-[860px]:gap-[clamp(14px,2.6svh,34px)]">
-      <div className="flex flex-wrap items-end justify-between gap-[18px]">
+    <section className="tool-hero flex flex-col gap-3 min-[860px]:gap-[clamp(14px,2.6svh,34px)]">
+      <div className="flex items-center justify-between gap-3 min-[860px]:flex-wrap min-[860px]:items-end min-[860px]:gap-[18px]">
         <PageTitle>{L.title}</PageTitle>
         <Segmented
           label={L.instrument}
@@ -72,27 +96,33 @@ export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
             setVi(0);
           }}
           selected="white"
-          className="grid w-full max-w-[280px] grid-cols-2 gap-0.5"
-          itemClassName="h-10 text-sm font-semibold"
+          className="grid flex-none grid-cols-2 gap-0.5 min-[860px]:w-full min-[860px]:max-w-[280px] min-[860px]:flex-initial"
+          itemClassName="h-9 px-3 text-sm font-semibold min-[860px]:h-10"
         />
       </div>
 
-      <div className="flex flex-wrap items-start justify-center gap-[clamp(34px,6vw,80px)]">
-        <div className="flex min-w-0 flex-[1.2_1_400px] flex-col items-center gap-3 min-[860px]:gap-[clamp(8px,1.6svh,18px)]">
+      {/*
+        Phones: one screen like an app. The chord and its diagram take the height that is left
+        (the diagram scales down to fit); roots and chord types sit at the bottom near the thumb.
+      */}
+      <div className="flex flex-wrap items-start justify-center gap-[clamp(34px,6vw,80px)] max-[859px]:min-h-0 max-[859px]:flex-1 max-[859px]:flex-col max-[859px]:flex-nowrap max-[859px]:items-stretch max-[859px]:gap-3">
+        <div className="flex min-w-0 flex-[1.2_1_400px] flex-col items-center gap-3 max-[859px]:min-h-0 max-[859px]:flex-[1_1_0%] max-[859px]:gap-2 min-[860px]:gap-[clamp(8px,1.6svh,18px)]">
           <div className="flex w-full max-w-[460px] items-center justify-between gap-3">
             <TransposeButton label={L.down} text="−1" semi={L.semi} onClick={() => transpose(-1)} />
             <div aria-live="polite" className="flex min-w-0 flex-col items-center gap-1.5">
-              <span className="font-display text-[clamp(64px,8vw,96px)] leading-[0.9] min-[860px]:text-[clamp(56px,min(8vw,11svh),96px)] font-extrabold tracking-[-0.04em]">{chordName}</span>
-              <span className="text-[15px] text-muted">{spelled}</span>
+              <span className="font-display text-[clamp(44px,min(14vw,8svh),64px)] leading-[0.9] min-[860px]:text-[clamp(56px,min(8vw,11svh),96px)] font-extrabold tracking-[-0.04em]">{chordName}</span>
+              <span className="text-sm text-muted min-[860px]:text-[15px]">{spelled}</span>
             </div>
             <TransposeButton label={L.up} text="+1" semi={L.semi} onClick={() => transpose(1)} />
           </div>
 
-          {isGuitar ? (
-            <GuitarDiagram voicing={voicings[v]} root={root} name={name} aria={diagramAria} />
-          ) : (
-            <PianoDiagram notes={notes} name={name} aria={diagramAria} />
-          )}
+          <FitBox natural={isGuitar ? 278 : 270}>
+            {isGuitar ? (
+              <GuitarDiagram voicing={voicings[v]} root={root} name={name} aria={diagramAria} />
+            ) : (
+              <PianoDiagram notes={notes} name={name} aria={diagramAria} />
+            )}
+          </FitBox>
 
           <span className="text-sm font-semibold text-muted">{varLabel}</span>
           <div className="flex w-full max-w-[460px] items-center gap-2.5">
@@ -100,14 +130,14 @@ export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
               type="button"
               onClick={() => step(-1)}
               aria-label={L.prev}
-              className="flex size-[60px] flex-none cursor-pointer items-center justify-center rounded-full border-none bg-inset text-ink"
+              className="flex size-12 min-[860px]:size-[60px] flex-none cursor-pointer items-center justify-center rounded-full border-none bg-inset text-ink"
             >
               <ChevronLeft />
             </button>
             <button
               type="button"
               onClick={() => (isGuitar ? playChord(notes, 0.035, 2.2, "guitar") : playChord(notes, 0, 2.4, "piano"))}
-              className="flex h-[60px] flex-1 cursor-pointer items-center justify-center gap-2 rounded-full border-none bg-accent text-[17px] font-bold text-on-accent shadow-glow"
+              className="flex h-12 min-w-0 flex-1 cursor-pointer items-center justify-center gap-2 rounded-full border-none bg-accent text-[17px] font-bold whitespace-nowrap text-on-accent shadow-glow min-[860px]:h-[60px]"
             >
               <PlayTriangle size={18} />
               {L.play} {chordName}
@@ -116,16 +146,16 @@ export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
               type="button"
               onClick={() => step(1)}
               aria-label={L.nextVar}
-              className="flex size-[60px] flex-none cursor-pointer items-center justify-center rounded-full border-none bg-inset text-ink"
+              className="flex size-12 min-[860px]:size-[60px] flex-none cursor-pointer items-center justify-center rounded-full border-none bg-inset text-ink"
             >
               <ChevronRight />
             </button>
           </div>
         </div>
 
-        <div className="flex min-w-0 max-w-[480px] flex-[1_1_340px] flex-col gap-[26px] pt-2 min-[860px]:gap-[clamp(14px,2.6svh,26px)]">
-          <div className="flex flex-col gap-3">
-            <span className="font-display text-base font-semibold tracking-[0.02em] text-muted">{L.root}</span>
+        <div className="flex min-w-0 max-w-[480px] flex-[1_1_340px] flex-col gap-[26px] pt-2 max-[859px]:max-w-none max-[859px]:flex-none max-[859px]:gap-2 max-[859px]:pt-0 min-[860px]:gap-[clamp(14px,2.6svh,26px)]">
+          <div className="flex flex-col gap-3 max-[859px]:gap-0">
+            <span className="font-display text-base font-semibold tracking-[0.02em] text-muted max-[859px]:sr-only">{L.root}</span>
             <div role="group" aria-label={L.root} className="grid grid-cols-6 gap-1.5">
               {ROOTS[naming].map((lab, i) => (
                 <button
@@ -136,7 +166,7 @@ export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
                     setRoot(i);
                     setVi(0);
                   }}
-                  className={`h-[52px] cursor-pointer rounded-full border-none text-[15px] font-bold ${
+                  className={`h-10 cursor-pointer rounded-full border-none text-[15px] font-bold min-[860px]:h-[52px] ${
                     root === i ? "bg-accent text-on-accent" : "bg-inset text-ink"
                   }`}
                 >
@@ -145,9 +175,10 @@ export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-3">
-            <span className="font-display text-base font-semibold tracking-[0.02em] text-muted">{L.type}</span>
-            <div role="group" aria-label={L.type} className="flex flex-wrap gap-1.5">
+          <div className="flex flex-col gap-3 max-[859px]:gap-0">
+            <span className="font-display text-base font-semibold tracking-[0.02em] text-muted max-[859px]:sr-only">{L.type}</span>
+            <div className="flex items-center gap-2">
+            <div role="group" aria-label={L.type} className="flex min-w-0 flex-1 flex-wrap gap-1.5 max-[859px]:no-scrollbar max-[859px]:flex-nowrap max-[859px]:overflow-x-auto">
               {CHORD_TYPES.map((ty) => (
                 <button
                   key={ty}
@@ -157,7 +188,7 @@ export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
                     setType(ty);
                     setVi(0);
                   }}
-                  className={`h-11 cursor-pointer rounded-full border-none px-[18px] text-sm font-semibold ${
+                  className={`h-10 flex-none cursor-pointer rounded-full border-none px-4 text-sm font-semibold min-[860px]:h-11 min-[860px]:px-[18px] ${
                     type === ty ? "bg-accent text-on-accent" : "bg-inset text-ink"
                   }`}
                 >
@@ -165,25 +196,60 @@ export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
                 </button>
               ))}
             </div>
+            <SettingsButton label={ui.settings} onClick={() => setSheet(true)} className="size-10" />
+            </div>
           </div>
 
-          <MoreToggle open={more} onToggle={() => setMore(!more)} more={L.more} less={L.less} controls="chords-more" className="self-start px-0" />
+          <MoreToggle
+            open={more}
+            onToggle={() => setMore(!more)}
+            more={L.more}
+            less={L.less}
+            controls="chords-more"
+            className="self-start px-0 max-[859px]:hidden"
+          />
           {more && (
-            <div id="chords-more" className="flex flex-col gap-2.5">
-              <span className="text-[15px] font-medium">{L.naming}</span>
-              <Segmented
-                label={L.naming}
-                items={namingChoices(locale).map((id) => ({ id, label: namingLabel(id) }))}
-                value={naming}
-                onChange={(id) => setSettings({ naming: id })}
-                className="grid grid-cols-3 gap-0.5"
-                itemClassName="h-10 text-[13px] font-semibold"
-              />
+            <div id="chords-more" className="max-[859px]:hidden">
+              {settingsBody}
             </div>
           )}
         </div>
       </div>
+
+      <BottomSheet open={sheet} title={ui.settings} closeLabel={ui.close} onClose={closeSheet}>
+        {settingsBody}
+      </BottomSheet>
     </section>
+  );
+}
+
+/**
+ * Phones only: scales its child (a diagram drawn in fixed px, `natural` px tall) down to the height
+ * this box gets from the one-screen layout. Desktop leaves it alone.
+ */
+function FitBox({ natural, children }: { natural: number; children: ReactNode }) {
+  const box = useRef<HTMLDivElement>(null);
+  const [zoom, setZoom] = useState(1);
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const phone = window.matchMedia("(width < 860px)");
+    const update = () => setZoom(phone.matches ? Math.max(0.4, Math.min(1, el.clientHeight / natural)) : 1);
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    phone.addEventListener("change", update);
+    update();
+    return () => {
+      ro.disconnect();
+      phone.removeEventListener("change", update);
+    };
+  }, [natural]);
+  return (
+    <div ref={box} className="flex w-full justify-center max-[859px]:min-h-0 max-[859px]:flex-1 max-[859px]:items-center max-[859px]:overflow-hidden">
+      <div className="flex w-full justify-center" style={{ zoom }}>
+        {children}
+      </div>
+    </div>
   );
 }
 
@@ -194,7 +260,7 @@ function TransposeButton({ label, text, semi, onClick }: { label: string; text: 
       onClick={onClick}
       aria-label={label}
       title={label}
-      className="flex size-[60px] flex-none cursor-pointer flex-col items-center justify-center gap-0.5 rounded-full border-none bg-inset text-ink"
+      className="flex size-12 flex-none cursor-pointer flex-col items-center justify-center gap-0.5 rounded-full border-none bg-inset text-ink min-[860px]:size-[60px]"
     >
       <span className="text-[17px] leading-none font-bold">{text}</span>
       <span className="text-[10px] leading-none text-muted">{semi}</span>
