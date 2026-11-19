@@ -8,48 +8,15 @@
       "tuner": "Tuner",
       "metronome": "Metronome",
       "chords": "Chords"
-    }
-  },
-  "meta": {
-    "home": {
-      "title": "Music Tools — Free online tuner, metronome and chords",
-      "description": "Simple music tools that work the second the page opens. Tune a guitar, ukulele, violin, cello or bass, keep time with a metronome and look up chords. No sign-up."
     },
-    "guitar": {
-      "title": "Guitar Tuner — Free online tuner with mic",
-      "description": "Tune your guitar with your microphone. Standard, Drop D, Open G, DADGAD and half-step down. Works instantly, no sign-up."
+    "theme": {
+      "toLight": "Switch to light mode",
+      "toDark": "Switch to dark mode"
     },
-    "ukulele": {
-      "title": "Ukulele Tuner — Free online GCEA tuner",
-      "description": "Tune your ukulele (G C E A) with your microphone or by ear. Works instantly, no sign-up."
-    },
-    "violin": {
-      "title": "Violin Tuner — Free online G D A E tuner",
-      "description": "Tune your violin (G D A E) with your microphone or by ear. Works instantly, no sign-up."
-    },
-    "cello": {
-      "title": "Cello Tuner — Free online C G D A tuner",
-      "description": "Tune your cello (C G D A) with your microphone or by ear. Works instantly, no sign-up."
-    },
-    "bass": {
-      "title": "Bass Tuner — Free online E A D G tuner",
-      "description": "Tune your bass guitar (E A D G) with your microphone or by ear. Works instantly, no sign-up."
-    },
-    "chromatic": {
-      "title": "Chromatic Tuner — Tune any note online",
-      "description": "A free chromatic tuner for any instrument. Shows the note and how many cents sharp or flat you are."
-    },
-    "cavaquinho": {
-      "title": "Cavaquinho Tuner",
-      "description": "Tune your cavaquinho (D G B D)."
-    },
-    "metronome": {
-      "title": "Metronome — Free online metronome with tap tempo",
-      "description": "A free online metronome from 30 to 300 BPM with tap tempo, accents, subdivisions and a visual flash."
-    },
-    "chords": {
-      "title": "Chord Lookup — Guitar and piano chord charts",
-      "description": "Find any guitar or piano chord. See the fingering, hear it, try other shapes and transpose."
+    "footer": {
+      "tools": "Tools",
+      "languages": "Languages",
+      "note": "Free music tools that work in your browser. No sign-up, no download."
     }
   },
   "instruments": {
@@ -201,11 +168,6 @@
     "more": "More",
     "less": "Less",
     "naming": "Note names",
-    "namings": {
-      "abc": "C D E",
-      "solfege": "Dó Ré Mi",
-      "german": "C D E H"
-    },
     "how": "How to use",
     "how1": "Pick a root note and a chord type.",
     "how2": "Press Play to hear it. Arrows show other shapes.",

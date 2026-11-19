@@ -2,9 +2,10 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { RegisterServiceWorker } from "@/components/shell/RegisterServiceWorker";
-import { isLocale, locales } from "@/i18n/routing";
+import { isLocale, LOCALE_INFO, locales } from "@/i18n/routing";
 import { SITE_URL } from "@/lib/seo";
 import { fontVariables } from "../fonts";
+import { themeBootScript } from "@/lib/theme";
 import "../globals.css";
 
 export const dynamicParams = false;
@@ -30,7 +31,10 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   if (!isLocale(locale)) notFound();
   setRequestLocale(locale);
   return (
-    <html lang={locale === "pt" ? "pt-BR" : "en"} className={fontVariables} suppressHydrationWarning>
+    <html lang={LOCALE_INFO[locale].tag} className={fontVariables} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
+      </head>
       <body className="min-h-dvh" suppressHydrationWarning>
         {children}
         <RegisterServiceWorker />

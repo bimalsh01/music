@@ -110,7 +110,7 @@ export function Metronome({ L }: { L: MetronomeText }) {
   const armDur = playing ? Math.round(60000 / bpm) : 300;
 
   return (
-    <section className="tool-hero flex flex-col gap-[34px] min-[860px]:gap-[clamp(14px,2.6svh,34px)]">
+    <section className="tool-hero flex flex-col gap-[22px] min-[860px]:gap-[clamp(14px,2.6svh,34px)]">
       {/* Full-screen beat flash behind the page content. */}
       <div
         aria-hidden="true"
@@ -181,7 +181,7 @@ export function Metronome({ L }: { L: MetronomeText }) {
               <output
                 aria-live="off"
                 className="font-display text-[clamp(110px,13vw,184px)] leading-[0.85] min-[860px]:text-[clamp(72px,min(13vw,15svh),184px)] font-extrabold tracking-[-0.05em] tabular transition-colors duration-[70ms]"
-                style={{ color: flashing ? "var(--color-accent)" : "var(--color-ink)" }}
+                style={{ color: flashing ? "var(--color-accent-text)" : "var(--color-ink)" }}
               >
                 {bpm}
               </output>
@@ -226,14 +226,14 @@ export function Metronome({ L }: { L: MetronomeText }) {
                     aria-label={`${L.beat} ${i + 1}${acc ? `, ${L.accented}` : ""}`}
                     onClick={() => setAccents(accents.map((a, j) => (j === i ? !a : a)))}
                     className="flex h-16 min-w-0 flex-1 cursor-pointer min-[860px]:h-[clamp(44px,7svh,64px)] flex-col items-center justify-center gap-1.5 border-none p-0 transition-colors duration-[60ms]"
-                    style={{ background: cur ? "var(--color-accent)" : "var(--color-inset)", color: cur ? "var(--color-bg)" : "var(--color-muted)" }}
+                    style={{ background: cur ? "var(--color-accent)" : "var(--color-inset)", color: cur ? "var(--color-on-accent)" : "var(--color-muted)" }}
                   >
                     <span
                       className="rounded-full"
                       style={{
                         width: acc ? 14 : 7,
                         height: acc ? 14 : 7,
-                        background: cur ? "var(--color-bg)" : acc ? "var(--color-ink)" : "var(--color-muted)",
+                        background: cur ? "var(--color-on-accent)" : acc ? "var(--color-ink)" : "var(--color-muted)",
                       }}
                     />
                     <span className="text-[11px] font-bold tabular">{i + 1}</span>

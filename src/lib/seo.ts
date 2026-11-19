@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { getPageSeo, plainText } from "@/content/seo";
+import { getPageSeo, plainText, type PageSeo, type SeoKey } from "@/content/seo";
 import { getDictionary } from "@/i18n/dictionary";
-import { locales, type Locale } from "@/i18n/routing";
+import { LOCALE_INFO, locales, type Locale } from "@/i18n/routing";
 import { getTool, homePath, toolPath, type ToolId } from "@/tools/registry";
 
 /** Public origin for canonical URLs, sitemap and hreflang. Set NEXT_PUBLIC_SITE_URL in production. */
@@ -17,24 +17,37 @@ export function alternatesFor(toolId: ToolId | null): Partial<Record<Locale, str
   return out;
 }
 
+/** The same alternates keyed by hreflang code (pt-BR, zh-CN…), plus x-default. */
+export function hreflangMap(toolId: ToolId | null, absolute = false): Record<string, string> {
+  const out: Record<string, string> = {};
+  const alts = alternatesFor(toolId);
+  for (const [l, p] of Object.entries(alts) as [Locale, string][]) out[LOCALE_INFO[l].tag] = absolute ? `${SITE_URL}${p}` : p;
+  const def = alts.en ?? alts.pt;
+  if (def) out["x-default"] = absolute ? `${SITE_URL}${def}` : def;
+  return out;
+}
+
+/** Keyword-targeted copy for a page. Every page must have it in every language. */
+function seoFor(locale: Locale, key: SeoKey): PageSeo {
+  const seo = getPageSeo(locale, key);
+  if (!seo) throw new Error(`Missing SEO content for ${locale}/${key}`);
+  return seo;
+}
+
 export function pageMetadata(locale: Locale, toolId: ToolId | null): Metadata {
   const d = getDictionary(locale);
-  // Keyword-targeted title/description (Rankability research) with the dictionary as fallback.
-  const meta = getPageSeo(locale, toolId ?? "home") ?? (toolId ? d.meta[toolId] : d.meta.home);
-  const alternates = alternatesFor(toolId);
-  const self = alternates[locale]!;
-  const languages: Record<string, string> = { ...alternates };
-  if (alternates.en) languages["x-default"] = alternates.en;
+  const meta = seoFor(locale, toolId ?? "home");
+  const self = alternatesFor(toolId)[locale]!;
   return {
     title: meta.title,
     description: meta.description,
-    alternates: { canonical: self, languages },
+    alternates: { canonical: self, languages: hreflangMap(toolId) },
     openGraph: {
       title: meta.title,
       description: meta.description,
       url: self,
       siteName: d.site.name,
-      locale: locale === "pt" ? "pt_BR" : "en_US",
+      locale: LOCALE_INFO[locale].og,
       type: "website",
     },
   };
@@ -42,8 +55,7 @@ export function pageMetadata(locale: Locale, toolId: ToolId | null): Metadata {
 
 /** WebApplication structured data for a tool page. */
 export function toolJsonLd(locale: Locale, toolId: ToolId): string {
-  const d = getDictionary(locale);
-  const meta = getPageSeo(locale, toolId) ?? d.meta[toolId];
+  const meta = seoFor(locale, toolId);
   const path = toolPath(locale, toolId) ?? homePath(locale);
   const tool = getTool(toolId);
   return JSON.stringify({
@@ -54,7 +66,7 @@ export function toolJsonLd(locale: Locale, toolId: ToolId): string {
     url: `${SITE_URL}${path}`,
     applicationCategory: tool.kind === "chords" ? "ReferenceApplication" : "MultimediaApplication",
     operatingSystem: "Any",
-    inLanguage: locale === "pt" ? "pt-BR" : "en",
+    inLanguage: LOCALE_INFO[locale].tag,
     isAccessibleForFree: true,
     offers: { "@type": "Offer", price: "0" },
   }).replace(/</g, "\\u003c");
@@ -67,7 +79,7 @@ export function faqJsonLd(locale: Locale, toolId: ToolId | null): string | null 
   return JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    inLanguage: locale === "pt" ? "pt-BR" : "en",
+    inLanguage: LOCALE_INFO[locale].tag,
     mainEntity: seo.faq.map((f) => ({
       "@type": "Question",
       name: f.q,

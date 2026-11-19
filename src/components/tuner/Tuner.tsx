@@ -189,8 +189,8 @@ export function Tuner({ locale, instrument, title, tabs, L }: Props) {
   };
 
   return (
-    <section className="tool-hero flex flex-col gap-[34px] min-[860px]:gap-[clamp(14px,2.6svh,34px)]">
-      <div className="flex flex-col gap-[18px] min-[860px]:gap-[clamp(10px,1.8svh,18px)]">
+    <section className="tool-hero flex flex-col gap-[22px] min-[860px]:gap-[clamp(14px,2.6svh,34px)]">
+      <div className="flex flex-col gap-3 min-[860px]:gap-[clamp(10px,1.8svh,18px)]">
         <nav aria-label={L.instruments} className="flex gap-1.5 overflow-x-auto py-0.5">
           {tabs.map((tb) => {
             const cur = tb.id === instrument;
@@ -200,7 +200,7 @@ export function Tuner({ locale, instrument, title, tabs, L }: Props) {
                 href={tb.href}
                 aria-current={cur ? "page" : undefined}
                 className={`flex min-h-10 flex-none items-center rounded-full px-4 text-sm font-semibold no-underline ${
-                  cur ? "bg-accent text-bg" : "bg-inset text-ink"
+                  cur ? "bg-accent text-on-accent" : "bg-inset text-ink"
                 }`}
               >
                 {tb.label}
@@ -256,7 +256,7 @@ export function Tuner({ locale, instrument, title, tabs, L }: Props) {
           </div>
         )}
 
-        <div className="order-first flex w-full min-w-0 max-w-[520px] flex-col items-center gap-[18px] min-[860px]:order-none min-[860px]:w-auto min-[860px]:flex-[1_1_360px] min-[860px]:justify-center min-[860px]:gap-[clamp(8px,1.6svh,18px)]">
+        <div className="order-first flex w-full min-w-0 max-w-[520px] flex-col items-center gap-3 min-[860px]:order-none min-[860px]:w-auto min-[860px]:flex-[1_1_360px] min-[860px]:justify-center min-[860px]:gap-[clamp(8px,1.6svh,18px)]">
           <p aria-live="polite" className="sr-only">
             {announce}
           </p>
@@ -269,7 +269,7 @@ export function Tuner({ locale, instrument, title, tabs, L }: Props) {
           </span>
           <div className="flex items-start gap-1.5">
             <span
-              className="font-display text-[clamp(120px,14vw,200px)] leading-[0.85] min-[860px]:text-[clamp(72px,min(14vw,15svh),200px)] font-extrabold tracking-[-0.05em] transition-colors duration-[120ms]"
+              className="font-display text-[clamp(96px,26vw,120px)] leading-[0.85] min-[860px]:text-[clamp(72px,min(14vw,15svh),200px)] font-extrabold tracking-[-0.05em] transition-colors duration-[120ms]"
               style={{ color: inTune ? "var(--color-ok)" : hasReading || !active ? "var(--color-ink)" : "var(--color-muted)" }}
             >
               {showNote ? noteName(targetMidi, naming) : "–"}
@@ -403,8 +403,8 @@ function Headstock({
       <svg aria-hidden="true" viewBox={`0 0 420 ${hs.H}`} className="absolute inset-0 size-full">
         <defs>
           <linearGradient id="neckFade" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#090A0A" stopOpacity="0" />
-            <stop offset="1" stopColor="#090A0A" stopOpacity="1" />
+            <stop offset="0" style={{ stopColor: "var(--color-bg)" }} stopOpacity="0" />
+            <stop offset="1" style={{ stopColor: "var(--color-bg)" }} stopOpacity="1" />
           </linearGradient>
         </defs>
         {hs.keys.map((k, i) => (
@@ -473,7 +473,7 @@ function Headstock({
               left: `${((p.side === "L" ? 36 : 384) / 420) * 100}%`,
               top: `${((p.y / hs.H) * 100).toFixed(2)}%`,
               background: on ? "var(--color-accent)" : "var(--color-raised)",
-              color: on ? "var(--color-bg)" : ok ? "var(--color-ok)" : "var(--color-ink)",
+              color: on ? "var(--color-on-accent)" : ok ? "var(--color-ok)" : "var(--color-ink)",
               boxShadow: on ? "var(--shadow-ring)" : "none",
             }}
           >

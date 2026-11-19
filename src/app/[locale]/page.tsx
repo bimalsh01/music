@@ -5,6 +5,7 @@ import { FretboardArt, HeadstockArt, MetronomeArt } from "@/components/home/illu
 import { ArrowRight, ArrowUpRight } from "@/components/shell/icons";
 import { PageMain } from "@/components/shell/HowTo";
 import { SeoContent } from "@/components/shell/SeoContent";
+import { SiteFooter } from "@/components/shell/SiteFooter";
 import { SiteHeader } from "@/components/shell/SiteHeader";
 import { getDictionary } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/routing";
@@ -50,12 +51,12 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
             {t.eyebrow}
           </span>
           <h1 className="m-0 max-w-[1000px] font-display text-[clamp(3.25rem,9vw,7.25rem)] leading-[0.98] font-extrabold tracking-[-0.035em]">
-            {t.h1a} <span className="text-accent">{t.h1b}</span> {t.h1c}
+            {t.h1a} <span className="text-accent-text">{t.h1b}</span> {t.h1c}
           </h1>
           <p className="m-0 max-w-[560px] text-lg leading-[30px] text-muted">{t.sub}</p>
           <Link
             href={toolPath(locale, "guitar")!}
-            className="mt-2 flex h-[52px] items-center gap-2.5 rounded-full bg-accent px-[26px] text-base font-bold text-bg no-underline shadow-glow"
+            className="mt-2 flex h-[52px] items-center gap-2.5 rounded-full bg-accent px-[26px] text-base font-bold text-on-accent no-underline shadow-glow"
           >
             {t.cta}
             <ArrowRight />
@@ -107,6 +108,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
         </section>
         <SeoContent locale={locale} page="home" />
       </PageMain>
+      <SiteFooter locale={locale} toolId={null} d={d} />
     </div>
   );
 }

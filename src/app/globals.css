@@ -14,6 +14,13 @@
   --color-mint: #a6ffc6;
   --color-flash: #0d1f14;
   --color-needle-fill: #6b7076;
+  /* Green used as text/lines (the neon accent is for fills only on light backgrounds). */
+  --color-accent-text: #39ff88;
+  /* Text on a green (accent) fill. */
+  --color-on-accent: #090a0a;
+  /* Selected pill in segmented controls, and its text. */
+  --color-pill: #ffffff;
+  --color-on-pill: #090a0a;
 
   /* Wood + metal illustration palette */
   --color-wood: #6b3820;
@@ -25,17 +32,43 @@
   --color-string: #c9cdd2;
   --color-post: #d5d8dc;
 
-  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   --shadow-glow: 0 10px 30px -10px rgba(57, 255, 136, 0.55);
   --shadow-ring: 0 0 0 6px rgba(57, 255, 136, 0.14);
 }
 
+/*
+ * Light theme ("Stage Light" from the plan PDF: warm paper, dark ink). Dark stays the default;
+ * the header toggle sets <html data-theme="light">. Text colours meet WCAG AA on the paper.
+ */
+:root[data-theme="light"] {
+  --color-bg: #fbf7f0;
+  --color-surface: #ffffff;
+  --color-inset: #f0eae0;
+  --color-raised: #e3dcd0;
+  --color-track: #e6dfd3;
+  --color-ink: #1a1d21;
+  --color-muted: #615d55;
+  --color-ok: #0b7f57;
+  --color-mint: #08733b;
+  --color-flash: #dff5e7;
+  --color-needle-fill: #a8a296;
+  --color-accent-text: #087a3e;
+  --color-pill: #1a1d21;
+  --color-on-pill: #fbf7f0;
+  --shadow-glow: 0 10px 30px -12px rgba(8, 122, 62, 0.45);
+  color-scheme: light;
+}
+
 @layer base {
   html {
     background: var(--color-bg);
     color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
   }
   body {
     margin: 0;
@@ -47,7 +80,7 @@
   }
   /* The prototype has no focus styles; keyboard users get an accent ring. */
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color-accent-text);
     outline-offset: 3px;
   }
   input[type="range"] {
@@ -83,6 +116,11 @@
   }
 
   /* Chord diagrams are drawn in fixed px; shrink them on short screens so the hero still fits. */
+  @media (width < 860px) and (height <= 760px) {
+    .chord-diagram {
+      zoom: 0.85;
+    }
+  }
   @media (width >= 860px) and (height <= 760px) {
     .chord-diagram {
       zoom: 0.8;

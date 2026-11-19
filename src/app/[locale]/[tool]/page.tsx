@@ -5,6 +5,7 @@ import { ChordLookup } from "@/components/chords/ChordLookup";
 import { Metronome } from "@/components/metronome/Metronome";
 import { HowTo, PageMain } from "@/components/shell/HowTo";
 import { SeoContent } from "@/components/shell/SeoContent";
+import { SiteFooter } from "@/components/shell/SiteFooter";
 import { SiteHeader } from "@/components/shell/SiteHeader";
 import { Tuner, type InstrumentTab } from "@/components/tuner/Tuner";
 import { getDictionary } from "@/i18n/dictionary";
@@ -63,6 +64,7 @@ export default async function ToolPage({ params }: PageProps<"/[locale]/[tool]">
         <HowTo title={text.how} steps={[text.how1, text.how2, text.how3]} nextLabel={text.next} nextHref={toolPath(locale, tool.next)!} />
         <SeoContent locale={locale} page={tool.id} />
       </PageMain>
+      <SiteFooter locale={locale} toolId={tool.id} d={d} />
     </div>
   );
 }

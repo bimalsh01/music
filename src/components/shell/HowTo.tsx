@@ -9,7 +9,7 @@ export function HowTo({ title, steps, nextLabel, nextHref }: { title: string; st
       <ol className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-[34px] p-0">
         {steps.map((s, i) => (
           <li key={i} className="flex flex-col gap-3.5 text-[15px] leading-[1.6] text-muted">
-            <span aria-hidden="true" className="font-display text-[40px] leading-none font-extrabold text-accent">
+            <span aria-hidden="true" className="font-display text-[40px] leading-none font-extrabold text-accent-text">
               {String(i + 1).padStart(2, "0")}
             </span>
             {s}
@@ -21,7 +21,7 @@ export function HowTo({ title, steps, nextLabel, nextHref }: { title: string; st
         className="flex min-h-[60px] items-center gap-[18px] self-start font-display text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-[-0.02em] text-ink no-underline"
       >
         {nextLabel}
-        <span className="flex size-[52px] items-center justify-center rounded-full bg-accent text-bg">
+        <span className="flex size-[52px] items-center justify-center rounded-full bg-accent text-on-accent">
           <ArrowRight size={22} />
         </span>
       </Link>

@@ -22,7 +22,7 @@ export function Segmented<T extends string | number>({
   className?: string;
   itemClassName?: string;
 }) {
-  const on = selected === "white" ? "bg-white text-bg" : "bg-accent text-bg";
+  const on = selected === "white" ? "bg-pill text-on-pill" : "bg-accent text-on-accent";
   return (
     <div role="group" aria-label={label} className={`rounded-full bg-inset p-1 ${className}`}>
       {items.map((it) => (
@@ -61,8 +61,8 @@ export function PrimaryButton({
       type="button"
       onClick={onClick}
       aria-label={ariaLabel}
-      className={`flex h-[60px] cursor-pointer items-center justify-center gap-2.5 rounded-full border-none text-[17px] font-bold text-bg ${
-        active ? "bg-white shadow-none" : "bg-accent shadow-glow"
+      className={`flex h-[60px] cursor-pointer items-center justify-center gap-2.5 rounded-full border-none text-[17px] font-bold ${
+        active ? "bg-pill text-on-pill shadow-none" : "bg-accent text-on-accent shadow-glow"
       } ${className}`}
     >
       {children}

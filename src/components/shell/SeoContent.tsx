@@ -98,7 +98,7 @@ function Para({ text, locale }: { text: string; locale: Locale }) {
 function List({ block, locale }: { block: Block; locale: Locale }) {
   const Tag = block.ordered ? "ol" : "ul";
   return (
-    <Tag className={`m-0 flex flex-col gap-3 pl-6 text-base leading-[1.7] text-muted marker:font-bold marker:text-accent ${block.ordered ? "list-decimal" : "list-disc"}`}>
+    <Tag className={`m-0 flex flex-col gap-3 pl-6 text-base leading-[1.7] text-muted marker:font-bold marker:text-accent-text ${block.ordered ? "list-decimal" : "list-disc"}`}>
       {block.list!.map((t, i) => (
         <li key={i} className="pl-1">
           <Inline text={t} locale={locale} />

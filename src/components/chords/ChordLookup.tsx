@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { format, type ChordsText } from "@/i18n/dictionary";
+import type { ChordsText } from "@/i18n/dictionary";
+import { format } from "@/i18n/format";
 import type { Locale } from "@/i18n/routing";
 import { playChord } from "@/lib/audio/synth";
 import {
@@ -15,7 +16,7 @@ import {
   type ChordType,
   type Voicing,
 } from "@/lib/music/chords";
-import { NAMINGS, namingFor, ROOTS, type Naming } from "@/lib/music/notes";
+import { namingChoices, namingFor, namingLabel, ROOTS, type Naming } from "@/lib/music/notes";
 import { useRehydrateSettings, useSettings } from "@/lib/store";
 import { MoreToggle, Segmented } from "@/components/shell/controls";
 import { ChevronLeft, ChevronRight, PlayTriangle } from "@/components/shell/icons";
@@ -56,7 +57,7 @@ export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
   const diagramAria = `${chordName} ${L.chordOn}: ${spelled}`;
 
   return (
-    <section className="tool-hero flex flex-col gap-[34px] min-[860px]:gap-[clamp(14px,2.6svh,34px)]">
+    <section className="tool-hero flex flex-col gap-[22px] min-[860px]:gap-[clamp(14px,2.6svh,34px)]">
       <div className="flex flex-wrap items-end justify-between gap-[18px]">
         <PageTitle>{L.title}</PageTitle>
         <Segmented
@@ -77,7 +78,7 @@ export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
       </div>
 
       <div className="flex flex-wrap items-start justify-center gap-[clamp(34px,6vw,80px)]">
-        <div className="flex min-w-0 flex-[1.2_1_400px] flex-col items-center gap-[18px] min-[860px]:gap-[clamp(8px,1.6svh,18px)]">
+        <div className="flex min-w-0 flex-[1.2_1_400px] flex-col items-center gap-3 min-[860px]:gap-[clamp(8px,1.6svh,18px)]">
           <div className="flex w-full max-w-[460px] items-center justify-between gap-3">
             <TransposeButton label={L.down} text="−1" semi={L.semi} onClick={() => transpose(-1)} />
             <div aria-live="polite" className="flex min-w-0 flex-col items-center gap-1.5">
@@ -106,7 +107,7 @@ export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
             <button
               type="button"
               onClick={() => (isGuitar ? playChord(notes, 0.035, 2.2, "guitar") : playChord(notes, 0, 2.4, "piano"))}
-              className="flex h-[60px] flex-1 cursor-pointer items-center justify-center gap-2 rounded-full border-none bg-accent text-[17px] font-bold text-bg shadow-glow"
+              className="flex h-[60px] flex-1 cursor-pointer items-center justify-center gap-2 rounded-full border-none bg-accent text-[17px] font-bold text-on-accent shadow-glow"
             >
               <PlayTriangle size={18} />
               {L.play} {chordName}
@@ -136,7 +137,7 @@ export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
                     setVi(0);
                   }}
                   className={`h-[52px] cursor-pointer rounded-full border-none text-[15px] font-bold ${
-                    root === i ? "bg-accent text-bg" : "bg-inset text-ink"
+                    root === i ? "bg-accent text-on-accent" : "bg-inset text-ink"
                   }`}
                 >
                   {lab}
@@ -157,7 +158,7 @@ export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
                     setVi(0);
                   }}
                   className={`h-11 cursor-pointer rounded-full border-none px-[18px] text-sm font-semibold ${
-                    type === ty ? "bg-accent text-bg" : "bg-inset text-ink"
+                    type === ty ? "bg-accent text-on-accent" : "bg-inset text-ink"
                   }`}
                 >
                   {L.types[ty]}
@@ -172,7 +173,7 @@ export function ChordLookup({ locale, L }: { locale: Locale; L: ChordsText }) {
               <span className="text-[15px] font-medium">{L.naming}</span>
               <Segmented
                 label={L.naming}
-                items={NAMINGS.map((id) => ({ id, label: L.namings[id] }))}
+                items={namingChoices(locale).map((id) => ({ id, label: namingLabel(id) }))}
                 value={naming}
                 onChange={(id) => setSettings({ naming: id })}
                 className="grid grid-cols-3 gap-0.5"
@@ -262,7 +263,7 @@ function GuitarDiagram({ voicing, root, name, aria }: { voicing: Voicing; root: 
         return (
           <span
             key={`d${i}`}
-            className="absolute flex size-[34px] -translate-x-1/2 items-center justify-center rounded-full text-[11px] font-bold tracking-[-0.02em] text-bg"
+            className="absolute flex size-[34px] -translate-x-1/2 items-center justify-center rounded-full text-[11px] font-bold tracking-[-0.02em] text-[#090A0A]"
             style={{ left: `${sx(i)}%`, top: cy(f) - 17, background: pc === root ? "#FFFFFF" : "var(--color-accent)" }}
           >
             {name(pc)}
@@ -285,8 +286,8 @@ function PianoDiagram({ notes, name, aria }: { notes: number[]; name: (pc: numbe
       {whites.map((w) => (
         <span
           key={w.midi}
-          className="absolute top-0 box-border flex h-full w-[7.1429%] items-end justify-center rounded-b border-r-2 border-black pb-3 text-[10px] font-bold text-bg"
-          style={{ left: `${w.x}%`, background: on.has(w.midi) ? "var(--color-accent)" : "var(--color-ink)" }}
+          className="absolute top-0 box-border flex h-full w-[7.1429%] items-end justify-center rounded-b border-r-2 border-black pb-3 text-[10px] font-bold text-[#090A0A]"
+          style={{ left: `${w.x}%`, background: on.has(w.midi) ? "var(--color-accent)" : "#EEEDF0" }}
         >
           {on.has(w.midi) ? name(w.pc) : ""}
         </span>
@@ -295,7 +296,7 @@ function PianoDiagram({ notes, name, aria }: { notes: number[]; name: (pc: numbe
         <span
           key={b.midi}
           className="absolute top-0 h-[60%] w-[4.6%] rounded-b"
-          style={{ left: `${b.x}%`, background: on.has(b.midi) ? "var(--color-accent)" : "var(--color-inset)" }}
+          style={{ left: `${b.x}%`, background: on.has(b.midi) ? "var(--color-accent)" : "#17191B" }}
         />
       ))}
     </div>

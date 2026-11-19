@@ -12,8 +12,8 @@ export function HeadstockArt() {
     <svg aria-hidden="true" viewBox="0 0 420 606" className="h-full w-auto max-w-full">
       <defs>
         <linearGradient id="homeFade" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#111213" stopOpacity="0" />
-          <stop offset="1" stopColor="#111213" stopOpacity="1" />
+          <stop offset="0" style={{ stopColor: "var(--color-surface)" }} stopOpacity="0" />
+          <stop offset="1" style={{ stopColor: "var(--color-surface)" }} stopOpacity="1" />
         </linearGradient>
       </defs>
       {PEG_ROWS.flatMap((y) => [

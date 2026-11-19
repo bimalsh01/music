@@ -13,24 +13,66 @@ export interface Tool {
   next: ToolId;
 }
 
-const tuner = (id: InstrumentId, en: string | undefined, pt: string): Tool => ({
-  id,
-  kind: "tuner",
-  slugs: en ? { en, pt } : { pt },
-  next: "metronome",
-});
+type Slugs = Partial<Record<Locale, string>>;
 
+const tuner = (id: InstrumentId, slugs: Slugs): Tool => ({ id, kind: "tuner", slugs, next: "metronome" });
+
+/**
+ * Translated URL slugs. Latin-script languages use their own words (Russian is transliterated);
+ * Japanese, Korean, Chinese and Hindi keep English words, since slugs in those scripts get
+ * percent-encoded in links and search results.
+ */
 export const TOOLS: readonly Tool[] = [
-  tuner("guitar", "guitar-tuner", "afinador-de-violao"),
-  tuner("ukulele", "ukulele-tuner", "afinador-de-ukulele"),
-  tuner("violin", "violin-tuner", "afinador-de-violino"),
-  tuner("cello", "cello-tuner", "afinador-de-violoncelo"),
-  tuner("bass", "bass-tuner", "afinador-de-baixo"),
-  tuner("chromatic", "chromatic-tuner", "afinador-cromatico"),
+  tuner("guitar", {
+    en: "guitar-tuner", pt: "afinador-de-violao", es: "afinador-de-guitarra", fr: "accordeur-guitare", de: "gitarre-stimmen",
+    it: "accordatore-chitarra", ja: "guitar-tuner", ko: "guitar-tuner", zh: "guitar-tuner", ru: "tyuner-dlya-gitary",
+    pl: "stroik-gitarowy", nl: "gitaar-stemmen", tr: "gitar-akort", id: "stem-gitar", hi: "guitar-tuner",
+  }),
+  tuner("ukulele", {
+    en: "ukulele-tuner", pt: "afinador-de-ukulele", es: "afinador-de-ukelele", fr: "accordeur-ukulele", de: "ukulele-stimmen",
+    it: "accordatore-ukulele", ja: "ukulele-tuner", ko: "ukulele-tuner", zh: "ukulele-tuner", ru: "tyuner-dlya-ukulele",
+    pl: "stroik-do-ukulele", nl: "ukelele-stemmen", tr: "ukulele-akort", id: "stem-ukulele", hi: "ukulele-tuner",
+  }),
+  tuner("violin", {
+    en: "violin-tuner", pt: "afinador-de-violino", es: "afinador-de-violin", fr: "accordeur-violon", de: "geige-stimmen",
+    it: "accordatore-violino", ja: "violin-tuner", ko: "violin-tuner", zh: "violin-tuner", ru: "tyuner-dlya-skripki",
+    pl: "stroik-do-skrzypiec", nl: "viool-stemmen", tr: "keman-akort", id: "stem-biola", hi: "violin-tuner",
+  }),
+  tuner("cello", {
+    en: "cello-tuner", pt: "afinador-de-violoncelo", es: "afinador-de-violonchelo", fr: "accordeur-violoncelle", de: "cello-stimmen",
+    it: "accordatore-violoncello", ja: "cello-tuner", ko: "cello-tuner", zh: "cello-tuner", ru: "tyuner-dlya-violoncheli",
+    pl: "stroik-do-wiolonczeli", nl: "cello-stemmen", tr: "viyolonsel-akort", id: "stem-cello", hi: "cello-tuner",
+  }),
+  tuner("bass", {
+    en: "bass-tuner", pt: "afinador-de-baixo", es: "afinador-de-bajo", fr: "accordeur-basse", de: "bass-stimmen",
+    it: "accordatore-basso", ja: "bass-tuner", ko: "bass-tuner", zh: "bass-tuner", ru: "tyuner-dlya-bas-gitary",
+    pl: "stroik-do-basu", nl: "basgitaar-stemmen", tr: "bas-gitar-akort", id: "stem-bass", hi: "bass-tuner",
+  }),
+  tuner("chromatic", {
+    en: "chromatic-tuner", pt: "afinador-cromatico", es: "afinador-cromatico", fr: "accordeur-chromatique", de: "chromatisches-stimmgeraet",
+    it: "accordatore-cromatico", ja: "chromatic-tuner", ko: "chromatic-tuner", zh: "chromatic-tuner", ru: "khromaticheskiy-tyuner",
+    pl: "stroik-chromatyczny", nl: "chromatische-stemmer", tr: "kromatik-akort", id: "tuner-kromatik", hi: "chromatic-tuner",
+  }),
   // Cavaquinho is Brazilian Portuguese only.
-  tuner("cavaquinho", undefined, "afinador-de-cavaquinho"),
-  { id: "metronome", kind: "metronome", slugs: { en: "metronome", pt: "metronomo" }, next: "chords" },
-  { id: "chords", kind: "chords", slugs: { en: "chord-lookup", pt: "acordes" }, next: "guitar" },
+  tuner("cavaquinho", { pt: "afinador-de-cavaquinho" }),
+  {
+    id: "metronome",
+    kind: "metronome",
+    slugs: {
+      en: "metronome", pt: "metronomo", es: "metronomo", fr: "metronome", de: "metronom", it: "metronomo", ja: "metronome",
+      ko: "metronome", zh: "metronome", ru: "metronom", pl: "metronom", nl: "metronoom", tr: "metronom", id: "metronom", hi: "metronome",
+    },
+    next: "chords",
+  },
+  {
+    id: "chords",
+    kind: "chords",
+    slugs: {
+      en: "chord-lookup", pt: "acordes", es: "acordes", fr: "accords", de: "akkorde", it: "accordi", ja: "chords", ko: "chords",
+      zh: "chords", ru: "akkordy", pl: "akordy", nl: "akkoorden", tr: "akorlar", id: "kunci-akor", hi: "chords",
+    },
+    next: "guitar",
+  },
 ];
 
 export function getTool(id: ToolId): Tool {

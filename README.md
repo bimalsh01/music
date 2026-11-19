@@ -1,6 +1,8 @@
 # Music Tools
 
-Tuner, metronome and chord lookup that work the second the page opens. EN + PT (Brazil).
+Tuner, metronome and chord lookup that work the second the page opens — in 15 languages
+(English, Português (BR), Español, Français, Deutsch, Italiano, 日本語, 한국어, 中文, Русский,
+Polski, Nederlands, Türkçe, Bahasa Indonesia, हिन्दी), with a dark (default) and light theme.
 Built from the plan in `docs/music-tools-plan.pdf` and the **Music Tools Prototype** design
 (source copied to `docs/prototype/` for reference).
 
@@ -12,7 +14,8 @@ next-intl · zustand · pitchy (pitch detection) · Serwist (offline) · Vitest.
 ```bash
 pnpm install        # pnpm 12 (or: npx pnpm@latest install)
 pnpm dev            # http://localhost:3000  (mic works on localhost)
-pnpm check          # lint + typecheck + unit tests + build
+pnpm check          # lint + typecheck + unit tests + build + end-to-end tests
+pnpm e2e            # end-to-end tests only (needs `pnpm build`; drives your installed Google Chrome)
 ```
 
 ## Build & deploy
@@ -22,8 +25,10 @@ Set `NEXT_PUBLIC_SITE_URL` (e.g. `https://example.com`) at build time so canonic
 hreflang and the sitemap point at the real domain.
 
 ## Where things live
-- `src/tools/registry.ts` — every tool, its EN/PT slugs and its "Next" link.
-- `src/messages/{en,pt}.json` — all copy (taken verbatim from the prototype).
+- `src/tools/registry.ts` — every tool, its translated URL slug per language and its "Next" link.
+- `src/i18n/routing.ts` — the 15 languages (names, hreflang codes).
+- `src/messages/<lang>.json` — UI text per language (tests fail if any key is missing).
+- `src/content/seo/<lang>.ts` — keyword-targeted page content, titles and FAQs per language.
 - `src/lib/music/*` — pure music logic, ported 1:1 from the prototype and unit-tested against it.
 - `src/lib/audio/*` — Web Audio: mic + pitch detection, synth voices, metronome scheduler.
 - `src/components/*` — shell (header, controls), home, tuner, metronome, chords.
