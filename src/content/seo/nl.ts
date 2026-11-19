@@ -5,14 +5,32 @@ export const nl: SeoContent = {
   labels: { faq: "Veelgestelde vragen", string: "Snaar", note: "Noot", frequency: "Frequentie", tuning: "Stemming", notes: "Snaren (6 → 1)" },
   pages: {
     home: {
-      title: "Online stemapparaat, metronoom en akkoorden gratis – Music Tools",
+      title: "WowGuitar – gitaar stemmen, metronoom en akkoorden gratis",
       description: "Gratis muziektools die meteen werken: gitaar, ukelele, viool, cello en basgitaar stemmen, online metronoom met tap tempo, en gitaar- en pianoakkoorden.",
       blocks: [
         {
           h2: "Gratis online muziektools – zonder app of account",
           p: [
-            "Music Tools is een set eenvoudige, gratis tools voor muzikanten die gewoon in je browser werken. Pagina openen en klaar: niets downloaden, geen account. Elk scherm doet één ding, met grote knoppen die je met je instrument in je handen kunt bedienen.",
+            "WowGuitar is een set eenvoudige, gratis tools voor muzikanten die gewoon in je browser werken. Pagina openen en klaar: niets downloaden, geen account. Elk scherm doet één ding, met grote knoppen die je met je instrument in je handen kunt bedienen.",
             "Het geluid van je microfoon wordt op je eigen apparaat geanalyseerd en nooit geüpload. Na je eerste bezoek werken de tools ook offline, dus je stemapparaat en metronoom zijn er ook in een repetitieruimte zonder bereik.",
+          ],
+        },
+        {
+          h2: "Gitaar stemmen online",
+          p: [
+            "Gitaar stemmen met de gratis [online gitaarstemmer](guitar): speel een snaar, de stemmer herkent hem en laat zien of hij te hoog of te laag is – standaardstemming, Drop D, Open G en meer. Er zijn ook stemmers voor [ukelele](ukulele), [viool](violin), [cello](cello), [basgitaar](bass) en een [chromatisch stemapparaat](chromatic).",
+          ],
+        },
+        {
+          h2: "Online metronoom",
+          p: [
+            "De [online metronoom](metronome) tikt van 30 tot 300 BPM met accenten en maatsoorten. Met tap tempo vind je het BPM van een nummer.",
+          ],
+        },
+        {
+          h2: "Gitaar akkoorden en piano akkoorden",
+          p: [
+            "Zoek elk akkoord op in de [akkoordenlijst](chords): greep, geluid, andere grepen en transponeren – ook piano akkoorden op het toetsenbord.",
           ],
         },
         {
@@ -36,7 +54,7 @@ export const nl: SeoContent = {
       description: "Gitaar online stemmen, gratis via je microfoon. Akoestische of elektrische gitaar in standaardstemming, Drop D, Open G, DADGAD of een halve toon lager.",
       blocks: [
         {
-          h2: "Gratis online gitaarstemapparaat",
+          h2: "Gitaar stemmen online – gratis gitaarstemmer",
           p: [
             "Met dit **gitaarstemapparaat** kun je je **gitaar stemmen** in de browser – zonder app en zonder account. Tik op **Tik om te stemmen**, sta de microfoon toe en speel één snaar. Het stemapparaat herkent de toon, kiest de dichtstbijzijnde snaar en laat zien hoeveel cent hij te laag of te hoog is. Worden de middelste balkjes groen, dan zit je binnen 5 cent: voor het oor zuiver.",
             "Het werkt als **stemapparaat voor akoestische gitaar** via de microfoon van je telefoon of laptop, en ook voor **elektrische gitaar**: speel zonder versterker dicht bij de microfoon of houd je apparaat bij de versterker met een clean geluid. Het geluid blijft op je apparaat.",
@@ -87,7 +105,7 @@ export const nl: SeoContent = {
       description: "Ukelele online stemmen via de microfoon of op gehoor. Standaardstemming G C E A voor sopraan-, concert- en tenorukelele. Gratis, zonder app.",
       blocks: [
         {
-          h2: "Gratis online ukelele-stemapparaat",
+          h2: "Ukelele stemmen online – gratis stemapparaat",
           p: [
             "Met dit **ukelele-stemapparaat** kun je je **ukelele stemmen** in een paar seconden. Tik op **Tik om te stemmen**, sta de microfoon toe en tokkel een snaar: het stemapparaat vindt de dichtstbijzijnde snaar en laat zien of hij te laag of te hoog is. Groen betekent gestemd.",
             "Geschikt voor **sopraan-, concert- en tenorukeleles**, die dezelfde stemming hebben. Liever op gehoor? Tik op de snaarknoppen om elke toon te horen.",
@@ -117,7 +135,11 @@ export const nl: SeoContent = {
       faq: [
         { q: "Welke noten hebben de ukelelesnaren?", a: "In standaardstemming van de 4e naar de 1e snaar: G4, C4, E4 en A4." },
         { q: "Kan ik mijn ukelele met mijn telefoon stemmen?", a: "Ja. Open deze pagina op je telefoon, tik op ‘Tik om te stemmen’, sta de microfoon toe en tokkel elke snaar." },
-        { q: "Werkt het voor een baritonukelele?", a: "Een baritonukelele staat in D G B E, zoals de vier hoge gitaarsnaren. Gebruik het chromatisch stemapparaat of de vier hoge snaren van het gitaarstemapparaat." },
+        { q: "Kan ik mijn ukelele stemmen zonder stemapparaat?",
+          a: "Ja. Tik op een snaarknop om de referentietoon te horen en stem op gehoor. Of gebruik de microfoon van je telefoon of laptop: deze pagina is dan je stemapparaat.",
+        },
+        {
+          q: "Werkt het voor een baritonukelele?", a: "Een baritonukelele staat in D G B E, zoals de vier hoge gitaarsnaren. Gebruik het chromatisch stemapparaat of de vier hoge snaren van het gitaarstemapparaat." },
         { q: "Waarom raakt mijn nieuwe ukelele zo snel ontstemd?", a: "Nylon snaren rekken ongeveer een week door. Stem vaak, dan stabiliseren ze." },
       ],
     },
@@ -127,7 +149,7 @@ export const nl: SeoContent = {
       description: "Viool online stemmen, gratis: G D A E via de microfoon of op gehoor met referentietonen. Stemtoon A4 instelbaar op 440 of 442 Hz. Zonder app.",
       blocks: [
         {
-          h2: "Gratis online vioolstemapparaat",
+          h2: "Viool stemmen online – gratis stemapparaat",
           p: [
             "Met dit **vioolstemapparaat** kun je je **viool stemmen**: het luistert via de microfoon en toont de noot en de afwijking. Tik op **Tik om te stemmen**, strijk (of tokkel) een snaar en stel bij tot de middelste balkjes groen worden.",
             "Elke snaarknop speelt ook een heldere **referentietoon**, zodat je de viool op gehoor kunt stemmen als de microfoon niet beschikbaar is.",
@@ -166,7 +188,7 @@ export const nl: SeoContent = {
       description: "Cello online stemmen, gratis: C G D A via de microfoon of op gehoor met referentietonen. Stemtoon instelbaar. Werkt in de browser, zonder app.",
       blocks: [
         {
-          h2: "Gratis online cellostemapparaat",
+          h2: "Cello stemmen online – gratis stemapparaat",
           p: ["Met dit **cellostemapparaat** kun je je **cello stemmen**, zonder app. Tik op **Tik om te stemmen**, strijk een snaar gelijkmatig aan en stel bij tot de balkjes groen worden. Elke knop speelt ook de referentietoon om op gehoor te stemmen."],
         },
         {
@@ -198,7 +220,7 @@ export const nl: SeoContent = {
       description: "Basgitaar online stemmen, gratis: 4-snarige bas in E A D G via de microfoon of op gehoor met referentietonen. Werkt in de browser, zonder app.",
       blocks: [
         {
-          h2: "Gratis online basgitaarstemapparaat",
+          h2: "Basgitaar stemmen online – gratis stemapparaat",
           p: ["Met dit **basstemapparaat** kun je een 4-snarige **basgitaar stemmen** in standaardstemming. Tik op **Tik om te stemmen**, speel een snaar en draai aan de stemsleutel tot de balkjes groen worden. Voor elektrische en akoestische bas."],
         },
         {
@@ -313,15 +335,15 @@ export const nl: SeoContent = {
     },
 
     chords: {
-      title: "Gitaarakkoorden & pianoakkoorden – akkoordenlijst met geluid",
-      description: "Gratis akkoordenlijst voor gitaar en piano. Kies grondtoon en akkoordtype om de greep te zien, het akkoord te horen, andere grepen te proberen en te transponeren.",
+      title: "Gitaar akkoorden & piano akkoorden – akkoordenlijst met geluid",
+      description: "Gitaar akkoorden en piano akkoorden in een gratis akkoordenlijst. Kies grondtoon en akkoordtype, zie de greep, hoor het akkoord en transponeer.",
       blocks: [
         {
-          h2: "Gitaarakkoorden met grepen",
+          h2: "Gitaar akkoorden met grepen",
           p: ["Kies een **grondtoon** en een **akkoordtype** en deze **lijst met gitaarakkoorden** tekent de greep op de hals: ✕ is een snaar die je niet speelt, ○ een losse snaar, en elke stip toont de noot onder je vinger (grondtoon in wit). Met de pijlen zie je andere grepen, ook **barréakkoorden** hoger op de hals, en **Afspelen** laat het akkoord horen."],
         },
         {
-          h2: "Pianoakkoorden op het toetsenbord",
+          h2: "Piano akkoorden op het toetsenbord",
           p: ["Schakel naar **Piano** om het akkoord op de toetsen te zien, met alle akkoordtonen gemarkeerd en benoemd. De pijlen lopen door de **omkeringen** – dezelfde noten in een andere volgorde, voor soepelere akkoordwisselingen."],
         },
         {
@@ -342,7 +364,7 @@ export const nl: SeoContent = {
           },
         },
         {
-          h2: "Gitaarakkoorden voor beginners",
+          h2: "Gitaar akkoorden voor beginners",
           p: ["De meeste nummers gebruiken een paar **basisakkoorden voor gitaar**: C, G, D, A, E, Am, Em en Dm. Leer eerst deze open grepen en ga dan door naar barréakkoorden zoals F en Bm. Oefen de wissels in de maat met de [metronoom](metronome) en houd je gitaar gestemd met [gitaar stemmen](guitar)."],
         },
         {

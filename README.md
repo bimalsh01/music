@@ -1,4 +1,4 @@
-# Music Tools
+# WowGuitar
 
 Tuner, metronome and chord lookup that work the second the page opens — in 15 languages
 (English, Português (BR), Español, Français, Deutsch, Italiano, 日本語, 한국어, 中文, Русский,
@@ -19,10 +19,17 @@ pnpm e2e            # end-to-end tests only (needs `pnpm build`; drives your ins
 ```
 
 ## Build & deploy
-`pnpm build` writes a fully static site to `out/`. Deploy that folder to Cloudflare Pages
-(`public/_headers` sets CSP, the microphone permission and the service-worker scope).
-Set `NEXT_PUBLIC_SITE_URL` (e.g. `https://example.com`) at build time so canonical URLs,
-hreflang and the sitemap point at the real domain.
+Deployed on **Vercel** (behind Cloudflare) at https://www.wowguitar.com. `pnpm build` writes a fully
+static site to `out/`.
+
+- **Site URL:** canonical URLs, hreflang, `sitemap.xml`, `robots.txt` and structured data use
+  `https://www.wowguitar.com` in production builds (`src/lib/seo.ts`). Override with
+  `NEXT_PUBLIC_SITE_URL`; `next.config.ts` refuses a production build that points at localhost.
+- **`vercel.json`:** server-side redirect of `/` (307 by `Accept-Language`, else 308 → `/en/`),
+  `/sw.js` → the Serwist service worker, and security headers (CSP allows Cloudflare Zaraz / GA4).
+  `public/_headers` mirrors the headers for Cloudflare Pages.
+- **Social image:** `public/og.png`, rebuilt with `node scripts/make-og.mjs`.
+- **Freshness:** bump `CONTENT_UPDATED` in `src/lib/site.ts` when page copy changes.
 
 ## Where things live
 - `src/tools/registry.ts` — every tool, its translated URL slug per language and its "Next" link.

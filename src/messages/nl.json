@@ -1,8 +1,8 @@
 {
   "site": {
-    "name": "Music Tools",
+    "name": "WowGuitar",
     "language": "Taal",
-    "home": "Music Tools home",
+    "home": "WowGuitar home",
     "settings": "Instellingen",
     "close": "Sluiten",
     "nav": {
@@ -18,8 +18,12 @@
     "footer": {
       "tools": "Tools",
       "languages": "Talen",
-      "note": "Gratis muziektools die gewoon in je browser werken. Geen account, niets downloaden."
-    }
+      "note": "Gratis muziektools die gewoon in je browser werken. Geen account, niets downloaden.",
+      "about": "Over ons",
+      "contact": "Contact",
+      "privacy": "Privacy"
+    },
+    "updated": "Bijgewerkt op {date}"
   },
   "instruments": {
     "guitar": "Gitaar",
@@ -44,16 +48,17 @@
     "metroSub": "30–300 BPM · tap tempo",
     "chords": "Akkoorden",
     "chordsSub": "Gitaar en piano",
-    "any": "Elke noot"
+    "any": "Elke noot",
+    "h1": "Gitaar stemmen online, metronoom en gitaar akkoorden – gratis"
   },
   "tuner": {
     "titles": {
-      "guitar": "Gitaar stemmen",
-      "ukulele": "Ukelele stemmen",
-      "violin": "Viool stemmen",
-      "cello": "Cello stemmen",
-      "bass": "Basgitaar stemmen",
-      "chromatic": "Chromatisch stemapparaat",
+      "guitar": "Gitaar stemmen online",
+      "ukulele": "Ukelele stemmen online",
+      "violin": "Viool stemmen online",
+      "cello": "Cello stemmen online",
+      "bass": "Basgitaar stemmen online",
+      "chromatic": "Chromatisch stemapparaat online",
       "cavaquinho": "Cavaquinho stemmen"
     },
     "instruments": "Instrumenten",
@@ -96,11 +101,15 @@
     "how1": "Tik op ‘Tik om te stemmen’ en sta de microfoon toe.",
     "how2": "Speel één snaar. De meter laat zien of hij te laag of te hoog is.",
     "how3": "Draai aan de stemsleutel tot de middelste balkjes groen worden.",
-    "next": "Volgende: Metronoom"
+    "next": "Volgende: Metronoom",
+    "accuracy": {
+      "h2": "Zo hebben we de nauwkeurigheid van de stemmer getest",
+      "p": "Automatische tests spelen gegenereerde tonen op exacte frequenties – 41,2 Hz (lage E van de bas), 65,41 Hz (lage C van de cello), 82,41 Hz (lage E van de gitaar), 440 Hz (A4) en 1318,5 Hz – in dezelfde toonherkenning die deze stemmer gebruikt, en elke meting moet binnen ±1 cent liggen. Een browsertest speelt ook een toon die 20 cent te hoog is door de hele stemmer en controleert dat die ‘Lager’ toont bij 17–23 cent."
+    }
   },
   "metronome": {
     "visual": "Slinger van de metronoom",
-    "title": "Metronoom",
+    "title": "Metronoom online",
     "timeSig": "Maatsoort",
     "slower": "Langzamer",
     "faster": "Sneller",
@@ -131,7 +140,7 @@
     "next": "Volgende: Akkoorden"
   },
   "chords": {
-    "title": "Akkoorden",
+    "title": "Gitaar akkoorden & piano akkoorden",
     "instrument": "Instrument",
     "guitar": "Gitaar",
     "piano": "Piano",
@@ -181,5 +190,42 @@
     "how3": "Met −1 / +1 verschuif je het akkoord een halve toon.",
     "next": "Volgende: Stemapparaat",
     "chordOn": "akkoorddiagram"
+  },
+  "pages": {
+    "about": {
+      "title": "Over WowGuitar – online stemapparaat en muziektools",
+      "description": "WowGuitar maakt gratis muziektools: gitaar stemmen online, stemmers voor ukelele, viool, cello en basgitaar, een online metronoom en gitaar akkoorden.",
+      "h1": "Over WowGuitar",
+      "body": [
+        "WowGuitar is een set gratis online muziektools die werken zodra de pagina opent: gitaar stemmen, stemmers voor ukelele, viool, cello en basgitaar, een chromatisch stemapparaat, een online metronoom met tap tempo en een akkoordenlijst voor gitaar en piano met geluid.",
+        "Alles draait in je browser – zonder app en zonder account – en na je eerste bezoek werken de tools ook offline. De site is er in 15 talen.",
+        "De stemmers lezen de toon via je microfoon met de McLeod-methode. Het geluid wordt op je eigen apparaat geanalyseerd en nooit geüpload. Automatische tests vergelijken de toonherkenning met gegenereerde tonen op exacte frequenties en eisen elke meting binnen ±1 cent.",
+        "Vragen, ideeën of een fout gevonden? Mail naar {email}."
+      ]
+    },
+    "contact": {
+      "title": "Contact – WowGuitar",
+      "description": "Vragen, feedback of een fout in de gitaarstemmer, metronoom of akkoorden? Mail WowGuitar via hello@wowguitar.com.",
+      "h1": "Contact",
+      "body": [
+        "Je bereikt ons het snelst per e-mail: {email}.",
+        "Vertel op welke pagina je was, welk apparaat en welke browser je gebruikt en wat er gebeurde. Bij een probleem met de stemmer: noem het instrument en of je de microfoon gebruikte of op gehoor stemde.",
+        "We lezen elk bericht en horen graag over fouten, verkeerde vertalingen en ideeën voor nieuwe tools."
+      ]
+    },
+    "privacy": {
+      "title": "Privacybeleid – WowGuitar",
+      "description": "Hoe WowGuitar met je gegevens omgaat: microfoongeluid blijft op je apparaat, instellingen in je browser, en Google Analytics meet het gebruik van de site.",
+      "h1": "Privacybeleid",
+      "body": [
+        "Laatst bijgewerkt: {date}. Deze pagina legt uit wat WowGuitar verzamelt en waarom.",
+        "**Microfoon.** De stemmers vragen alleen om toegang tot de microfoon als je op ‘Tik om te stemmen’ tikt. Het geluid wordt realtime op je apparaat geanalyseerd om de toon te vinden. Het wordt nooit opgenomen, bewaard of naar een server gestuurd.",
+        "**Instellingen in je browser.** Je keuzes – licht of donker thema, A4-referentie, referentietonen, akoestische of elektrische kop, volume en notennamen – worden in de lokale opslag van je browser bewaard. Ze verlaten je apparaat nooit; door je browsergegevens te wissen verdwijnen ze.",
+        "**Statistieken.** We gebruiken Google Analytics, geladen via Cloudflare Zaraz, om bezoeken te tellen en te zien welke pagina’s gebruikt worden. Het verzamelt gebruiksgegevens zoals bekeken pagina’s, globale locatie, apparaat en browser, en kan Google-cookies plaatsen. Google verwerkt deze gegevens volgens zijn eigen privacybeleid: https://policies.google.com/privacy",
+        "**Hosting.** Onze hosting- en netwerkproviders, Vercel en Cloudflare, verwerken gewone verzoekgegevens zoals IP-adres en browsertype om de site te leveren en te beschermen.",
+        "**Geen accounts.** We vragen niet naar je naam of e-mail en verkopen geen gegevens.",
+        "**Contact.** Vragen over privacy: {email}."
+      ]
+    }
   }
 }

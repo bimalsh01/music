@@ -4,7 +4,7 @@ import { themeBootScript } from "@/lib/theme";
 import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "Music Tools",
+  title: "WowGuitar",
   robots: { index: false },
 };
 

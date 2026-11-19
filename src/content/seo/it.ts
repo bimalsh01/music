@@ -5,14 +5,32 @@ export const it: SeoContent = {
   labels: { faq: "Domande frequenti", string: "Corda", note: "Nota", frequency: "Frequenza", tuning: "Accordatura", notes: "Corde (6 → 1)" },
   pages: {
     home: {
-      title: "Accordatore Online, Metronomo e Accordi Gratis – Music Tools",
+      title: "WowGuitar – Accordatore Online, Metronomo e Accordi Gratis",
       description: "Strumenti musicali gratis che funzionano subito: accordatore per chitarra, ukulele, violino, violoncello e basso, metronomo online con tap tempo, accordi.",
       blocks: [
         {
           h2: "Strumenti musicali online gratis, senza app né registrazione",
           p: [
-            "Music Tools è una raccolta di strumenti semplici e gratuiti per musicisti, direttamente nel browser. Apri la pagina ed è pronta: nessun download, nessun account. Ogni schermata fa una cosa sola, con comandi grandi da usare con lo strumento in mano.",
+            "WowGuitar è una raccolta di strumenti semplici e gratuiti per musicisti, direttamente nel browser. Apri la pagina ed è pronta: nessun download, nessun account. Ogni schermata fa una cosa sola, con comandi grandi da usare con lo strumento in mano.",
             "L’audio del microfono viene analizzato sul tuo dispositivo e non viene mai caricato online. Dopo la prima visita gli strumenti funzionano anche offline: accordatore e metronomo sono sempre con te in sala prove.",
+          ],
+        },
+        {
+          h2: "Accordatore chitarra online",
+          p: [
+            "Accorda con l’[accordatore chitarra online](guitar) gratis: suona una corda e l’accordatore la riconosce e ti dice se è crescente o calante – accordatura standard, Drop D, Open G e altre. Ci sono anche l’[accordatore ukulele](ukulele), l’[accordatore violino](violin), l’[accordatore violoncello](cello), l’[accordatore basso](bass) e l’[accordatore cromatico](chromatic).",
+          ],
+        },
+        {
+          h2: "Metronomo online",
+          p: [
+            "Il [metronomo online](metronome) batte il tempo da 30 a 300 BPM con accenti e tempi. Con il tap tempo trovi i BPM di una canzone.",
+          ],
+        },
+        {
+          h2: "Accordi chitarra e pianoforte",
+          p: [
+            "Cerca qualsiasi accordo nel [prontuario accordi](chords): diteggiatura, suono, altre posizioni e trasposizione – anche accordi pianoforte sulla tastiera.",
           ],
         },
         {
@@ -36,7 +54,7 @@ export const it: SeoContent = {
       description: "Accordatore per chitarra online gratis con il microfono. Accorda chitarra acustica o elettrica in standard, Drop D, Open G, DADGAD o mezzo tono sotto.",
       blocks: [
         {
-          h2: "Accordatore per chitarra online gratis",
+          h2: "Accordatore chitarra online gratis",
           p: [
             "Questo **accordatore per chitarra** funziona direttamente nel browser, senza app e senza account. Tocca **Tocca per accordare**, consenti il microfono e suona una corda. L’accordatore riconosce la nota, sceglie la corda più vicina e mostra di quanti cent è calante o crescente. Quando le barre centrali diventano verdi sei entro 5 cent: intonato per l’orecchio.",
             "Funziona come **accordatore per chitarra acustica** con il microfono del telefono o del portatile, e anche per **chitarra elettrica**: suonala staccata vicino al microfono o avvicina il dispositivo all’amplificatore con un suono pulito. L’audio resta sul tuo dispositivo.",
@@ -87,7 +105,7 @@ export const it: SeoContent = {
       description: "Accorda l’ukulele online con il microfono o a orecchio. Accordatura standard Sol Do Mi La (G C E A) per ukulele soprano, concerto e tenore. Gratis, senza app.",
       blocks: [
         {
-          h2: "Accordatore per ukulele online gratis",
+          h2: "Accordatore ukulele online gratis con microfono",
           p: [
             "Accorda il tuo ukulele in pochi secondi con questo **accordatore per ukulele online**. Tocca **Tocca per accordare**, consenti il microfono e pizzica una corda: l’accordatore trova la corda più vicina e mostra se è calante o crescente. Verde significa intonato.",
             "Va bene per ukulele **soprano, concerto e tenore**, che hanno la stessa accordatura standard. Preferisci l’orecchio? Tocca il pulsante di ogni corda per sentirne la nota.",
@@ -127,7 +145,7 @@ export const it: SeoContent = {
       description: "Accordatore per violino online gratis. Accorda Sol Re La Mi con il microfono o a orecchio con i toni di riferimento, e imposta il La4 a 440 o 442 Hz.",
       blocks: [
         {
-          h2: "Accordatore per violino online gratis",
+          h2: "Accordatore violino online gratis",
           p: [
             "Questo **accordatore per violino** ascolta dal microfono e mostra la nota e quanto manca all’intonazione giusta. Tocca **Tocca per accordare**, suona una corda con l’arco (o pizzicata) e regola finché le barre centrali diventano verdi.",
             "Ogni pulsante di corda suona anche un **tono di riferimento** chiaro, per accordare il violino a orecchio quando il microfono non è disponibile.",
@@ -166,7 +184,7 @@ export const it: SeoContent = {
       description: "Accordatore per violoncello online gratis. Accorda Do Sol Re La (C G D A) con il microfono o a orecchio con i toni di riferimento. Nel browser, senza app.",
       blocks: [
         {
-          h2: "Accordatore per violoncello online gratis",
+          h2: "Accordatore violoncello online gratis",
           p: ["Accorda il tuo violoncello con questo **accordatore per violoncello** gratuito, senza app. Tocca **Tocca per accordare**, suona una corda con un’arcata continua e regola finché le barre diventano verdi. Ogni pulsante suona anche la nota di riferimento per accordare a orecchio."],
         },
         {
@@ -198,7 +216,7 @@ export const it: SeoContent = {
       description: "Accordatore per basso online gratis per basso a 4 corde. Accorda Mi La Re Sol (E A D G) con il microfono o a orecchio. Nel browser, senza app.",
       blocks: [
         {
-          h2: "Accordatore per basso online gratis",
+          h2: "Accordatore basso online gratis – anche per basso elettrico",
           p: ["Questo **accordatore per basso** accorda un basso a 4 corde in accordatura standard. Tocca **Tocca per accordare**, suona una corda e gira la meccanica finché le barre diventano verdi. Va bene per basso elettrico e acustico."],
         },
         {
@@ -317,11 +335,11 @@ export const it: SeoContent = {
       description: "Prontuario di accordi gratis per chitarra e pianoforte. Scegli fondamentale e tipo di accordo per vedere la diteggiatura, ascoltarlo, cambiare forma e trasporre.",
       blocks: [
         {
-          h2: "Accordi per chitarra con diteggiature",
+          h2: "Accordi chitarra con diteggiature",
           p: ["Scegli una **nota fondamentale** e un **tipo di accordo** e questo **prontuario di accordi per chitarra** disegna la diteggiatura sul manico: ✕ indica una corda da non suonare, ○ una corda a vuoto, e ogni punto mostra la nota sotto il dito (la fondamentale in bianco). Le frecce mostrano altre forme, compresi gli **accordi con il barré** più in alto sul manico, e **Suona** ti fa sentire l’accordo."],
         },
         {
-          h2: "Accordi per pianoforte sulla tastiera",
+          h2: "Accordi pianoforte sulla tastiera",
           p: ["Passa a **Pianoforte** per vedere l’accordo sui tasti, con tutte le note evidenziate e con il nome. Le frecce scorrono i **rivolti**: le stesse note in un altro ordine, per passare da un accordo all’altro in modo più fluido."],
         },
         {
@@ -342,7 +360,7 @@ export const it: SeoContent = {
           },
         },
         {
-          h2: "Accordi per chitarra per principianti",
+          h2: "Accordi chitarra per principianti",
           p: ["La maggior parte delle canzoni usa pochi **accordi base per chitarra**: Do (C), Sol (G), Re (D), La (A), Mi (E), La minore (Am), Mi minore (Em) e Re minore (Dm). Impara prima queste forme aperte, poi passa ai barré come Fa (F) e Si minore (Bm). Esercitati con i cambi a tempo con il [metronomo](metronome) e tieni la chitarra accordata con l’[accordatore per chitarra](guitar)."],
         },
         {

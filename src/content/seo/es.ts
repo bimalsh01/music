@@ -5,14 +5,32 @@ export const es: SeoContent = {
   labels: { faq: "Preguntas frecuentes", string: "Cuerda", note: "Nota", frequency: "Frecuencia", tuning: "Afinación", notes: "Cuerdas (6 → 1)" },
   pages: {
     home: {
-      title: "Afinador Online, Metrónomo y Acordes Gratis – Music Tools",
+      title: "WowGuitar – Afinador Online, Metrónomo y Acordes Gratis",
       description: "Herramientas musicales gratis que funcionan al instante: afinador de guitarra, ukelele, violín, violonchelo y bajo, metrónomo online y acordes de guitarra y piano.",
       blocks: [
         {
           h2: "Herramientas musicales online gratis, sin app ni registro",
           p: [
-            "Music Tools es un conjunto de herramientas sencillas y gratuitas para músicos que funcionan directamente en el navegador. Abres la página y ya está lista: sin descargas, sin cuenta. Cada pantalla hace una sola cosa, con controles grandes para usar con el instrumento en las manos.",
+            "WowGuitar es un conjunto de herramientas sencillas y gratuitas para músicos que funcionan directamente en el navegador. Abres la página y ya está lista: sin descargas, sin cuenta. Cada pantalla hace una sola cosa, con controles grandes para usar con el instrumento en las manos.",
             "El audio del micrófono se analiza en tu propio dispositivo y nunca se sube a internet. Después de la primera visita las herramientas siguen funcionando sin conexión, así que el afinador y el metrónomo te acompañan al ensayo.",
+          ],
+        },
+        {
+          h2: "Afinador de guitarra online",
+          p: [
+            "Afina con el [afinador de guitarra online](guitar) gratis: toca una cuerda y el afinador te dice si está alta o baja – afinación estándar, Drop D, Open G y más. También hay [afinador de ukelele](ukulele), [afinador de violín](violin), [afinador de cello](cello), [afinador de bajo](bass) y [afinador cromático](chromatic).",
+          ],
+        },
+        {
+          h2: "Metrónomo online",
+          p: [
+            "El [metrónomo online](metronome) marca el pulso de 30 a 300 BPM con acentos y compases. Marca el tempo (BPM tap) junto a una canción para saber sus BPM.",
+          ],
+        },
+        {
+          h2: "Acordes de guitarra y piano",
+          p: [
+            "Busca cualquier acorde en la [tabla de acordes de guitarra](chords): mira la posición, escúchalo, prueba otras formas y transporta – también acordes de piano.",
           ],
         },
         {
@@ -101,7 +119,7 @@ export const es: SeoContent = {
           autoTable: "tuning",
         },
         {
-          h2: "Cómo afinar un ukelele",
+          h2: "Cómo afinar un ukulele (ukelele)",
           ordered: true,
           list: [
             "Pulsa **Toca para afinar** y permite el micrófono.",
@@ -164,11 +182,11 @@ export const es: SeoContent = {
     },
 
     cello: {
-      title: "Afinador de Violonchelo Online Gratis – Do Sol Re La",
-      description: "Afinador de violonchelo online y gratis. Afina Do Sol Re La (C G D A) con el micrófono o de oído con tonos de referencia. Funciona en el navegador.",
+      title: "Afinador de Cello Online Gratis – Violonchelo Do Sol Re La",
+      description: "Afinador de cello (violonchelo) online y gratis. Afina Do Sol Re La (C G D A) con el micrófono o de oído con tonos de referencia. Funciona en el navegador.",
       blocks: [
         {
-          h2: "Afinador de violonchelo online gratis",
+          h2: "Afinador de cello (violonchelo) online gratis",
           p: ["Afina tu violonchelo con este **afinador de violonchelo** gratuito, sin app. Pulsa **Toca para afinar**, pasa el arco de forma continua por una cuerda y gira hasta que las barras se pongan verdes. Cada botón reproduce también la nota de referencia para afinar de oído."],
         },
         {
@@ -200,7 +218,7 @@ export const es: SeoContent = {
       description: "Afinador de bajo online y gratis para bajo de 4 cuerdas. Afina Mi La Re Sol (E A D G) con el micrófono o de oído. Funciona en el navegador, sin app.",
       blocks: [
         {
-          h2: "Afinador de bajo online gratis",
+          h2: "Afinador de bajo online gratis con micrófono",
           p: ["Este **afinador de bajo** afina un bajo de 4 cuerdas en afinación estándar. Pulsa **Toca para afinar**, toca una cuerda y gira la clavija hasta que las barras se pongan verdes. Sirve para bajo eléctrico y acústico."],
         },
         {
@@ -223,7 +241,11 @@ export const es: SeoContent = {
       faq: [
         { q: "¿Cuáles son las notas de las cuerdas del bajo?", a: "En afinación estándar: Mi1, La1, Re2 y Sol2 (E1, A1, D2, G2), de la 4.ª a la 1.ª cuerda." },
         { q: "¿Puedo afinar el bajo con un afinador de guitarra?", a: "El bajo usa las mismas notas que las cuatro cuerdas graves de la guitarra, una octava más abajo. Este afinador de bajo está preparado para ellas, y el afinador cromático también sirve." },
-        { q: "¿Por qué cuesta leer el Mi grave?", a: "Los micrófonos pequeños captan mal las frecuencias muy graves. Pulsa con firmeza, acerca el dispositivo y deja sonar la nota." },
+        { q: "¿Sirve como afinador de bajo de 5 cuerdas?",
+          a: "Este afinador de bajo está ajustado para bajo de 4 cuerdas: Mi La Re Sol. En un bajo de 5 cuerdas esas cuatro cuerdas se afinan igual; la cuerda Si grave no está en la lista.",
+        },
+        {
+          q: "¿Por qué cuesta leer el Mi grave?", a: "Los micrófonos pequeños captan mal las frecuencias muy graves. Pulsa con firmeza, acerca el dispositivo y deja sonar la nota." },
       ],
     },
 
@@ -263,14 +285,14 @@ export const es: SeoContent = {
       description: "Metrónomo online gratis de 30 a 300 BPM con marcar tempo, acentos, compases (4/4, 3/4, 6/8) y subdivisiones. Funciona en el navegador, sin app.",
       blocks: [
         {
-          h2: "Metrónomo online gratis",
+          h2: "Metrónomo online gratis: metrónomo con BPM",
           p: [
             "Este **metrónomo online** marca un pulso firme de 30 a 300 BPM, directamente en el navegador, sin descargar nada. Ajusta el tempo con el control deslizante o los botones − / +, pulsa **Play** y sigue el clic, el péndulo y las luces de cada tiempo.",
             "Activa el **destello visual** en Más y la pantalla destella en cada tiempo, para tocar con el sonido apagado o en un sitio ruidoso. Los clics se programan en el reloj de audio del dispositivo, así que el tempo no se mueve.",
           ],
         },
         {
-          h2: "Marcar tempo: averigua los BPM de una canción",
+          h2: "Marcar tempo (BPM tap): averigua los BPM de una canción",
           p: ["¿No sabes el tempo? Pulsa **Marcar tempo** al ritmo de la canción unas cuantas veces y el metrónomo calcula los BPM a partir de tus toques. Promedia los últimos cinco y vuelve a empezar si paras dos segundos."],
         },
         {
@@ -319,11 +341,11 @@ export const es: SeoContent = {
       description: "Diccionario de acordes de guitarra y piano gratis. Elige nota y tipo de acorde para ver la posición, oírlo, probar otras formas y transponer.",
       blocks: [
         {
-          h2: "Tabla de acordes de guitarra con posiciones",
+          h2: "Acordes de guitarra: tabla de acordes con posiciones",
           p: ["Elige una **nota fundamental** y un **tipo de acorde** y esta **tabla de acordes de guitarra** dibuja la posición en el mástil: ✕ marca una cuerda que no se toca, ○ una cuerda al aire, y cada punto muestra la nota bajo tu dedo (la fundamental en blanco). Usa las flechas para ver otras formas, incluidas las **cejillas** más arriba en el mástil, y pulsa **Tocar** para oírlo."],
         },
         {
-          h2: "Acordes de piano en el teclado",
+          h2: "Acordes de piano en el teclado: diccionario de acordes",
           p: ["Cambia a **Piano** para ver el acorde en las teclas, con todas sus notas resaltadas y con nombre. Las flechas recorren las **inversiones**: las mismas notas en otro orden, que suavizan el paso entre acordes."],
         },
         {

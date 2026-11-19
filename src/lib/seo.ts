@@ -2,25 +2,43 @@ import type { Metadata } from "next";
 import { getPageSeo, plainText, type PageSeo, type SeoKey } from "@/content/seo";
 import { getDictionary } from "@/i18n/dictionary";
 import { LOCALE_INFO, locales, type Locale } from "@/i18n/routing";
+import { BRAND, CONTACT_EMAIL, CONTENT_UPDATED, INFO_PAGES, PRODUCTION_URL, type InfoPage } from "@/lib/site";
 import { getTool, homePath, toolPath, type ToolId } from "@/tools/registry";
 
-/** Public origin for canonical URLs, sitemap and hreflang. Set NEXT_PUBLIC_SITE_URL in production. */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
+/**
+ * Public origin for canonical URLs, sitemap, hreflang and structured data. Production builds use the
+ * real domain unless NEXT_PUBLIC_SITE_URL overrides it; `next dev` uses localhost.
+ * (next.config.ts refuses a production build whose origin is localhost.)
+ */
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? (process.env.NODE_ENV === "production" ? PRODUCTION_URL : "http://localhost:3000")
+).replace(/\/$/, "");
 
-/** Every language version of a page (home when toolId is null). */
-export function alternatesFor(toolId: ToolId | null): Partial<Record<Locale, string>> {
+/** A page of the site: the home page (null), a tool, or one of the plain info pages. */
+export type PageKey = ToolId | InfoPage | null;
+
+const isInfo = (k: PageKey): k is InfoPage => (INFO_PAGES as readonly string[]).includes(k as string);
+
+function pathFor(l: Locale, key: PageKey): string | null {
+  if (key === null) return homePath(l);
+  if (isInfo(key)) return `/${l}/${key}/`;
+  return toolPath(l, key);
+}
+
+/** Every language version of a page. */
+export function alternatesFor(key: PageKey): Partial<Record<Locale, string>> {
   const out: Partial<Record<Locale, string>> = {};
   for (const l of locales) {
-    const p = toolId ? toolPath(l, toolId) : homePath(l);
+    const p = pathFor(l, key);
     if (p) out[l] = p;
   }
   return out;
 }
 
 /** The same alternates keyed by hreflang code (pt-BR, zh-CN…), plus x-default. */
-export function hreflangMap(toolId: ToolId | null, absolute = false): Record<string, string> {
+export function hreflangMap(key: PageKey, absolute = false): Record<string, string> {
   const out: Record<string, string> = {};
-  const alts = alternatesFor(toolId);
+  const alts = alternatesFor(key);
   for (const [l, p] of Object.entries(alts) as [Locale, string][]) out[LOCALE_INFO[l].tag] = absolute ? `${SITE_URL}${p}` : p;
   const def = alts.en ?? alts.pt;
   if (def) out["x-default"] = absolute ? `${SITE_URL}${def}` : def;
@@ -34,49 +52,135 @@ function seoFor(locale: Locale, key: SeoKey): PageSeo {
   return seo;
 }
 
-export function pageMetadata(locale: Locale, toolId: ToolId | null): Metadata {
-  const d = getDictionary(locale);
-  const meta = seoFor(locale, toolId ?? "home");
-  const self = alternatesFor(toolId)[locale]!;
+/** Shared social-preview image (1200×630). */
+const OG_IMAGE = { url: "/og.png", width: 1200, height: 630, alt: BRAND };
+
+/** Title, description, canonical, hreflang and social tags for any page. */
+export function metadataFor(locale: Locale, key: PageKey, title: string, description: string): Metadata {
+  const self = alternatesFor(key)[locale]!;
   return {
-    title: meta.title,
-    description: meta.description,
-    alternates: { canonical: self, languages: hreflangMap(toolId) },
+    title,
+    description,
+    alternates: { canonical: self, languages: hreflangMap(key) },
     openGraph: {
-      title: meta.title,
-      description: meta.description,
+      title,
+      description,
       url: self,
-      siteName: d.site.name,
+      siteName: BRAND,
       locale: LOCALE_INFO[locale].og,
       type: "website",
+      images: [OG_IMAGE],
     },
+    twitter: { card: "summary_large_image", title, description, images: [OG_IMAGE.url] },
   };
 }
 
-/** WebApplication structured data for a tool page. */
+export function pageMetadata(locale: Locale, toolId: ToolId | null): Metadata {
+  const meta = seoFor(locale, toolId ?? "home");
+  return metadataFor(locale, toolId, meta.title, meta.description);
+}
+
+const ORG_ID = `${SITE_URL}/#organization`;
+const SITE_ID = `${SITE_URL}/#website`;
+const json = (o: unknown) => JSON.stringify(o).replace(/</g, "\\u003c");
+
+function organization() {
+  return {
+    "@type": "Organization",
+    "@id": ORG_ID,
+    name: BRAND,
+    url: `${SITE_URL}/`,
+    logo: { "@type": "ImageObject", url: `${SITE_URL}/icon-512.png`, width: 512, height: 512 },
+    email: CONTACT_EMAIL,
+    // Add real profile URLs (YouTube, social) here once they exist.
+    sameAs: [] as string[],
+  };
+}
+
+/** Organization + WebSite for the home page of a language. */
+export function homeJsonLd(locale: Locale): string {
+  const d = getDictionary(locale);
+  return json({
+    "@context": "https://schema.org",
+    "@graph": [
+      organization(),
+      {
+        "@type": "WebSite",
+        "@id": SITE_ID,
+        name: BRAND,
+        url: `${SITE_URL}${homePath(locale)}`,
+        description: d.site.footer.note,
+        inLanguage: LOCALE_INFO[locale].tag,
+        publisher: { "@id": ORG_ID },
+      },
+    ],
+  });
+}
+
+function breadcrumb(locale: Locale, name: string, path: string) {
+  const d = getDictionary(locale);
+  return {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: d.site.name, item: `${SITE_URL}${homePath(locale)}` },
+      { "@type": "ListItem", position: 2, name, item: `${SITE_URL}${path}` },
+    ],
+  };
+}
+
+/** WebApplication + BreadcrumbList for a tool page. */
 export function toolJsonLd(locale: Locale, toolId: ToolId): string {
   const meta = seoFor(locale, toolId);
   const path = toolPath(locale, toolId) ?? homePath(locale);
   const tool = getTool(toolId);
-  return JSON.stringify({
+  const name = meta.title.split(/ [–—] /)[0];
+  return json({
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: meta.title.split(/ [–—] /)[0],
-    description: meta.description,
-    url: `${SITE_URL}${path}`,
-    applicationCategory: tool.kind === "chords" ? "ReferenceApplication" : "MultimediaApplication",
-    operatingSystem: "Any",
-    inLanguage: LOCALE_INFO[locale].tag,
-    isAccessibleForFree: true,
-    offers: { "@type": "Offer", price: "0" },
-  }).replace(/</g, "\\u003c");
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        name,
+        description: meta.description,
+        url: `${SITE_URL}${path}`,
+        applicationCategory: tool.kind === "chords" ? "ReferenceApplication" : "MultimediaApplication",
+        operatingSystem: "Any",
+        inLanguage: LOCALE_INFO[locale].tag,
+        isAccessibleForFree: true,
+        dateModified: CONTENT_UPDATED,
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        publisher: organization(),
+      },
+      breadcrumb(locale, name, path),
+    ],
+  });
+}
+
+/** WebPage + BreadcrumbList for About / Contact / Privacy. */
+export function infoJsonLd(locale: Locale, page: InfoPage, name: string): string {
+  const path = `/${locale}/${page}/`;
+  const type = page === "about" ? "AboutPage" : page === "contact" ? "ContactPage" : "WebPage";
+  return json({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": type,
+        name,
+        url: `${SITE_URL}${path}`,
+        inLanguage: LOCALE_INFO[locale].tag,
+        dateModified: CONTENT_UPDATED,
+        isPartOf: { "@id": SITE_ID },
+        publisher: organization(),
+      },
+      breadcrumb(locale, name, path),
+    ],
+  });
 }
 
 /** FAQPage structured data for the page's FAQ (matches the visible questions exactly). */
 export function faqJsonLd(locale: Locale, toolId: ToolId | null): string | null {
   const seo = getPageSeo(locale, toolId ?? "home");
   if (!seo?.faq.length) return null;
-  return JSON.stringify({
+  return json({
     "@context": "https://schema.org",
     "@type": "FAQPage",
     inLanguage: LOCALE_INFO[locale].tag,
@@ -85,5 +189,5 @@ export function faqJsonLd(locale: Locale, toolId: ToolId | null): string | null 
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: plainText(f.a) },
     })),
-  }).replace(/</g, "\\u003c");
+  });
 }

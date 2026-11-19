@@ -5,14 +5,32 @@ export const pl: SeoContent = {
   labels: { faq: "Najczęstsze pytania", string: "Struna", note: "Dźwięk", frequency: "Częstotliwość", tuning: "Strój", notes: "Struny (6 → 1)" },
   pages: {
     home: {
-      title: "Stroik online, metronom i akordy za darmo – Music Tools",
+      title: "WowGuitar – stroik online, metronom i chwyty gitarowe",
       description: "Darmowe narzędzia muzyczne, które działają od razu: stroik do gitary, ukulele, skrzypiec, wiolonczeli i basu, metronom online z tap tempo oraz akordy.",
       blocks: [
         {
           h2: "Darmowe narzędzia muzyczne online – bez aplikacji i rejestracji",
           p: [
-            "Music Tools to zestaw prostych, darmowych narzędzi dla muzyków, działających prosto w przeglądarce. Otwierasz stronę i gotowe: nic nie pobierasz, nie zakładasz konta. Każdy ekran robi jedną rzecz, a duże przyciski łatwo obsłużyć z instrumentem w rękach.",
+            "WowGuitar to zestaw prostych, darmowych narzędzi dla muzyków, działających prosto w przeglądarce. Otwierasz stronę i gotowe: nic nie pobierasz, nie zakładasz konta. Każdy ekran robi jedną rzecz, a duże przyciski łatwo obsłużyć z instrumentem w rękach.",
             "Dźwięk z mikrofonu jest analizowany na twoim urządzeniu i nigdy nie trafia do internetu. Po pierwszej wizycie narzędzia działają także offline, więc stroik i metronom są pod ręką na próbie.",
+          ],
+        },
+        {
+          h2: "Stroik do gitary online",
+          p: [
+            "Strojenie gitary z darmowym [stroikiem do gitary online](guitar): zagraj strunę, a stroik ją rozpozna i pokaże, czy jest za wysoko, czy za nisko – strój standardowy, Drop D, Open G i inne. Są też [stroik do ukulele](ukulele), [stroik do skrzypiec](violin), [stroik do wiolonczeli](cello), [stroik do basu](bass) i [stroik chromatyczny](chromatic).",
+          ],
+        },
+        {
+          h2: "Metronom online",
+          p: [
+            "[Metronom online](metronome) wybija równe tempo od 30 do 300 BPM z akcentami i metrum. Tap tempo pomoże sprawdzić BPM piosenki.",
+          ],
+        },
+        {
+          h2: "Chwyty gitarowe i akordy pianino",
+          p: [
+            "Znajdź każdy akord w [tabeli chwytów gitarowych](chords): chwyt, brzmienie, inne kształty i transpozycja – także akordy pianino na klawiaturze.",
           ],
         },
         {
@@ -32,11 +50,11 @@ export const pl: SeoContent = {
     },
 
     guitar: {
-      title: "Stroik gitarowy online za darmo – przez mikrofon",
-      description: "Darmowy stroik gitarowy online przez mikrofon. Nastrój gitarę akustyczną lub elektryczną w stroju standardowym, Drop D, Open G, DADGAD lub o pół tonu niżej.",
+      title: "Strojenie gitary online – stroik do gitary za darmo",
+      description: "Strojenie gitary online przez mikrofon – darmowy stroik do gitary. Nastrój gitarę w stroju standardowym, Drop D, Open G, DADGAD lub pół tonu niżej.",
       blocks: [
         {
-          h2: "Darmowy stroik gitarowy online",
+          h2: "Stroik do gitary online – darmowe strojenie gitary",
           p: [
             "Ten **stroik gitarowy** działa prosto w przeglądarce – bez aplikacji i konta. Dotknij **Dotknij, aby stroić**, zezwól na mikrofon i zagraj jedną strunę. Stroik rozpozna dźwięk, wybierze najbliższą strunę i pokaże, o ile centów jest za nisko lub za wysoko. Gdy środkowe paski zrobią się zielone, różnica jest mniejsza niż 5 centów – dla ucha to czysty strój.",
             "Działa jako **stroik do gitary akustycznej** przez mikrofon telefonu lub laptopa, a także do **gitary elektrycznej**: graj bez podłączania blisko mikrofonu albo przyłóż urządzenie do wzmacniacza z czystym brzmieniem. Dźwięk zostaje na twoim urządzeniu.",
@@ -49,7 +67,7 @@ export const pl: SeoContent = {
           after: ["Częstotliwości dla A4 = 440 Hz, standardowego stroju."],
         },
         {
-          h2: "Jak nastroić gitarę krok po kroku",
+          h2: "Strojenie gitary: jak nastroić gitarę krok po kroku",
           ordered: true,
           list: [
             "Zacznij od 6. struny (niskie E). Zagraj ją pustą i pozwól jej wybrzmieć.",
@@ -83,11 +101,11 @@ export const pl: SeoContent = {
     },
 
     ukulele: {
-      title: "Stroik do ukulele online za darmo – strój GCEA",
-      description: "Nastrój ukulele online przez mikrofon lub ze słuchu. Standardowy strój G C E A dla ukulele sopranowego, koncertowego i tenorowego. Za darmo, bez aplikacji.",
+      title: "Strojenie ukulele online – stroik do ukulele za darmo",
+      description: "Strojenie ukulele online przez mikrofon lub ze słuchu – darmowy stroik do ukulele. Strój G C E A dla ukulele sopranowego, koncertowego i tenorowego.",
       blocks: [
         {
-          h2: "Darmowy stroik do ukulele online",
+          h2: "Stroik do ukulele online – darmowe strojenie ukulele",
           p: [
             "Nastrój ukulele w kilka sekund tym **stroikiem do ukulele**. Dotknij **Dotknij, aby stroić**, zezwól na mikrofon i szarpnij strunę: stroik znajdzie najbliższą strunę i pokaże, czy jest za nisko, czy za wysoko. Zielony oznacza, że jest nastrojona.",
             "Pasuje do ukulele **sopranowego, koncertowego i tenorowego**, które mają ten sam strój. Wolisz ze słuchu? Dotykaj przycisków strun, aby usłyszeć każdy dźwięk.",
@@ -127,7 +145,7 @@ export const pl: SeoContent = {
       description: "Darmowy stroik do skrzypiec online. Nastrój G D A E przez mikrofon lub ze słuchu z dźwiękami wzorcowymi i ustaw A4 na 440 lub 442 Hz. Bez aplikacji.",
       blocks: [
         {
-          h2: "Darmowy stroik do skrzypiec online",
+          h2: "Stroik do skrzypiec online – darmowe strojenie skrzypiec",
           p: [
             "Ten **stroik do skrzypiec** słucha przez mikrofon i pokazuje dźwięk oraz odchylenie od czystego stroju. Dotknij **Dotknij, aby stroić**, zagraj strunę smyczkiem (lub pizzicato) i koryguj, aż środkowe paski zrobią się zielone.",
             "Każdy przycisk struny odtwarza też wyraźny **dźwięk wzorcowy**, aby nastroić skrzypce ze słuchu, gdy mikrofon jest niedostępny.",
@@ -261,7 +279,7 @@ export const pl: SeoContent = {
       description: "Darmowy metronom online od 30 do 300 BPM z tap tempo, akcentami, metrum (4/4, 3/4, 6/8) i podziałami. Działa w przeglądarce, bez aplikacji.",
       blocks: [
         {
-          h2: "Darmowy metronom online",
+          h2: "Metronom online za darmo",
           p: [
             "Ten **metronom online** wybija równy puls od 30 do 300 BPM prosto w przeglądarce – bez pobierania. Ustaw tempo suwakiem lub przyciskami − / +, naciśnij **Play** i graj za kliknięciem, wahadłem i światełkami miar.",
             "Włącz **błysk ekranu** w Więcej, a ekran będzie błyskał na każdą miarę – możesz grać bez dźwięku lub w hałasie. Kliknięcia są planowane na zegarze audio urządzenia, więc tempo nie pływa.",
@@ -313,15 +331,15 @@ export const pl: SeoContent = {
     },
 
     chords: {
-      title: "Akordy na gitarę i pianino – tabela akordów z dźwiękiem",
-      description: "Darmowa tabela akordów na gitarę i pianino. Wybierz prymę i rodzaj akordu, aby zobaczyć chwyt, posłuchać, zmienić kształt i transponować.",
+      title: "Chwyty gitarowe i akordy na pianino – tabela z dźwiękiem",
+      description: "Chwyty gitarowe i akordy na pianino w darmowej tabeli akordów. Wybierz prymę i rodzaj akordu, zobacz chwyt, posłuchaj, zmień kształt i transponuj.",
       blocks: [
         {
-          h2: "Tabela akordów gitarowych z chwytami",
+          h2: "Chwyty gitarowe: tabela akordów gitarowych",
           p: ["Wybierz **prymę** i **rodzaj akordu**, a ta **tabela akordów gitarowych** narysuje chwyt na gryfie: ✕ to struna, której nie grasz, ○ pusta struna, a każda kropka pokazuje dźwięk pod palcem (pryma na biało). Strzałki pokazują inne chwyty, w tym **barre** wyżej na gryfie, a **Zagraj** pozwala usłyszeć akord."],
         },
         {
-          h2: "Akordy na pianino na klawiaturze",
+          h2: "Akordy pianino na klawiaturze",
           p: ["Przełącz na **Pianino**, aby zobaczyć akord na klawiszach – wszystkie dźwięki są podświetlone i podpisane. Strzałki przełączają **przewroty**: te same dźwięki w innej kolejności, dla płynniejszych zmian akordów."],
         },
         {
@@ -342,7 +360,7 @@ export const pl: SeoContent = {
           },
         },
         {
-          h2: "Akordy gitarowe dla początkujących",
+          h2: "Chwyty na gitarę dla początkujących – akordy gitarowe",
           p: ["Większość piosenek opiera się na kilku **podstawowych akordach gitarowych**: C, G, D, A, E, Am, Em i Dm. Najpierw naucz się tych otwartych chwytów, potem przejdź do barre, jak F i Hm (Bm). Ćwicz zmiany z [metronomem](metronome) i trzymaj strój [stroikiem gitarowym](guitar)."],
         },
         {

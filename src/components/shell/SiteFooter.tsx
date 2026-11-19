@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Dictionary } from "@/i18n/dictionary";
 import { LOCALE_INFO, locales, type Locale } from "@/i18n/routing";
 import { INSTRUMENT_IDS } from "@/lib/music/instruments";
+import { INFO_PAGES, type InfoPage } from "@/lib/site";
 import { switchPath, toolPath, type ToolId } from "@/tools/registry";
 import { LogoMark } from "./icons";
 
@@ -9,7 +10,18 @@ import { LogoMark } from "./icons";
  * Footer: every tool in this language, and the 15-language switcher. Each language link goes to the
  * same tool in that language (or its home page when the tool doesn't exist there, e.g. cavaquinho).
  */
-export function SiteFooter({ locale, toolId, d }: { locale: Locale; toolId: ToolId | null; d: Dictionary }) {
+export function SiteFooter({
+  locale,
+  toolId,
+  d,
+  page,
+}: {
+  locale: Locale;
+  toolId: ToolId | null;
+  d: Dictionary;
+  /** On About / Contact / Privacy, the language links stay on that page. */
+  page?: InfoPage;
+}) {
   const tools: { id: ToolId; label: string }[] = [
     ...INSTRUMENT_IDS.map((id) => ({ id, label: d.tuner.titles[id] })),
     { id: "metronome" as const, label: d.metronome.title },
@@ -28,6 +40,19 @@ export function SiteFooter({ locale, toolId, d }: { locale: Locale; toolId: Tool
               {d.site.name}
             </span>
             <p className="m-0 max-w-[320px] text-sm leading-relaxed text-muted">{d.site.footer.note}</p>
+            <ul className="m-0 flex list-none flex-wrap gap-x-5 gap-y-2 p-0">
+              {INFO_PAGES.map((p) => (
+                <li key={p}>
+                  <Link
+                    href={`/${locale}/${p}/`}
+                    aria-current={p === page ? "page" : undefined}
+                    className="text-sm text-ink underline-offset-[3px] hover:underline aria-[current=page]:font-semibold aria-[current=page]:text-accent-text"
+                  >
+                    {d.site.footer[p]}
+                  </Link>
+                </li>
+              ))}
+            </ul>
             <nav aria-label={d.site.footer.tools}>
               <h2 className="m-0 mb-3 text-xs font-semibold tracking-[0.06em] text-muted uppercase">{d.site.footer.tools}</h2>
               <ul className="m-0 flex list-none flex-col gap-2 p-0">
@@ -54,7 +79,7 @@ export function SiteFooter({ locale, toolId, d }: { locale: Locale; toolId: Tool
                 return (
                   <li key={l}>
                     <Link
-                      href={switchPath(l, toolId)}
+                      href={page ? `/${l}/${page}/` : switchPath(l, toolId)}
                       hrefLang={LOCALE_INFO[l].tag}
                       lang={LOCALE_INFO[l].tag}
                       aria-current={on ? "true" : undefined}

@@ -11,7 +11,7 @@ import { getDictionary } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/routing";
 import { INSTRUMENT_IDS, stringsFor } from "@/lib/music/instruments";
 import { namingFor, noteName } from "@/lib/music/notes";
-import { faqJsonLd, pageMetadata } from "@/lib/seo";
+import { faqJsonLd, homeJsonLd, pageMetadata } from "@/lib/seo";
 import { toolPath } from "@/tools/registry";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]">): Promise<Metadata> {
@@ -42,6 +42,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
   const faq = faqJsonLd(locale, null);
   return (
     <div className="flex min-h-dvh flex-col bg-bg text-ink">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: homeJsonLd(locale) }} />
       {faq && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faq }} />}
       <SiteHeader locale={locale} toolId={null} site={d.site} />
       <PageMain top="pt-20">
@@ -50,8 +51,12 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
             <span className="size-[7px] rounded-full bg-accent" />
             {t.eyebrow}
           </span>
-          <h1 className="m-0 max-w-[1000px] font-display text-[clamp(3.25rem,9vw,7.25rem)] leading-[0.98] font-extrabold tracking-[-0.035em]">
+          {/* The slogan stays as display text; the H1 says what the site is, in the searched words. */}
+          <p className="m-0 max-w-[1000px] font-display text-[clamp(3.25rem,9vw,7.25rem)] leading-[0.98] font-extrabold tracking-[-0.035em]">
             {t.h1a} <span className="text-accent-text">{t.h1b}</span> {t.h1c}
+          </p>
+          <h1 className="m-0 max-w-[760px] font-display text-[clamp(1.375rem,2.6vw,2rem)] leading-tight font-bold tracking-[-0.02em]">
+            {t.h1}
           </h1>
           <p className="m-0 max-w-[560px] text-lg leading-[30px] text-muted">{t.sub}</p>
           <Link

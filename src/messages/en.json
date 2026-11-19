@@ -1,8 +1,8 @@
 {
   "site": {
-    "name": "Music Tools",
+    "name": "WowGuitar",
     "language": "Language",
-    "home": "Music Tools home",
+    "home": "WowGuitar home",
     "settings": "Settings",
     "close": "Close",
     "nav": {
@@ -18,8 +18,12 @@
     "footer": {
       "tools": "Tools",
       "languages": "Languages",
-      "note": "Free music tools that work in your browser. No sign-up, no download."
-    }
+      "note": "Free music tools that work in your browser. No sign-up, no download.",
+      "about": "About",
+      "contact": "Contact",
+      "privacy": "Privacy"
+    },
+    "updated": "Updated {date}"
   },
   "instruments": {
     "guitar": "Guitar",
@@ -44,16 +48,17 @@
     "metroSub": "30–300 BPM · tap tempo",
     "chords": "Chord Lookup",
     "chordsSub": "Guitar and piano",
-    "any": "Any note"
+    "any": "Any note",
+    "h1": "Free online guitar tuner, metronome and guitar chords"
   },
   "tuner": {
     "titles": {
-      "guitar": "Guitar Tuner",
-      "ukulele": "Ukulele Tuner",
-      "violin": "Violin Tuner",
-      "cello": "Cello Tuner",
-      "bass": "Bass Tuner",
-      "chromatic": "Chromatic Tuner",
+      "guitar": "Guitar Tuner Online",
+      "ukulele": "Ukulele Tuner Online",
+      "violin": "Violin Tuner Online",
+      "cello": "Cello Tuner Online",
+      "bass": "Bass Tuner Online",
+      "chromatic": "Chromatic Tuner Online",
       "cavaquinho": "Cavaquinho Tuner"
     },
     "instruments": "Instruments",
@@ -96,11 +101,15 @@
     "how1": "Tap “Tap to tune” and allow the microphone.",
     "how2": "Play one string. The meter shows if it is flat or sharp.",
     "how3": "Turn the peg until the centre bars turn green.",
-    "next": "Next: Metronome"
+    "next": "Next: Metronome",
+    "accuracy": {
+      "h2": "How we tested the tuner’s accuracy",
+      "p": "Automated tests play generated tones at exact frequencies – 41.2 Hz (bass low E), 65.41 Hz (cello low C), 82.41 Hz (guitar low E), 440 Hz (A4) and 1318.5 Hz – into the same pitch detection this tuner uses, and every reading must be within ±1 cent. A browser test also plays a tone 20 cents sharp through the whole tuner and checks that it shows “Tune down” at 17–23 cents."
+    }
   },
   "metronome": {
     "visual": "Metronome pendulum",
-    "title": "Metronome",
+    "title": "Metronome Online",
     "timeSig": "Time",
     "slower": "Slower",
     "faster": "Faster",
@@ -131,7 +140,7 @@
     "next": "Next: Chord Lookup"
   },
   "chords": {
-    "title": "Chord Lookup",
+    "title": "Guitar Chords & Piano Chords",
     "instrument": "Instrument",
     "guitar": "Guitar",
     "piano": "Piano",
@@ -181,5 +190,42 @@
     "how3": "Use −1 / +1 to move the chord by a semitone.",
     "next": "Next: Tuner",
     "chordOn": "chord diagram"
+  },
+  "pages": {
+    "about": {
+      "title": "About WowGuitar – Free Online Guitar Tuner & Music Tools",
+      "description": "WowGuitar makes free online music tools: a guitar tuner, ukulele, violin, cello and bass tuners, a metronome online and a guitar and piano chord chart.",
+      "h1": "About WowGuitar",
+      "body": [
+        "WowGuitar is a set of free online music tools that work the second a page opens: a guitar tuner, tuners for ukulele, violin, cello and bass, a chromatic tuner, a metronome online with tap tempo, and a guitar and piano chord chart with sound.",
+        "Everything runs in your browser – no app to install and no account to create – and the tools keep working offline after your first visit. The site is available in 15 languages.",
+        "The tuners read the note from your microphone with the McLeod Pitch Method. The sound is analysed on your own device and never uploaded. Automated tests check the pitch detection against generated tones at exact frequencies and require every reading to be within ±1 cent.",
+        "Questions, ideas or a mistake you spotted? Write to {email}."
+      ]
+    },
+    "contact": {
+      "title": "Contact WowGuitar – Guitar Tuner, Metronome & Chords",
+      "description": "Questions, feedback or a bug in the guitar tuner, metronome or chord chart? Email WowGuitar at hello@wowguitar.com.",
+      "h1": "Contact",
+      "body": [
+        "The fastest way to reach us is by email: {email}.",
+        "Tell us which page you were on, the device and browser you use, and what happened. For a tuner problem, mention the instrument and whether you used the microphone or tuned by ear.",
+        "We read every message and are glad to hear about bugs, wrong translations and ideas for new tools."
+      ]
+    },
+    "privacy": {
+      "title": "Privacy Policy – WowGuitar",
+      "description": "How WowGuitar handles your data: microphone audio stays on your device, settings stay in your browser, and Google Analytics measures site usage.",
+      "h1": "Privacy policy",
+      "body": [
+        "Last updated: {date}. This page explains what WowGuitar collects and why.",
+        "**Microphone.** The tuners ask for microphone access only when you tap “Tap to tune”. The sound is analysed in real time on your device to find the note. It is never recorded, stored or sent to a server.",
+        "**Settings in your browser.** Your choices – light or dark theme, A4 reference, reference tones, acoustic or electric headstock, volume and note names – are saved in your browser’s local storage so they are there next time. They never leave your device; clearing your browser data removes them.",
+        "**Analytics.** We use Google Analytics, loaded through Cloudflare Zaraz, to count visits and see which pages are used. It collects usage data such as pages viewed, approximate location, device and browser, and may set Google cookies. Google processes this data under its own privacy policy: https://policies.google.com/privacy",
+        "**Hosting.** Our hosting and network providers, Vercel and Cloudflare, process standard request data such as IP address and browser type to deliver and protect the site.",
+        "**No accounts.** We don’t ask for your name or email and we don’t sell data.",
+        "**Contact.** Questions about privacy: {email}."
+      ]
+    }
   }
 }

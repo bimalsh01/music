@@ -5,14 +5,32 @@ export const tr: SeoContent = {
   labels: { faq: "Sık sorulan sorular", string: "Tel", note: "Nota", frequency: "Frekans", tuning: "Akort düzeni", notes: "Teller (6 → 1)" },
   pages: {
     home: {
-      title: "Online Akort Aleti, Metronom ve Akorlar Ücretsiz – Music Tools",
+      title: "WowGuitar – Online Akort, Metronom ve Akorlar Ücretsiz",
       description: "Hemen çalışan ücretsiz müzik araçları: gitar, ukulele, keman, viyolonsel ve bas gitar akort aleti, tap tempo özellikli online metronom, gitar ve piyano akorları.",
       blocks: [
         {
           h2: "Uygulama ve üyelik gerektirmeyen ücretsiz online müzik araçları",
           p: [
-            "Music Tools, doğrudan tarayıcıda çalışan basit ve ücretsiz müzik araçlarından oluşur. Sayfayı açın, hazır: indirme yok, hesap yok. Her ekran tek bir iş yapar; büyük düğmeler enstrüman elinizdeyken bile rahatça kullanılır.",
+            "WowGuitar, doğrudan tarayıcıda çalışan basit ve ücretsiz müzik araçlarından oluşur. Sayfayı açın, hazır: indirme yok, hesap yok. Her ekran tek bir iş yapar; büyük düğmeler enstrüman elinizdeyken bile rahatça kullanılır.",
             "Mikrofon sesi kendi cihazınızda analiz edilir ve asla internete gönderilmez. İlk ziyaretten sonra araçlar çevrimdışı da çalışır; çekmeyen bir prova odasında bile akort aleti ve metronom yanınızda.",
+          ],
+        },
+        {
+          h2: "Online gitar akort",
+          p: [
+            "Ücretsiz [online gitar akort aleti](guitar) ile teli çalın; akort aleti notayı tanır ve tiz mi pes mi olduğunu gösterir – standart akort, Drop D, Open G ve daha fazlası. Ayrıca [ukulele akort](ukulele), [keman akort](violin), [viyolonsel akort](cello), [bas gitar akort](bass) ve [kromatik akort cihazı](chromatic) var.",
+          ],
+        },
+        {
+          h2: "Metronom",
+          p: [
+            "[Online metronom](metronome) 30–300 BPM arasında vurgular ve ölçülerle tempo tutar. Tap tempo ile bir şarkının BPM’ini bulabilirsiniz.",
+          ],
+        },
+        {
+          h2: "Gitar akorları",
+          p: [
+            "[Gitar akorları](chords) tablosunda her akorun basışını görün, dinleyin, başka şekilleri deneyin ve transpoze edin – klavyede piyano akorları da var.",
           ],
         },
         {
@@ -36,7 +54,7 @@ export const tr: SeoContent = {
       description: "Mikrofonla ücretsiz online gitar akort aleti. Akustik veya elektro gitarı standart, Drop D, Open G, DADGAD ya da yarım ses düşük akort edin. Uygulama gerekmez.",
       blocks: [
         {
-          h2: "Ücretsiz online gitar akort aleti",
+          h2: "Gitar akort ayarlama online – ücretsiz gitar akort aleti",
           p: [
             "Bu **gitar akort aleti** doğrudan tarayıcıda çalışır; uygulama ve hesap gerekmez. **Akort için dokun**a basın, mikrofona izin verin ve bir tel çalın. Akort aleti notayı tanır, en yakın teli seçer ve kaç cent pes ya da tiz olduğunu gösterir. Ortadaki çubuklar yeşile döndüğünde 5 centin içindesiniz: kulağa akortlu gelir.",
             "Telefon veya dizüstü mikrofonuyla **akustik gitar akort aleti** olarak, ayrıca **elektro gitar** için de çalışır: amfiye bağlamadan mikrofona yakın çalın ya da temiz bir tonla cihazı amfiye yaklaştırın. Ses cihazınızdan çıkmaz.",
@@ -261,7 +279,7 @@ export const tr: SeoContent = {
       description: "30–300 BPM ücretsiz online metronom: tap tempo, vurgular, ölçüler (4/4, 3/4, 6/8) ve bölünmeler. Tarayıcıda çalışır, uygulama gerekmez.",
       blocks: [
         {
-          h2: "Ücretsiz online metronom",
+          h2: "Metronom – ücretsiz online metronom",
           p: [
             "Bu **online metronom**, doğrudan tarayıcıda 30–300 BPM arası sabit bir vuruş verir; indirme gerekmez. Tempoyu kaydırıcıyla ya da − / + düğmeleriyle ayarlayın, **Play**’e basın ve tık sesini, sarkacı ve her vuruşun ışığını takip edin.",
             "Daha fazla bölümünde **görsel flaşı** açarsanız ekran her vuruşta yanıp söner; sessizde ya da gürültülü ortamda tempoyu kaçırmazsınız. Tıklar cihazın ses saatine planlanır, bu yüzden tempo kaymaz.",
@@ -317,7 +335,7 @@ export const tr: SeoContent = {
       description: "Ücretsiz gitar ve piyano akor tablosu. Kök notayı ve akor türünü seçerek basışı görün, dinleyin, başka basışları deneyin ve transpoze edin.",
       blocks: [
         {
-          h2: "Basışlarıyla gitar akor tablosu",
+          h2: "Gitar akorları: basışlarıyla akor tablosu",
           p: ["Bir **kök nota** ve **akor türü** seçin; bu **gitar akor tablosu** basışı sapın üzerine çizer: ✕ çalınmayan tel, ○ boş tel, her nokta ise parmağınızın altındaki notayı gösterir (kök nota beyaz). Oklarla sapın üst taraflarındaki **barre akorlar** dahil başka basışları görün; **Çal** ile akoru dinleyin."],
         },
         {

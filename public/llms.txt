@@ -1,0 +1,19 @@
+# WowGuitar
+
+> Free browser-based music tools: microphone tuners (guitar, ukulele, violin, cello, bass, chromatic), an online metronome with tap tempo, and a guitar and piano chord chart with sound. No app, no sign-up; available in 15 languages. Microphone audio is analysed on the device and never uploaded.
+
+## Tools (English)
+- [Guitar tuner](https://www.wowguitar.com/en/guitar-tuner/): standard tuning, Drop D, Open G, DADGAD, half-step down
+- [Ukulele tuner](https://www.wowguitar.com/en/ukulele-tuner/): GCEA
+- [Violin tuner](https://www.wowguitar.com/en/violin-tuner/): GDAE
+- [Cello tuner](https://www.wowguitar.com/en/cello-tuner/): CGDA
+- [Bass tuner](https://www.wowguitar.com/en/bass-tuner/): 4-string EADG
+- [Chromatic tuner](https://www.wowguitar.com/en/chromatic-tuner/): any instrument, A4 430–450 Hz
+- [Metronome](https://www.wowguitar.com/en/metronome/): 30–300 BPM, tap tempo, time signatures, subdivisions
+- [Guitar and piano chords](https://www.wowguitar.com/en/chord-lookup/): fingerings, piano inversions, transpose
+
+## About
+- [About](https://www.wowguitar.com/en/about/)
+- [Privacy](https://www.wowguitar.com/en/privacy/)
+- [Contact](https://www.wowguitar.com/en/contact/): hello@wowguitar.com
+- [Sitemap](https://www.wowguitar.com/sitemap.xml)

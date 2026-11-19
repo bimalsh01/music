@@ -1,8 +1,8 @@
 {
   "site": {
-    "name": "Music Tools",
+    "name": "WowGuitar",
     "language": "Sprache",
-    "home": "Music Tools Startseite",
+    "home": "WowGuitar Startseite",
     "settings": "Einstellungen",
     "close": "Schließen",
     "nav": {
@@ -18,8 +18,12 @@
     "footer": {
       "tools": "Werkzeuge",
       "languages": "Sprachen",
-      "note": "Kostenlose Musik-Tools, die direkt im Browser laufen. Ohne Anmeldung, ohne Download."
-    }
+      "note": "Kostenlose Musik-Tools, die direkt im Browser laufen. Ohne Anmeldung, ohne Download.",
+      "about": "Über uns",
+      "contact": "Kontakt",
+      "privacy": "Datenschutz"
+    },
+    "updated": "Aktualisiert am {date}"
   },
   "instruments": {
     "guitar": "Gitarre",
@@ -44,16 +48,17 @@
     "metroSub": "30–300 BPM · Tap Tempo",
     "chords": "Akkorde",
     "chordsSub": "Gitarre und Klavier",
-    "any": "Jeder Ton"
+    "any": "Jeder Ton",
+    "h1": "Gitarre stimmen online, Metronom und Akkorde Gitarre – kostenlos"
   },
   "tuner": {
     "titles": {
-      "guitar": "Gitarre stimmen",
-      "ukulele": "Ukulele stimmen",
-      "violin": "Geige stimmen",
-      "cello": "Cello stimmen",
-      "bass": "Bass stimmen",
-      "chromatic": "Chromatisches Stimmgerät",
+      "guitar": "Gitarre stimmen online",
+      "ukulele": "Ukulele stimmen online",
+      "violin": "Geige stimmen online",
+      "cello": "Cello stimmen online",
+      "bass": "Bass stimmen online",
+      "chromatic": "Chromatisches Stimmgerät online",
       "cavaquinho": "Cavaquinho stimmen"
     },
     "instruments": "Instrumente",
@@ -96,11 +101,15 @@
     "how1": "Tippe auf „Tippen zum Stimmen“ und erlaube das Mikrofon.",
     "how2": "Spiel eine Saite. Die Anzeige zeigt, ob sie zu tief oder zu hoch ist.",
     "how3": "Dreh den Wirbel, bis die mittleren Balken grün werden.",
-    "next": "Weiter: Metronom"
+    "next": "Weiter: Metronom",
+    "accuracy": {
+      "h2": "So haben wir die Genauigkeit des Stimmgeräts getestet",
+      "p": "Automatische Tests spielen erzeugte Töne mit exakten Frequenzen – 41,2 Hz (tiefes E am Bass), 65,41 Hz (tiefes C am Cello), 82,41 Hz (tiefes E an der Gitarre), 440 Hz (A4) und 1318,5 Hz – in dieselbe Tonerkennung, die dieses Stimmgerät nutzt, und jede Messung muss auf ±1 Cent stimmen. Ein Browsertest spielt außerdem einen 20 Cent zu hohen Ton durch das ganze Stimmgerät und prüft, dass es „Tiefer“ mit 17–23 Cent anzeigt."
+    }
   },
   "metronome": {
     "visual": "Metronom-Pendel",
-    "title": "Metronom",
+    "title": "Metronom online",
     "timeSig": "Takt",
     "slower": "Langsamer",
     "faster": "Schneller",
@@ -131,7 +140,7 @@
     "next": "Weiter: Akkorde"
   },
   "chords": {
-    "title": "Akkorde",
+    "title": "Akkorde Gitarre & Klavier",
     "instrument": "Instrument",
     "guitar": "Gitarre",
     "piano": "Klavier",
@@ -181,5 +190,42 @@
     "how3": "Mit −1 / +1 verschiebst du den Akkord um einen Halbton.",
     "next": "Weiter: Stimmgerät",
     "chordOn": "Akkorddiagramm"
+  },
+  "pages": {
+    "about": {
+      "title": "Über WowGuitar – Stimmgerät online und Musik-Tools",
+      "description": "WowGuitar macht kostenlose Musik-Tools: Gitarre stimmen online, Stimmgeräte für Ukulele, Geige, Cello und Bass, Metronom online und Akkorde Gitarre.",
+      "h1": "Über WowGuitar",
+      "body": [
+        "WowGuitar ist eine Sammlung kostenloser Musik-Tools, die sofort beim Öffnen der Seite funktionieren: Gitarre stimmen, Stimmgeräte für Ukulele, Geige, Cello und Bass, ein chromatisches Stimmgerät, ein Metronom online mit Tap Tempo und eine Akkordtabelle für Gitarre und Klavier mit Klang.",
+        "Alles läuft im Browser – ohne App und ohne Konto – und die Tools funktionieren nach dem ersten Besuch auch offline. Die Seite gibt es in 15 Sprachen.",
+        "Die Stimmgeräte erkennen den Ton über das Mikrofon mit der McLeod-Methode. Der Klang wird auf deinem eigenen Gerät ausgewertet und nie hochgeladen. Automatische Tests prüfen die Tonerkennung mit erzeugten Tönen exakter Frequenz und verlangen jede Messung auf ±1 Cent genau.",
+        "Fragen, Ideen oder einen Fehler entdeckt? Schreib an {email}."
+      ]
+    },
+    "contact": {
+      "title": "Kontakt – WowGuitar",
+      "description": "Fragen, Feedback oder ein Fehler im Stimmgerät, Metronom oder bei den Akkorden? Schreib WowGuitar an hello@wowguitar.com.",
+      "h1": "Kontakt",
+      "body": [
+        "Am schnellsten erreichst du uns per E-Mail: {email}.",
+        "Schreib dazu, auf welcher Seite du warst, welches Gerät und welchen Browser du nutzt und was passiert ist. Bei Problemen mit dem Stimmgerät nenne das Instrument und ob du das Mikrofon genutzt oder nach Gehör gestimmt hast.",
+        "Wir lesen jede Nachricht und freuen uns über Hinweise auf Fehler, falsche Übersetzungen und Ideen für neue Tools."
+      ]
+    },
+    "privacy": {
+      "title": "Datenschutzerklärung – WowGuitar",
+      "description": "Wie WowGuitar mit deinen Daten umgeht: Mikrofon-Audio bleibt auf deinem Gerät, Einstellungen im Browser, und Google Analytics misst die Nutzung.",
+      "h1": "Datenschutzerklärung",
+      "body": [
+        "Stand: {date}. Diese Seite erklärt, was WowGuitar erhebt und warum.",
+        "**Mikrofon.** Die Stimmgeräte fragen nur dann nach dem Mikrofon, wenn du auf „Zum Stimmen tippen“ tippst. Der Klang wird in Echtzeit auf deinem Gerät ausgewertet, um den Ton zu finden. Er wird nie aufgenommen, gespeichert oder an einen Server gesendet.",
+        "**Einstellungen im Browser.** Deine Auswahl – helles oder dunkles Design, A4-Kammerton, Referenztöne, Akustik- oder E-Gitarren-Kopfplatte, Lautstärke und Notennamen – wird im lokalen Speicher deines Browsers gesichert. Sie verlässt dein Gerät nie; das Löschen der Browserdaten entfernt sie.",
+        "**Statistik.** Wir nutzen Google Analytics, geladen über Cloudflare Zaraz, um Besuche zu zählen und zu sehen, welche Seiten genutzt werden. Dabei werden Nutzungsdaten wie aufgerufene Seiten, ungefährer Standort, Gerät und Browser erfasst, und Google-Cookies können gesetzt werden. Google verarbeitet diese Daten nach seiner eigenen Datenschutzerklärung: https://policies.google.com/privacy",
+        "**Hosting.** Unsere Hosting- und Netzwerkanbieter Vercel und Cloudflare verarbeiten übliche Anfragedaten wie IP-Adresse und Browsertyp, um die Seite auszuliefern und zu schützen.",
+        "**Keine Konten.** Wir fragen weder nach deinem Namen noch nach deiner E-Mail und verkaufen keine Daten.",
+        "**Kontakt.** Fragen zum Datenschutz: {email}."
+      ]
+    }
   }
 }

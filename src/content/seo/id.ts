@@ -5,14 +5,32 @@ export const id: SeoContent = {
   labels: { faq: "Pertanyaan umum", string: "Senar", note: "Nada", frequency: "Frekuensi", tuning: "Stem", notes: "Senar (6 → 1)" },
   pages: {
     home: {
-      title: "Tuner Online, Metronom & Kunci Akor Gratis – Music Tools",
+      title: "WowGuitar – Tuner Gitar Online, Metronome & Chord Gratis",
       description: "Alat musik gratis yang langsung jalan: tuner gitar, ukulele, biola, cello, dan bass, metronom online dengan tap tempo, serta kunci akor gitar dan piano.",
       blocks: [
         {
           h2: "Alat musik online gratis, tanpa aplikasi dan tanpa daftar",
           p: [
-            "Music Tools adalah kumpulan alat musik sederhana dan gratis yang berjalan langsung di browser. Buka halamannya dan langsung siap: tanpa unduhan, tanpa akun. Setiap layar hanya punya satu fungsi, dengan tombol besar yang mudah ditekan sambil memegang alat musik.",
+            "WowGuitar adalah kumpulan alat musik sederhana dan gratis yang berjalan langsung di browser. Buka halamannya dan langsung siap: tanpa unduhan, tanpa akun. Setiap layar hanya punya satu fungsi, dengan tombol besar yang mudah ditekan sambil memegang alat musik.",
             "Suara mikrofon dianalisis di perangkat kamu sendiri dan tidak pernah diunggah ke internet. Setelah kunjungan pertama, semua alat tetap bisa dipakai offline, jadi tuner dan metronom selalu siap di studio latihan tanpa sinyal.",
+          ],
+        },
+        {
+          h2: "Tuner gitar online",
+          p: [
+            "Stem gitar dengan [tuner gitar online](guitar) gratis: petik senar, tuner mengenali nadanya dan menunjukkan apakah terlalu tinggi atau rendah – stem standar, Drop D, Open G, dan lainnya. Ada juga [tuner ukulele](ukulele), [tuner biola](violin), [tuner cello](cello), [tuner bass](bass), dan [tuner kromatik](chromatic).",
+          ],
+        },
+        {
+          h2: "Metronome online",
+          p: [
+            "[Metronome online](metronome) menjaga tempo 30–300 BPM dengan aksen dan birama. Tap tempo membantu mencari BPM lagu.",
+          ],
+        },
+        {
+          h2: "Chord gitar dan piano",
+          p: [
+            "Cari chord apa pun di [chord gitar](chords): lihat posisi jari, dengarkan, coba bentuk lain, dan transpose – plus chord piano di keyboard.",
           ],
         },
         {
@@ -198,7 +216,7 @@ export const id: SeoContent = {
       description: "Tuner bass online gratis untuk bass 4 senar. Stem E A D G pakai mikrofon atau telinga. Berjalan di browser, tanpa aplikasi.",
       blocks: [
         {
-          h2: "Tuner bass online gratis",
+          h2: "Tuner bass online gratis – tuner gitar bass",
           p: ["**Tuner bass** ini menyetem bass 4 senar ke stem standar. Ketuk **Ketuk untuk stem**, petik satu senar, lalu putar dryer sampai batang hijau. Cocok untuk bass elektrik dan akustik."],
         },
         {
@@ -257,11 +275,11 @@ export const id: SeoContent = {
     },
 
     metronome: {
-      title: "Metronom Online Gratis – BPM, Tap Tempo & Birama",
-      description: "Metronom online gratis 30–300 BPM dengan tap tempo, aksen, birama (4/4, 3/4, 6/8), dan subdivisi. Berjalan di browser, tanpa aplikasi.",
+      title: "Metronome Online Gratis – BPM, Tap Tempo & Birama",
+      description: "Metronome online gratis 30–300 BPM dengan tap tempo, aksen, birama (4/4, 3/4, 6/8), dan subdivisi. Berjalan di browser, tanpa aplikasi.",
       blocks: [
         {
-          h2: "Metronom online gratis",
+          h2: "Metronome online gratis",
           p: [
             "**Metronom online** ini memberi ketukan stabil 30–300 BPM langsung di browser – tanpa unduhan. Atur tempo dengan slider atau tombol − / +, tekan **Play**, lalu ikuti bunyi klik, bandul, dan lampu tiap ketukan.",
             "Nyalakan **kilatan layar** di Lainnya dan layar berkedip setiap ketukan, jadi kamu tetap bisa ikut tempo tanpa suara atau di tempat bising. Klik dijadwalkan di jam audio perangkat, jadi tempo tidak goyang.",
@@ -313,15 +331,15 @@ export const id: SeoContent = {
     },
 
     chords: {
-      title: "Kunci Gitar dan Piano – Kunci Akor Lengkap dengan Suara",
-      description: "Kunci akor gitar dan piano gratis. Pilih nada dasar dan jenis akor untuk melihat posisi jari, mendengarnya, mencoba bentuk lain, dan transpose.",
+      title: "Chord Gitar & Piano – Kunci Gitar Lengkap dengan Suara",
+      description: "Chord gitar dan kunci piano gratis. Pilih nada dasar dan jenis akor untuk melihat posisi jari, mendengarnya, mencoba bentuk lain, dan transpose.",
       blocks: [
         {
-          h2: "Kunci gitar lengkap dengan posisi jari",
+          h2: "Chord gitar dan kunci gitar lengkap dengan posisi jari",
           p: ["Pilih **nada dasar** dan **jenis akor**, lalu **kunci gitar** ini menggambar posisi jari di fretboard: ✕ berarti senar tidak dibunyikan, ○ senar terbuka, dan tiap titik menunjukkan nada di bawah jari (nada dasar berwarna putih). Gunakan panah untuk bentuk lain, termasuk **kunci barre** di fret yang lebih tinggi, dan tekan **Mainkan** untuk mendengarnya."],
         },
         {
-          h2: "Kunci piano di keyboard",
+          h2: "Chord piano dan kunci piano di keyboard",
           p: ["Pindah ke **Piano** untuk melihat akor di tuts, dengan semua nadanya disorot dan diberi nama. Panah menggeser **pembalikan** – nada yang sama dengan urutan berbeda, agar perpindahan akor lebih mulus."],
         },
         {

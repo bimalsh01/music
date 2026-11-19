@@ -1,8 +1,8 @@
 {
   "site": {
-    "name": "Music Tools",
+    "name": "WowGuitar",
     "language": "Bahasa",
-    "home": "Beranda Music Tools",
+    "home": "Beranda WowGuitar",
     "settings": "Pengaturan",
     "close": "Tutup",
     "nav": {
@@ -18,8 +18,12 @@
     "footer": {
       "tools": "Alat",
       "languages": "Bahasa",
-      "note": "Alat musik gratis yang berjalan di browser. Tanpa daftar, tanpa unduhan."
-    }
+      "note": "Alat musik gratis yang berjalan di browser. Tanpa daftar, tanpa unduhan.",
+      "about": "Tentang",
+      "contact": "Kontak",
+      "privacy": "Privasi"
+    },
+    "updated": "Diperbarui {date}"
   },
   "instruments": {
     "guitar": "Gitar",
@@ -44,16 +48,17 @@
     "metroSub": "30–300 BPM · tap tempo",
     "chords": "Kunci akor",
     "chordsSub": "Gitar dan piano",
-    "any": "Nada apa pun"
+    "any": "Nada apa pun",
+    "h1": "Tuner gitar online, metronome, dan chord gitar gratis"
   },
   "tuner": {
     "titles": {
-      "guitar": "Tuner Gitar",
-      "ukulele": "Tuner Ukulele",
-      "violin": "Tuner Biola",
-      "cello": "Tuner Cello",
-      "bass": "Tuner Bass",
-      "chromatic": "Tuner Kromatik",
+      "guitar": "Tuner Gitar Online",
+      "ukulele": "Tuner Ukulele Online",
+      "violin": "Tuner Biola Online",
+      "cello": "Tuner Cello Online",
+      "bass": "Tuner Bass Online",
+      "chromatic": "Tuner Kromatik Online",
       "cavaquinho": "Tuner Cavaquinho"
     },
     "instruments": "Instrumen",
@@ -96,11 +101,15 @@
     "how1": "Ketuk “Ketuk untuk stem” dan izinkan mikrofon.",
     "how2": "Petik satu senar. Indikator menunjukkan nadanya terlalu rendah atau tinggi.",
     "how3": "Putar dryer sampai batang di tengah berwarna hijau.",
-    "next": "Berikutnya: Metronom"
+    "next": "Berikutnya: Metronom",
+    "accuracy": {
+      "h2": "Cara kami menguji ketepatan tuner",
+      "p": "Tes otomatis memutar nada buatan pada frekuensi pasti – 41,2 Hz (E rendah bass), 65,41 Hz (C rendah cello), 82,41 Hz (E rendah gitar), 440 Hz (A4) dan 1318,5 Hz – ke deteksi nada yang sama dengan tuner ini, dan setiap hasil harus dalam ±1 sen. Tes di browser juga memutar nada yang 20 sen terlalu tinggi lewat seluruh tuner dan memastikan tuner menampilkan “Turunkan” 17–23 sen."
+    }
   },
   "metronome": {
     "visual": "Bandul metronom",
-    "title": "Metronom",
+    "title": "Metronome Online",
     "timeSig": "Birama",
     "slower": "Lebih lambat",
     "faster": "Lebih cepat",
@@ -131,7 +140,7 @@
     "next": "Berikutnya: Kunci akor"
   },
   "chords": {
-    "title": "Kunci Akor",
+    "title": "Chord Gitar & Piano",
     "instrument": "Instrumen",
     "guitar": "Gitar",
     "piano": "Piano",
@@ -181,5 +190,42 @@
     "how3": "Pakai −1 / +1 untuk menggeser akor setengah nada.",
     "next": "Berikutnya: Tuner",
     "chordOn": "diagram akor"
+  },
+  "pages": {
+    "about": {
+      "title": "Tentang WowGuitar – Tuner Gitar Online & Alat Musik",
+      "description": "WowGuitar membuat alat musik gratis: tuner gitar, tuner ukulele, biola, cello dan bass, metronome online, serta chord gitar dan piano.",
+      "h1": "Tentang WowGuitar",
+      "body": [
+        "WowGuitar adalah kumpulan alat musik online gratis yang langsung jalan begitu halaman dibuka: tuner gitar, tuner ukulele, biola, cello dan bass, tuner kromatik, metronome online dengan tap tempo, serta chord gitar dan piano yang bisa didengar.",
+        "Semuanya berjalan di browser – tanpa aplikasi dan tanpa akun – dan setelah kunjungan pertama alat-alatnya juga bisa dipakai offline. Situs ini tersedia dalam 15 bahasa.",
+        "Tuner membaca nada dari mikrofon dengan metode McLeod. Suara dianalisis di perangkatmu sendiri dan tidak pernah diunggah. Tes otomatis mencocokkan deteksi dengan nada buatan berfrekuensi pasti dan mengharuskan setiap hasil dalam ±1 sen.",
+        "Ada pertanyaan, ide, atau menemukan kesalahan? Kirim email ke {email}."
+      ]
+    },
+    "contact": {
+      "title": "Kontak – WowGuitar",
+      "description": "Pertanyaan, masukan, atau bug di tuner gitar, metronome, atau chord? Kirim email ke WowGuitar di hello@wowguitar.com.",
+      "h1": "Kontak",
+      "body": [
+        "Cara tercepat menghubungi kami adalah lewat email: {email}.",
+        "Sebutkan halaman yang kamu buka, perangkat dan browser yang dipakai, dan apa yang terjadi. Untuk masalah tuner, sebutkan alat musiknya dan apakah kamu memakai mikrofon atau stem dengan telinga.",
+        "Kami membaca setiap pesan dan senang mendengar soal bug, terjemahan yang salah, dan ide alat baru."
+      ]
+    },
+    "privacy": {
+      "title": "Kebijakan Privasi – WowGuitar",
+      "description": "Cara WowGuitar menangani datamu: suara mikrofon tetap di perangkatmu, pengaturan di browser, dan Google Analytics mengukur penggunaan situs.",
+      "h1": "Kebijakan privasi",
+      "body": [
+        "Terakhir diperbarui: {date}. Halaman ini menjelaskan apa yang dikumpulkan WowGuitar dan alasannya.",
+        "**Mikrofon.** Tuner meminta akses mikrofon hanya saat kamu mengetuk “Ketuk untuk stem”. Suara dianalisis secara langsung di perangkatmu untuk menemukan nada. Suara tidak pernah direkam, disimpan, atau dikirim ke server.",
+        "**Pengaturan di browser.** Pilihanmu – tema terang atau gelap, referensi A4, nada referensi, headstock akustik atau elektrik, volume, dan nama nada – disimpan di penyimpanan lokal browser. Pilihan ini tidak pernah keluar dari perangkatmu; menghapus data browser akan menghapusnya.",
+        "**Statistik.** Kami memakai Google Analytics yang dimuat lewat Cloudflare Zaraz untuk menghitung kunjungan dan melihat halaman mana yang dipakai. Data yang dikumpulkan antara lain halaman yang dilihat, perkiraan lokasi, perangkat, dan browser, dan Google dapat memasang cookie. Google memproses data ini sesuai kebijakan privasinya sendiri: https://policies.google.com/privacy",
+        "**Hosting.** Penyedia hosting dan jaringan kami, Vercel dan Cloudflare, memproses data permintaan biasa seperti alamat IP dan jenis browser untuk menyajikan dan melindungi situs.",
+        "**Tanpa akun.** Kami tidak menanyakan nama atau email dan tidak menjual data.",
+        "**Kontak.** Pertanyaan soal privasi: {email}."
+      ]
+    }
   }
 }

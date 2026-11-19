@@ -5,14 +5,32 @@ export const de: SeoContent = {
   labels: { faq: "Häufige Fragen", string: "Saite", note: "Ton", frequency: "Frequenz", tuning: "Stimmung", notes: "Saiten (6 → 1)" },
   pages: {
     home: {
-      title: "Stimmgerät Online, Metronom & Akkorde kostenlos – Music Tools",
+      title: "WowGuitar – Stimmgerät online, Metronom & Akkorde kostenlos",
       description: "Kostenlose Musik-Tools, die sofort funktionieren: Gitarre, Ukulele, Geige, Cello und Bass stimmen, Online-Metronom mit Tap Tempo, Gitarren- und Klavierakkorde.",
       blocks: [
         {
           h2: "Kostenlose Musik-Tools online – ohne App, ohne Anmeldung",
           p: [
-            "Music Tools ist eine Sammlung einfacher, kostenloser Werkzeuge für Musiker, die direkt im Browser laufen. Seite öffnen, fertig: kein Download, kein Konto. Jeder Bildschirm erledigt genau eine Aufgabe, mit großen Bedienelementen, die man mit dem Instrument in der Hand nutzen kann.",
+            "WowGuitar ist eine Sammlung einfacher, kostenloser Werkzeuge für Musiker, die direkt im Browser laufen. Seite öffnen, fertig: kein Download, kein Konto. Jeder Bildschirm erledigt genau eine Aufgabe, mit großen Bedienelementen, die man mit dem Instrument in der Hand nutzen kann.",
             "Der Mikrofonton wird auf deinem Gerät ausgewertet und nie hochgeladen. Nach dem ersten Besuch funktionieren die Tools auch offline – Stimmgerät und Metronom sind im Proberaum immer dabei.",
+          ],
+        },
+        {
+          h2: "Gitarre stimmen online",
+          p: [
+            "Mit dem kostenlosen [Stimmgerät für Gitarre](guitar) stimmst du in Sekunden: Saite anschlagen, das Stimmgerät erkennt sie und zeigt, ob sie zu hoch oder zu tief ist – Standardstimmung, Drop D, Open G und mehr. Dazu gibt es Stimmgeräte für [Ukulele](ukulele), [Geige](violin), [Cello](cello), [Bass](bass) und ein [chromatisches Stimmgerät](chromatic).",
+          ],
+        },
+        {
+          h2: "Metronom online",
+          p: [
+            "Das [Metronom online](metronome) ist ein kostenloser Taktgeber von 30 bis 300 BPM mit Betonungen und Taktarten. Mit Tap Tempo findest du das Tempo eines Songs.",
+          ],
+        },
+        {
+          h2: "Akkorde Gitarre und Klavier",
+          p: [
+            "Schlag jeden Akkord in der [Akkordtabelle](chords) nach: Griffbild sehen, anhören, andere Griffe probieren und transponieren – auch Klavier Akkorde auf der Tastatur.",
           ],
         },
         {
@@ -36,7 +54,7 @@ export const de: SeoContent = {
       description: "Gitarre online stimmen, kostenlos per Mikrofon. Akustik- oder E-Gitarre in Standardstimmung, Drop D, Open G, DADGAD oder einen Halbton tiefer. Ohne App.",
       blocks: [
         {
-          h2: "Kostenloses Gitarren-Stimmgerät online",
+          h2: "Gitarre stimmen online – kostenloses Stimmgerät für Gitarre",
           p: [
             "Mit diesem **Gitarren-Stimmgerät** kannst du deine **Gitarre stimmen**, direkt im Browser – ohne App, ohne Konto. Tippe auf **Tippen zum Stimmen**, erlaube das Mikrofon und spiel eine Saite. Das Stimmgerät erkennt den Ton, wählt die nächstgelegene Saite und zeigt, wie viele Cent sie zu tief oder zu hoch ist. Werden die mittleren Balken grün, liegst du innerhalb von 5 Cent – für das Ohr sauber gestimmt.",
             "Es funktioniert als **Stimmgerät für Akustikgitarre** über das Handy- oder Laptop-Mikrofon und ebenso für die **E-Gitarre**: unverstärkt nah am Mikrofon spielen oder das Gerät mit cleanem Sound an den Verstärker halten. Der Ton wird auf deinem Gerät ausgewertet und verlässt es nie.",
@@ -74,7 +92,7 @@ export const de: SeoContent = {
         },
       ],
       faq: [
-        { q: "Ist ein Online-Stimmgerät für Gitarre genau?", a: "Ja. Es nutzt die McLeod-Tonhöhenerkennung, die auf etwa ein Cent genau misst, und zeigt Grün innerhalb von ±5 Cent – feiner, als das Ohr unterscheidet. Am besten in ruhiger Umgebung und Saite für Saite stimmen." },
+        { q: "Ist ein Stimmgerät online für die Gitarre genau?", a: "Ja. Es nutzt die McLeod-Tonhöhenerkennung, die auf etwa ein Cent genau misst, und zeigt Grün innerhalb von ±5 Cent – feiner, als das Ohr unterscheidet. Am besten in ruhiger Umgebung und Saite für Saite stimmen." },
         { q: "Kann ich die Gitarre ohne Clip-Stimmgerät stimmen?", a: "Ja. Jedes Handy oder jeder Computer mit Mikrofon reicht: Seite öffnen, „Tippen zum Stimmen“ und jede Saite spielen. Ohne Mikrofon tippst du auf den Saiten-Button und stimmst nach Gehör." },
         { q: "Welche Töne haben die Gitarrensaiten?", a: "In Standardstimmung von der 6. zur 1. Saite: E2, A2, D3, G3, H3 und E4." },
         { q: "Funktioniert es mit der E-Gitarre?", a: "Ja. Spiel unverstärkt nah am Mikrofon oder halt das Gerät mit cleanem Sound an den Verstärker. Verzerrung erschwert die Erkennung." },
@@ -87,7 +105,7 @@ export const de: SeoContent = {
       description: "Ukulele online stimmen per Mikrofon oder nach Gehör. Standardstimmung G C E A für Sopran-, Konzert- und Tenor-Ukulele. Kostenlos, ohne App.",
       blocks: [
         {
-          h2: "Kostenloses Ukulele-Stimmgerät online",
+          h2: "Stimmgerät Ukulele – kostenlos online",
           p: [
             "Mit diesem **Ukulele-Stimmgerät** kannst du deine **Ukulele stimmen** – in Sekunden. Tippe auf **Tippen zum Stimmen**, erlaube das Mikrofon und zupf eine Saite: Das Stimmgerät findet die passende Saite und zeigt, ob sie zu tief oder zu hoch ist. Grün heißt gestimmt.",
             "Es passt für **Sopran-, Konzert- und Tenor-Ukulelen**, die alle gleich gestimmt werden. Lieber nach Gehör? Tippe auf die Saiten-Buttons, um jeden Ton zu hören.",
@@ -127,7 +145,7 @@ export const de: SeoContent = {
       description: "Geige online stimmen, kostenlos: G D A E per Mikrofon oder nach Gehör mit Referenztönen. Kammerton A4 auf 440 oder 442 Hz einstellbar. Ohne App.",
       blocks: [
         {
-          h2: "Kostenloses Geigen-Stimmgerät online",
+          h2: "Stimmgerät Geige – kostenlos online",
           p: [
             "Mit diesem **Violin-Stimmgerät** kannst du deine **Geige stimmen**: Es hört über das Mikrofon zu und zeigt den Ton und die Abweichung. Tippe auf **Tippen zum Stimmen**, streich (oder zupf) eine Saite und justiere, bis die mittleren Balken grün werden.",
             "Jeder Saiten-Button spielt außerdem einen klaren **Referenzton**, damit du die Geige auch ohne Mikrofon nach Gehör stimmen kannst.",
@@ -166,7 +184,7 @@ export const de: SeoContent = {
       description: "Cello online stimmen, kostenlos: C G D A per Mikrofon oder nach Gehör mit Referenztönen. Kammerton einstellbar. Läuft im Browser, ohne App.",
       blocks: [
         {
-          h2: "Kostenloses Cello-Stimmgerät online",
+          h2: "Stimmgerät Cello – kostenlos online",
           p: ["Mit diesem **Cello-Stimmgerät** kannst du dein **Cello stimmen**, ganz ohne App. Tippe auf **Tippen zum Stimmen**, streich eine Saite gleichmäßig an und dreh, bis die Balken grün werden. Jeder Button spielt auch den Referenzton zum Stimmen nach Gehör."],
         },
         {
@@ -198,7 +216,7 @@ export const de: SeoContent = {
       description: "E-Bass online stimmen, kostenlos: 4-Saiter in E A D G per Mikrofon oder nach Gehör mit Referenztönen. Läuft im Browser, ohne App.",
       blocks: [
         {
-          h2: "Kostenloses Bass-Stimmgerät online",
+          h2: "Bass Stimmgerät – kostenlos online",
           p: ["Mit diesem **Bass-Stimmgerät** kannst du einen 4-saitigen **Bass stimmen** – in Standardstimmung. Tippe auf **Tippen zum Stimmen**, spiel eine Saite und dreh den Wirbel, bis die Balken grün werden. Für E-Bass und Akustikbass."],
         },
         {
@@ -207,7 +225,7 @@ export const de: SeoContent = {
           autoTable: "tuning",
         },
         {
-          h2: "Bass stimmen – so geht’s",
+          h2: "Bass und E-Bass stimmen – so geht’s",
           ordered: true,
           list: [
             "Beginne mit der 4. Saite (tiefes E).",
@@ -230,7 +248,7 @@ export const de: SeoContent = {
       description: "Kostenloses chromatisches Stimmgerät online: erkennt alle 12 Töne und zeigt die Abweichung in Cent. Für jedes Instrument und die Stimme. Kammerton 430–450 Hz.",
       blocks: [
         {
-          h2: "Was ist ein chromatisches Stimmgerät?",
+          h2: "Was ist ein chromatisches Stimmgerät? Stimmgerät chromatisch online",
           p: [
             "Ein **chromatisches Stimmgerät** erkennt alle 12 Töne der Tonleiter, nicht nur die Saiten eines Instruments. Spiel einen beliebigen Ton, und es zeigt den nächsten Tonnamen, die Oktave und die Abweichung in Cent.",
             "Damit passt es für jedes Instrument: Mandoline, Banjo, Bratsche, Kalimba, Blasinstrumente, Ukulele mit tiefem G – und die Stimme.",
@@ -261,7 +279,7 @@ export const de: SeoContent = {
       description: "Kostenloses Online-Metronom von 30 bis 300 BPM mit Tap Tempo, Betonungen, Taktarten (4/4, 3/4, 6/8) und Unterteilungen. Läuft im Browser, ohne App.",
       blocks: [
         {
-          h2: "Kostenloses Online-Metronom",
+          h2: "Metronom online – kostenloser Taktgeber",
           p: [
             "Dieses **Online-Metronom** gibt einen stabilen Puls von 30 bis 300 BPM vor, direkt im Browser, ohne Download. Stell das Tempo mit dem Schieberegler oder den − / + Tasten ein, drück **Play** und folge Klick, Pendel und den Lichtern für jeden Schlag.",
             "Schalte unter Mehr den **visuellen Blitz** ein, dann blinkt der Bildschirm bei jedem Schlag – zum Üben ohne Ton oder in lauter Umgebung. Die Klicks werden auf der Audiouhr des Geräts geplant, das Tempo schwankt also nicht.",
@@ -313,15 +331,15 @@ export const de: SeoContent = {
     },
 
     chords: {
-      title: "Gitarrenakkorde & Klavierakkorde – Akkordtabelle mit Klang",
-      description: "Kostenlose Akkordtabelle für Gitarre und Klavier. Grundton und Akkordtyp wählen, Griff ansehen, anhören, andere Griffe probieren und transponieren.",
+      title: "Akkorde Gitarre & Klavier – Akkordtabelle mit Klang",
+      description: "Akkorde für Gitarre und Klavier in einer kostenlosen Akkordtabelle. Grundton und Akkordtyp wählen, Griff ansehen, anhören, andere Griffe probieren und transponieren.",
       blocks: [
         {
-          h2: "Akkordtabelle für Gitarre mit Griffbildern",
+          h2: "Akkorde Gitarre: Akkordtabelle mit Griffbildern",
           p: ["Wähle **Grundton** und **Akkordtyp**, und diese **Akkordtabelle für Gitarre** zeichnet den Griff aufs Griffbrett: ✕ steht für eine Saite, die nicht klingt, ○ für eine Leersaite, und jeder Punkt zeigt den Ton unter deinem Finger (Grundton in Weiß). Mit den Pfeilen siehst du weitere Griffe, auch **Barré-Akkorde** weiter oben am Hals, und **Spielen** lässt den Akkord erklingen."],
         },
         {
-          h2: "Klavierakkorde auf der Tastatur",
+          h2: "Klavier Akkorde auf der Tastatur",
           p: ["Wechsle zu **Klavier**, um den Akkord auf den Tasten zu sehen, alle Akkordtöne markiert und beschriftet. Die Pfeile gehen durch die **Umkehrungen** – dieselben Töne in anderer Reihenfolge, für weichere Akkordwechsel."],
         },
         {

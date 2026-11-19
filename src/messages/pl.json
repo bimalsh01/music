@@ -1,8 +1,8 @@
 {
   "site": {
-    "name": "Music Tools",
+    "name": "WowGuitar",
     "language": "Język",
-    "home": "Strona główna Music Tools",
+    "home": "Strona główna WowGuitar",
     "settings": "Ustawienia",
     "close": "Zamknij",
     "nav": {
@@ -18,8 +18,12 @@
     "footer": {
       "tools": "Narzędzia",
       "languages": "Języki",
-      "note": "Darmowe narzędzia muzyczne działające w przeglądarce. Bez rejestracji i pobierania."
-    }
+      "note": "Darmowe narzędzia muzyczne działające w przeglądarce. Bez rejestracji i pobierania.",
+      "about": "O nas",
+      "contact": "Kontakt",
+      "privacy": "Prywatność"
+    },
+    "updated": "Zaktualizowano {date}"
   },
   "instruments": {
     "guitar": "Gitara",
@@ -44,16 +48,17 @@
     "metroSub": "30–300 BPM · tap tempo",
     "chords": "Akordy",
     "chordsSub": "Gitara i pianino",
-    "any": "Dowolny dźwięk"
+    "any": "Dowolny dźwięk",
+    "h1": "Stroik do gitary online, metronom i chwyty gitarowe za darmo"
   },
   "tuner": {
     "titles": {
-      "guitar": "Stroik do gitary",
-      "ukulele": "Stroik do ukulele",
-      "violin": "Stroik do skrzypiec",
-      "cello": "Stroik do wiolonczeli",
-      "bass": "Stroik do gitary basowej",
-      "chromatic": "Stroik chromatyczny",
+      "guitar": "Strojenie gitary online",
+      "ukulele": "Strojenie ukulele online",
+      "violin": "Stroik do skrzypiec online",
+      "cello": "Stroik do wiolonczeli online",
+      "bass": "Stroik do gitary basowej online",
+      "chromatic": "Stroik chromatyczny online",
       "cavaquinho": "Stroik do cavaquinho"
     },
     "instruments": "Instrumenty",
@@ -96,11 +101,15 @@
     "how1": "Dotknij „Dotknij, aby stroić” i zezwól na mikrofon.",
     "how2": "Zagraj jedną strunę. Wskaźnik pokaże, czy jest za nisko, czy za wysoko.",
     "how3": "Kręć kluczem, aż środkowe paski zrobią się zielone.",
-    "next": "Dalej: Metronom"
+    "next": "Dalej: Metronom",
+    "accuracy": {
+      "h2": "Jak testowaliśmy dokładność stroika",
+      "p": "Automatyczne testy podają wygenerowane dźwięki o dokładnej częstotliwości – 41,2 Hz (niskie E basu), 65,41 Hz (niskie C wiolonczeli), 82,41 Hz (niskie E gitary), 440 Hz (A4) i 1318,5 Hz – do tego samego wykrywania wysokości, którego używa ten stroik, a każdy odczyt musi mieścić się w ±1 cencie. Test w przeglądarce przepuszcza też przez cały stroik dźwięk o 20 centów za wysoki i sprawdza, czy pokazuje „Obniż” o 17–23 centy."
+    }
   },
   "metronome": {
     "visual": "Wahadło metronomu",
-    "title": "Metronom",
+    "title": "Metronom online",
     "timeSig": "Metrum",
     "slower": "Wolniej",
     "faster": "Szybciej",
@@ -131,7 +140,7 @@
     "next": "Dalej: Akordy"
   },
   "chords": {
-    "title": "Akordy",
+    "title": "Chwyty gitarowe i akordy pianino",
     "instrument": "Instrument",
     "guitar": "Gitara",
     "piano": "Pianino",
@@ -181,5 +190,42 @@
     "how3": "Przyciski −1 / +1 przesuwają akord o pół tonu.",
     "next": "Dalej: Stroik",
     "chordOn": "diagram akordu"
+  },
+  "pages": {
+    "about": {
+      "title": "O WowGuitar – stroik online i narzędzia muzyczne",
+      "description": "WowGuitar tworzy darmowe narzędzia muzyczne: stroik do gitary, stroiki do ukulele, skrzypiec, wiolonczeli i basu, metronom online i chwyty gitarowe.",
+      "h1": "O WowGuitar",
+      "body": [
+        "WowGuitar to zestaw darmowych narzędzi muzycznych online, które działają od razu po otwarciu strony: stroik do gitary, stroiki do ukulele, skrzypiec, wiolonczeli i gitary basowej, stroik chromatyczny, metronom online z tap tempo oraz tabela akordów na gitarę i pianino z dźwiękiem.",
+        "Wszystko działa w przeglądarce – bez aplikacji i bez konta – a po pierwszej wizycie narzędzia działają też offline. Strona jest dostępna w 15 językach.",
+        "Stroiki odczytują dźwięk z mikrofonu metodą McLeoda. Dźwięk jest analizowany na Twoim urządzeniu i nigdy nie jest wysyłany. Automatyczne testy porównują wykrywanie z dźwiękami o dokładnej częstotliwości i wymagają odczytu z dokładnością ±1 centa.",
+        "Pytania, pomysły albo znaleziony błąd? Napisz na {email}."
+      ]
+    },
+    "contact": {
+      "title": "Kontakt – WowGuitar",
+      "description": "Pytania, uwagi albo błąd w stroiku, metronomie lub akordach? Napisz do WowGuitar na hello@wowguitar.com.",
+      "h1": "Kontakt",
+      "body": [
+        "Najszybciej skontaktujesz się z nami e-mailem: {email}.",
+        "Napisz, na jakiej stronie byłeś, jakiego urządzenia i przeglądarki używasz i co się stało. Przy problemie ze stroikiem podaj instrument i czy korzystałeś z mikrofonu, czy stroiłeś ze słuchu.",
+        "Czytamy każdą wiadomość i chętnie dowiemy się o błędach, złych tłumaczeniach i pomysłach na nowe narzędzia."
+      ]
+    },
+    "privacy": {
+      "title": "Polityka prywatności – WowGuitar",
+      "description": "Jak WowGuitar traktuje Twoje dane: dźwięk z mikrofonu zostaje na urządzeniu, ustawienia w przeglądarce, a Google Analytics mierzy korzystanie ze strony.",
+      "h1": "Polityka prywatności",
+      "body": [
+        "Ostatnia aktualizacja: {date}. Ta strona wyjaśnia, co zbiera WowGuitar i dlaczego.",
+        "**Mikrofon.** Stroiki proszą o dostęp do mikrofonu tylko wtedy, gdy dotkniesz „Dotknij, aby nastroić”. Dźwięk jest analizowany na bieżąco na Twoim urządzeniu, aby znaleźć wysokość. Nigdy nie jest nagrywany, zapisywany ani wysyłany na serwer.",
+        "**Ustawienia w przeglądarce.** Twoje wybory – jasny lub ciemny motyw, wzorzec A4, dźwięki wzorcowe, główka akustyczna lub elektryczna, głośność i nazwy dźwięków – są zapisywane w pamięci lokalnej przeglądarki. Nie opuszczają urządzenia; wyczyszczenie danych przeglądarki je usuwa.",
+        "**Statystyki.** Korzystamy z Google Analytics, ładowanego przez Cloudflare Zaraz, aby liczyć wizyty i sprawdzać, które strony są używane. Zbiera on dane o korzystaniu, takie jak odwiedzone strony, przybliżona lokalizacja, urządzenie i przeglądarka, i może ustawiać pliki cookie Google. Google przetwarza te dane zgodnie z własną polityką prywatności: https://policies.google.com/privacy",
+        "**Hosting.** Nasi dostawcy hostingu i sieci, Vercel i Cloudflare, przetwarzają standardowe dane żądań, takie jak adres IP i typ przeglądarki, aby dostarczać i chronić stronę.",
+        "**Bez kont.** Nie pytamy o imię ani e-mail i nie sprzedajemy danych.",
+        "**Kontakt.** Pytania o prywatność: {email}."
+      ]
+    }
   }
 }

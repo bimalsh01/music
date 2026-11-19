@@ -65,7 +65,7 @@ test.describe("tuner with a simulated microphone", () => {
     await page.locator(".tool-hero .shadow-glow").click();
     await expect(status(page)).toHaveText(/In tune/, { timeout: 8000 });
     await expect(readout(page)).toHaveText("E");
-    const string6 = page.locator(".tool-hero button.absolute[aria-label^='String 6']");
+    const string6 = page.locator(".tool-hero button.absolute[aria-label$='String 6']");
     await expect(string6).toHaveAttribute("aria-pressed", "true");
     await expect(string6).toContainText("✓", { timeout: 5000 });
     await browser.close();

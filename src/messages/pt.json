@@ -1,8 +1,8 @@
 {
   "site": {
-    "name": "Music Tools",
+    "name": "WowGuitar",
     "language": "Idioma",
-    "home": "Início do Music Tools",
+    "home": "Início do WowGuitar",
     "settings": "Ajustes",
     "close": "Fechar",
     "nav": {
@@ -18,8 +18,12 @@
     "footer": {
       "tools": "Ferramentas",
       "languages": "Idiomas",
-      "note": "Ferramentas de música grátis que funcionam no navegador. Sem cadastro, sem download."
-    }
+      "note": "Ferramentas de música grátis que funcionam no navegador. Sem cadastro, sem download.",
+      "about": "Sobre",
+      "contact": "Contato",
+      "privacy": "Privacidade"
+    },
+    "updated": "Atualizado em {date}"
   },
   "instruments": {
     "guitar": "Violão",
@@ -44,17 +48,18 @@
     "metroSub": "30–300 BPM · toque o tempo",
     "chords": "Acordes",
     "chordsSub": "Violão e piano",
-    "any": "Qualquer nota"
+    "any": "Qualquer nota",
+    "h1": "Afinador de violão online, metrônomo e dicionário de acordes grátis"
   },
   "tuner": {
     "titles": {
-      "guitar": "Afinador de Violão",
-      "ukulele": "Afinador de Ukulele",
-      "violin": "Afinador de Violino",
-      "cello": "Afinador de Violoncelo",
-      "bass": "Afinador de Baixo",
-      "chromatic": "Afinador Cromático",
-      "cavaquinho": "Afinador de Cavaquinho"
+      "guitar": "Afinador de Violão Online",
+      "ukulele": "Afinador de Ukulele Online",
+      "violin": "Afinador de Violino Online",
+      "cello": "Afinador de Violoncelo Online",
+      "bass": "Afinador de Baixo Online",
+      "chromatic": "Afinador Cromático Online",
+      "cavaquinho": "Afinador de Cavaquinho Online"
     },
     "instruments": "Instrumentos",
     "preset": "Afinação",
@@ -96,11 +101,15 @@
     "how1": "Toque em “Toque para afinar” e permita o microfone.",
     "how2": "Toque uma corda. O medidor mostra se está grave ou agudo.",
     "how3": "Gire a tarraxa até as barras do centro ficarem verdes.",
-    "next": "Próximo: Metrônomo"
+    "next": "Próximo: Metrônomo",
+    "accuracy": {
+      "h2": "Como testamos a precisão do afinador",
+      "p": "Testes automáticos tocam tons gerados em frequências exatas – 41,2 Hz (Mi grave do baixo), 65,41 Hz (Dó grave do violoncelo), 82,41 Hz (Mi grave do violão), 440 Hz (Lá4) e 1318,5 Hz – na mesma detecção de afinação deste afinador, e cada leitura precisa ficar dentro de ±1 cent. Um teste no navegador também toca um tom 20 cents acima pelo afinador inteiro e confere se ele mostra “Abaixe” entre 17 e 23 cents."
+    }
   },
   "metronome": {
     "visual": "Pêndulo do metrônomo",
-    "title": "Metrônomo",
+    "title": "Metrônomo Online",
     "timeSig": "Compasso",
     "slower": "Mais lento",
     "faster": "Mais rápido",
@@ -131,7 +140,7 @@
     "next": "Próximo: Acordes"
   },
   "chords": {
-    "title": "Acordes",
+    "title": "Dicionário de Acordes",
     "instrument": "Instrumento",
     "guitar": "Violão",
     "piano": "Piano",
@@ -181,5 +190,42 @@
     "how3": "Use −1 / +1 para mover o acorde meio tom.",
     "next": "Próximo: Afinador",
     "chordOn": "diagrama do acorde"
+  },
+  "pages": {
+    "about": {
+      "title": "Sobre o WowGuitar – Afinador Online e Ferramentas Musicais",
+      "description": "O WowGuitar faz ferramentas musicais grátis: afinador de violão, afinadores de ukulele, violino, violoncelo, baixo e cavaquinho, metrônomo online e acordes.",
+      "h1": "Sobre o WowGuitar",
+      "body": [
+        "O WowGuitar é um conjunto de ferramentas musicais online e grátis que funcionam assim que a página abre: afinador de violão, afinadores de ukulele, violino, violoncelo, baixo e cavaquinho, afinador cromático, metrônomo online com toque o tempo e um dicionário de acordes de violão e teclado com som.",
+        "Tudo roda no navegador – sem aplicativo e sem cadastro – e as ferramentas continuam funcionando offline depois da primeira visita. O site está em 15 idiomas.",
+        "Os afinadores leem a nota pelo microfone com o método McLeod de detecção de afinação. O som é analisado no seu próprio aparelho e nunca é enviado. Testes automáticos conferem a detecção com tons gerados em frequências exatas e exigem cada leitura dentro de ±1 cent.",
+        "Dúvidas, ideias ou encontrou um erro? Escreva para {email}."
+      ]
+    },
+    "contact": {
+      "title": "Contato – WowGuitar",
+      "description": "Dúvidas, sugestões ou um erro no afinador, metrônomo ou dicionário de acordes? Escreva para o WowGuitar em hello@wowguitar.com.",
+      "h1": "Contato",
+      "body": [
+        "O jeito mais rápido de falar conosco é por e-mail: {email}.",
+        "Conte em qual página você estava, o aparelho e o navegador que usa e o que aconteceu. Para problemas no afinador, diga o instrumento e se usou o microfone ou afinou de ouvido.",
+        "Lemos todas as mensagens e gostamos de saber de erros, traduções erradas e ideias de novas ferramentas."
+      ]
+    },
+    "privacy": {
+      "title": "Política de Privacidade – WowGuitar",
+      "description": "Como o WowGuitar trata seus dados: o áudio do microfone fica no seu aparelho, os ajustes ficam no navegador e o Google Analytics mede o uso do site.",
+      "h1": "Política de privacidade",
+      "body": [
+        "Última atualização: {date}. Esta página explica o que o WowGuitar coleta e por quê.",
+        "**Microfone.** Os afinadores pedem acesso ao microfone só quando você toca em “Toque para afinar”. O som é analisado em tempo real no seu aparelho para encontrar a nota. Ele nunca é gravado, guardado ou enviado a um servidor.",
+        "**Ajustes no navegador.** Suas escolhas – tema claro ou escuro, referência do Lá4, tons de referência, braço acústico ou elétrico, volume e nomes das notas – ficam salvas no armazenamento local do navegador. Elas nunca saem do seu aparelho; apagar os dados do navegador as remove.",
+        "**Estatísticas.** Usamos o Google Analytics, carregado pelo Cloudflare Zaraz, para contar visitas e ver quais páginas são usadas. Ele coleta dados de uso como páginas vistas, localização aproximada, aparelho e navegador, e pode criar cookies do Google. O Google trata esses dados conforme a política de privacidade dele: https://policies.google.com/privacy",
+        "**Hospedagem.** Nossos provedores de hospedagem e rede, Vercel e Cloudflare, tratam dados normais de acesso, como endereço IP e tipo de navegador, para entregar e proteger o site.",
+        "**Sem contas.** Não pedimos seu nome nem e-mail e não vendemos dados.",
+        "**Contato.** Dúvidas sobre privacidade: {email}."
+      ]
+    }
   }
 }

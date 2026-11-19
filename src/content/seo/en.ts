@@ -1,11 +1,20 @@
 import type { SeoContent } from "./types";
 
 /*
- * English SEO copy. Target keywords come from Rankability keyword research (US, Nov 2026), e.g.
- * guitar tuner 301K/mo, ukulele tuner 74K, violin tuner 40.5K, bass tuner 18.1K, cello tuner 9.9K,
- * chromatic tuner 6.6K, metronome online 60.5K, tap tempo 27.1K, bpm tapper 33.1K,
- * guitar chords 165K, guitar chord chart 49.5K, piano chords 40.5K.
- * Every claim describes what the app actually does.
+ * English SEO copy, written from Rankability keyword research (US, 2026-11-18/19; monthly volumes).
+ * Guitar: guitar tuner 301K, tuning a guitar / tune on guitar 301K, online guitar tuner 33.1K,
+ *   guitar tuner online 22.2K, tune a guitar standard 27.1K, standard guitar tuning 27.1K,
+ *   guitar notes 33.1K, guitar string notes 18.1K, guitar tuner clip on 60.5K, guitar capo 40.5K.
+ * Ukulele: ukulele tuner 74K, ukulele and tuner 60.5K, ukulele tuning device 74K, ukulele tuner online 5.4K.
+ * Violin: violin tuner 40.5K. Cello: cello tuner 9.9K. Bass: bass tuner 18.1K, tuning guitar bass 18.1K,
+ *   bass guitar tuner 4.4K. Chromatic: chromatic tuner 6.6K.
+ * Metronome: metronome online 60.5K, online metronome 33.1K, bpm tapper 33.1K, tap tempo 27.1K,
+ *   metronome beats app 9.9K, song bpm 6.6K, song bpm finder 2.4K, bpm changer 3.6K.
+ * Chords: guitar chords 165K, guitar chords for beginners 60.5K, guitar chord chart 49.5K, bm chord 49.5K,
+ *   piano chords 40.5K, chords on piano 40.5K, e minor chord 22.2K, piano chord chart 18.1K,
+ *   chord finder 14.8K, basic guitar chords 18.1K, barre chords 14.8K.
+ * Every claim describes what the app actually does (the tools find tempo, not key; no capo or
+ * ukulele-chord features are claimed).
  */
 export const en: SeoContent = {
   labels: {
@@ -18,15 +27,33 @@ export const en: SeoContent = {
   },
   pages: {
     home: {
-      title: "Online Guitar Tuner, Metronome & Chord Chart – Free Music Tools",
+      title: "WowGuitar – Free Online Guitar Tuner, Metronome & Guitar Chords",
       description:
         "Free online music tools that work instantly: guitar, ukulele, violin, cello and bass tuner, online metronome with tap tempo, and guitar & piano chords.",
       blocks: [
         {
           h2: "Free online music tools – no app, no sign-up",
           p: [
-            "Music Tools is a set of simple, free tools for musicians that run right in your browser. Open a page and it is ready: no download, no account and no ads in the way. Each screen does one job, with big, readable controls you can use with your instrument in your hands.",
+            "WowGuitar is a set of simple, free tools for musicians that run right in your browser. Open a page and it is ready: no download, no account and no ads in the way. Each screen does one job, with big, readable controls you can use with your instrument in your hands.",
             "Your microphone audio is analysed on your own device and never uploaded. After your first visit the tools keep working offline, so the tuner and metronome are there in a rehearsal room with no signal.",
+          ],
+        },
+        {
+          h2: "Guitar tuner online",
+          p: [
+            "Tune with the free [online guitar tuner](guitar): play a string, the tuner finds it and shows if you are flat or sharp – standard guitar tuning, Drop D, Open G and more. There is also a [ukulele tuner](ukulele), [violin tuner](violin), [cello tuner](cello), [bass tuner](bass) and a [chromatic tuner](chromatic) for any other instrument.",
+          ],
+        },
+        {
+          h2: "Metronome online with tap tempo",
+          p: [
+            "The [metronome online](metronome) keeps a steady click from 30 to 300 BPM with accents and time signatures. Tap along with a song and the BPM tapper finds its tempo.",
+          ],
+        },
+        {
+          h2: "Guitar chords and piano chords",
+          p: [
+            "Look up any chord in the [guitar chord chart](chords): see the fingering, hear it, try other shapes and transpose – with piano chords on a keyboard too.",
           ],
         },
         {
@@ -57,25 +84,25 @@ export const en: SeoContent = {
     guitar: {
       title: "Guitar Tuner Online – Free Mic Tuner (Standard, Drop D)",
       description:
-        "Free online guitar tuner using your microphone. Tune acoustic or electric guitar to standard, Drop D, Open G, DADGAD or half-step down. No app needed.",
+        "Free online guitar tuner with your microphone. Tune on guitar to standard guitar tuning, Drop D, Open G, DADGAD or half-step down. No app or clip-on tuner needed.",
       blocks: [
         {
-          h2: "Free online guitar tuner",
+          h2: "Online guitar tuner – a free guitar tuner in your browser",
           p: [
-            "This guitar tuner works right in your browser – no app and no account. Tap **Tap to tune**, allow the microphone and play one string. The tuner hears the note, picks the nearest string and shows how many cents you are flat or sharp. When the centre bars turn green you are within 5 cents, which sounds in tune to the ear.",
-            "It works as an **acoustic guitar tuner** through your phone or laptop microphone, and as an **electric guitar tuner** too: play unplugged close to the mic, or hold your device near the amp with a clean sound. The audio is analysed on your device and never uploaded.",
+            "This **online guitar tuner** works right in your browser – no app and no account. Tap **Tap to tune**, allow the microphone and play one string. The tuner hears the note, picks the nearest string and shows how many cents you are flat or sharp. When the bars turn green you are within 5 cents, which sounds in tune to the ear.",
+            "Use it as an **acoustic guitar tuner** through your phone or laptop microphone, and as an **electric guitar tuner** too: play unplugged close to the mic, or hold your device near the amp with a clean sound. The audio is analysed on your device and never uploaded.",
           ],
         },
         {
-          h2: "Standard guitar tuning: string notes and frequencies",
+          h2: "Standard guitar tuning: guitar string notes and frequencies",
           p: [
-            "Standard guitar tuning is **E A D G B E**, from the thickest string (6th) to the thinnest (1st). An easy way to remember the guitar string names: *Eddie Ate Dynamite, Good Bye Eddie*.",
+            "**Standard guitar tuning** is **E A D G B E**, from the thickest string (6th) to the thinnest (1st). These are the **guitar string notes** you tune to – E2, A2, D3, G3, B3 and E4. An easy way to remember the guitar notes on the strings: *Eddie Ate Dynamite, Good Bye Eddie*.",
           ],
           autoTable: "tuning",
           after: ["Frequencies are for A4 = 440 Hz, the standard concert pitch."],
         },
         {
-          h2: "How to tune a guitar, step by step",
+          h2: "Tuning a guitar: how to tune on guitar, step by step",
           ordered: true,
           list: [
             "Start with the 6th string (low E). Play it open and let it ring.",
@@ -86,7 +113,7 @@ export const en: SeoContent = {
           ],
         },
         {
-          h2: "Alternate tunings: Drop D, Open G, DADGAD and half-step down",
+          h2: "Tune a guitar to standard, Drop D, Open G, DADGAD or half-step down",
           p: ["Pick a tuning from the **Tuning** menu and the string buttons change to match."],
           autoTable: "alternates",
           after: [
@@ -94,10 +121,25 @@ export const en: SeoContent = {
           ],
         },
         {
-          h2: "Tune by ear with reference tones",
+          h2: "Guitar tuner with no clip-on tuner needed",
           p: [
-            "No microphone, or a noisy room? Tap any string button to hear its reference note and match your string to it by ear. Under **More** you can change the A4 reference (default 440 Hz) – useful when you play with a piano or band tuned to 442 Hz or 432 Hz.",
-            "Once you are in tune, practise in time with the [online metronome](metronome) or look up shapes in the [guitar chord chart](chords).",
+            "You don’t need a **clip-on guitar tuner** on the headstock: a phone or laptop with a microphone does the job. No microphone, or a noisy room? Tap any string button to hear its reference note and match your string to it by ear. Under **More** you can change the A4 reference (default 440 Hz) – useful when you play with a piano or band tuned to 442 Hz or 432 Hz.",
+            "Using a **guitar capo**? Tune the open strings first with the capo off, then clamp it on – with the capo on, every string sounds higher than its standard note. Once you are in tune, practise in time with the [online metronome](metronome) or look up shapes in the [guitar chord chart](chords).",
+          ],
+        },
+        {
+          h2: "Online guitar tuner vs clip-on tuner vs pedal tuner",
+          p: ["Three common ways to tune a guitar, and when each one makes sense:"],
+          table: {
+            head: ["Tuner", "Best for", "What you need"],
+            rows: [
+              ["Online guitar tuner (this page)", "Quick tuning at home, in lessons or on the go", "A phone or laptop with a microphone – free"],
+              ["Clip-on guitar tuner", "Noisy rooms: it senses vibration through the headstock", "A clip-on device and a battery"],
+              ["Pedal tuner", "Electric guitar on stage, tuning silently through the signal chain", "A pedal, a cable and power"],
+            ],
+          },
+          after: [
+            "An online tuner hears the guitar through the air, so tune in a quiet room. In a loud venue a clip-on or pedal tuner is the better tool; at home, the online guitar tuner needs nothing extra.",
           ],
         },
       ],
@@ -107,15 +149,19 @@ export const en: SeoContent = {
           a: "Yes. This tuner uses the McLeod Pitch Method, which measures pitch to within about a cent, and it turns green within ±5 cents – closer than most people can hear. Tune in a quiet room and play one string at a time for the best reading.",
         },
         {
-          q: "Can I tune a guitar without a clip-on tuner?",
-          a: "Yes. Any phone or laptop with a microphone works: open this page, tap “Tap to tune” and play each string. If you can’t use the microphone, tap a string button and tune by ear to the reference tone.",
+          q: "Do I need a clip-on guitar tuner?",
+          a: "No. Any phone or laptop with a microphone works: open this page, tap “Tap to tune” and play each string. If you can’t use the microphone, tap a string button and tune by ear to the reference tone.",
         },
         {
-          q: "What are the notes of the guitar strings?",
-          a: "In standard tuning, from the 6th (thickest) to the 1st (thinnest) string: E2, A2, D3, G3, B3 and E4.",
+          q: "What are the guitar string notes in standard guitar tuning?",
+          a: "From the 6th (thickest) to the 1st (thinnest) string: E2, A2, D3, G3, B3 and E4.",
         },
         {
-          q: "Does it work for electric guitar?",
+          q: "How do I tune a guitar to Drop D?",
+          a: "Choose Drop D under Tuning. Only the 6th string changes: it is lowered a whole step from E to D, and the other five strings stay as in standard tuning.",
+        },
+        {
+          q: "Does it work as an electric guitar tuner?",
           a: "Yes. Play the electric guitar unplugged near the microphone, or hold your device near the amp with a clean tone. Distortion makes notes harder to read, so tune clean.",
         },
         {
@@ -128,10 +174,10 @@ export const en: SeoContent = {
     ukulele: {
       title: "Ukulele Tuner Online – Free GCEA Tuner with Microphone",
       description:
-        "Tune your ukulele online with your microphone or by ear. Standard GCEA tuning for soprano, concert and tenor ukulele. Free, no app, no sign-up.",
+        "Free ukulele tuner online: tune your ukulele with your microphone or by ear. Standard GCEA tuning for soprano, concert and tenor ukulele. No app, no sign-up.",
       blocks: [
         {
-          h2: "Free online ukulele tuner",
+          h2: "Ukulele tuner online – a free ukulele tuner",
           p: [
             "Tune your ukulele in seconds with this free **ukulele tuner online**. Tap **Tap to tune**, allow the microphone and pluck a string – the tuner finds the nearest string and shows if it is flat or sharp. Green means in tune.",
             "It works for **soprano, concert and tenor ukuleles**, which all use the same standard GCEA tuning. Prefer to tune by ear? Tap a string button to hear its note.",
@@ -145,7 +191,7 @@ export const en: SeoContent = {
           autoTable: "tuning",
         },
         {
-          h2: "How to tune a ukulele",
+          h2: "How to tune a ukulele with the ukulele tuner",
           ordered: true,
           list: [
             "Tap **Tap to tune** and allow the microphone.",
@@ -155,6 +201,12 @@ export const en: SeoContent = {
           ],
           after: [
             "New nylon strings stretch a lot. For the first few days, expect to retune every time you play – that’s normal.",
+          ],
+        },
+        {
+          h2: "Ukulele tuning without a tuning device",
+          p: [
+            "You don’t need a separate ukulele tuning device or clip-on tuner: this page is the tuner. A phone or laptop microphone is enough, and the string buttons play reference notes if you would rather tune by ear.",
           ],
         },
         {
@@ -170,8 +222,12 @@ export const en: SeoContent = {
           a: "In standard tuning: G4, C4, E4 and A4, from the 4th string to the 1st.",
         },
         {
-          q: "Can I tune my ukulele with my phone?",
+          q: "Can I use this as a ukulele tuner on my phone?",
           a: "Yes. Open this page on your phone, tap “Tap to tune”, allow the microphone and pluck each string.",
+        },
+        {
+          q: "Do I need a ukulele tuning device or clip-on tuner?",
+          a: "No. Any phone or laptop with a microphone works as the tuner, and you can tune by ear with the reference notes if you can’t use the microphone.",
         },
         {
           q: "Does this tuner work for baritone ukulele?",
@@ -190,7 +246,7 @@ export const en: SeoContent = {
         "Free online violin tuner. Tune G D A E with your microphone or by ear with reference tones, and set A4 to 440 or 442 Hz. Works in your browser, no app.",
       blocks: [
         {
-          h2: "Free online violin tuner",
+          h2: "Violin tuner online – a free violin tuner with your microphone",
           p: [
             "This **violin tuner** listens through your microphone and shows the note and how far it is from perfect pitch. Tap **Tap to tune**, bow or pluck one string, and adjust until the centre bars turn green.",
             "Every string button also plays a clear **reference tone**, so you can tune your violin by ear when you can’t use the microphone.",
@@ -244,7 +300,7 @@ export const en: SeoContent = {
         "Free online cello tuner. Tune C G D A with your microphone or by ear with reference tones. Adjustable A4 reference. Works in your browser, no app.",
       blocks: [
         {
-          h2: "Free online cello tuner",
+          h2: "Cello tuner online – a free cello tuner with your microphone",
           p: [
             "Tune your cello with this free **cello tuner** – no app needed. Tap **Tap to tune**, bow one string steadily and turn until the centre bars turn green. Each string button also plays a reference tone for tuning by ear.",
           ],
@@ -285,16 +341,16 @@ export const en: SeoContent = {
     bass: {
       title: "Bass Tuner Online – Free Bass Guitar Tuner (E A D G)",
       description:
-        "Free online bass tuner for 4-string bass guitar. Tune E A D G with your microphone or by ear with reference tones. Works in your browser, no app.",
+        "Free bass tuner online for 4-string bass guitar. Tune E A D G with your microphone or by ear with reference tones. Works in your browser, no app.",
       blocks: [
         {
-          h2: "Free online bass guitar tuner",
+          h2: "Bass tuner online – a free bass guitar tuner",
           p: [
             "This **bass guitar tuner** tunes a 4-string bass in standard tuning. Tap **Tap to tune**, pluck one string and turn the tuning key until the centre bars turn green. It works for electric and acoustic bass.",
           ],
         },
         {
-          h2: "Standard bass tuning: E A D G",
+          h2: "Tuning guitar bass: standard bass tuning E A D G",
           p: [
             "A 4-string bass is tuned **E A D G** – the same notes as the four lowest guitar strings, one octave lower.",
           ],
@@ -320,7 +376,7 @@ export const en: SeoContent = {
           a: "In standard tuning: E1, A1, D2 and G2, from the 4th string to the 1st.",
         },
         {
-          q: "Can I tune a bass with a guitar tuner?",
+          q: "Can I use a guitar tuner for tuning a guitar bass?",
           a: "A bass uses the same note names as the lowest four guitar strings, one octave lower. This bass tuner is set for exactly those notes, and the chromatic tuner also works.",
         },
         {
@@ -336,7 +392,7 @@ export const en: SeoContent = {
         "Free online chromatic tuner. Reads all 12 notes and shows how many cents sharp or flat you are – for any instrument or voice. Adjustable A4 (430–450 Hz).",
       blocks: [
         {
-          h2: "What is a chromatic tuner?",
+          h2: "What is a chromatic tuner? A free chromatic tuner online",
           p: [
             "A **chromatic tuner** recognises all 12 notes of the scale, not just the strings of one instrument. Play any note and it shows the nearest note name, its octave and how many cents sharp or flat you are.",
             "That makes it a **multi-instrument online tuner**: use it for mandolin, banjo, viola, kalimba, horns, woodwinds, a low-G ukulele or your voice.",
@@ -372,21 +428,27 @@ export const en: SeoContent = {
     },
 
     metronome: {
-      title: "Online Metronome – Free BPM Metronome with Tap Tempo",
+      title: "Metronome Online – Free Online Metronome & BPM Tapper",
       description:
-        "Free online metronome from 30 to 300 BPM with tap tempo, accents, time signatures (4/4, 3/4, 6/8) and subdivisions. Works in your browser, no app.",
+        "Metronome online, free: 30–300 BPM with tap tempo (BPM tapper), accents, time signatures (4/4, 3/4, 6/8) and subdivisions. Works in your browser, no app.",
       blocks: [
         {
-          h2: "Free online metronome",
+          h2: "Metronome online – a free online metronome",
           p: [
-            "This **online metronome** keeps a steady beat from 30 to 300 BPM, right in your browser – no app to download. Set the tempo with the slider or the − / + buttons, press **Play**, and follow the click, the swinging pendulum and the beat lights.",
+            "This **metronome online** keeps a steady beat from 30 to 300 BPM, right in your browser – no app to download, like a metronome beats app without the install. Set the tempo with the slider or the − / + buttons, press **Play**, and follow the click, the swinging pendulum and the beat lights.",
             "Turn on the **visual flash** under More and the screen flashes on every beat, so you can keep time with the sound off or in a loud room. Clicks are scheduled on the audio clock, so the beat stays rock-steady even when your device is busy.",
           ],
         },
         {
-          h2: "Tap tempo: find the BPM of a song",
+          h2: "BPM tapper and tap tempo: find the song BPM",
           p: [
-            "Don’t know the tempo? Use **tap tempo** as a BPM tapper: tap the button along with the song a few times and the metronome sets the BPM from your taps. It averages your last five taps and starts fresh if you pause for two seconds.",
+            "Don’t know the tempo? Use **tap tempo** as a **BPM tapper**: tap the button along with the song a few times and the metronome sets the BPM from your taps – a quick song BPM finder. It averages your last five taps and starts fresh if you pause for two seconds. It measures tempo only; it doesn’t detect the key of a song.",
+          ],
+        },
+        {
+          h2: "Change the BPM while it plays",
+          p: [
+            "You can change the BPM at any moment: drag the slider or press − / + while the metronome is running and the new tempo takes effect right away. That makes it easy to nudge the speed up a few beats at a time as a passage gets cleaner.",
           ],
         },
         {
@@ -413,7 +475,7 @@ export const en: SeoContent = {
           },
         },
         {
-          h2: "How to practise with a metronome",
+          h2: "How to practise with an online metronome",
           list: [
             "Start slow – around **60–80 BPM** is a good place to begin scales and new pieces.",
             "When you can play a passage cleanly three times in a row, raise the tempo by 4–5 BPM.",
@@ -424,8 +486,20 @@ export const en: SeoContent = {
       ],
       faq: [
         {
-          q: "Can I use a metronome in my browser without an app?",
+          q: "Can I use a metronome online without an app?",
           a: "Yes. This metronome runs entirely in your browser on phones, tablets and computers. Nothing to install.",
+        },
+        {
+          q: "How does the BPM tapper (tap tempo) work?",
+          a: "Tap the Tap tempo button in time with the music. The metronome averages the gap between your last taps and sets the BPM.",
+        },
+        {
+          q: "How do I find the BPM of a song?",
+          a: "Play the song and tap the Tap tempo button on every beat for ten seconds or so. The BPM shown is the average of your last five taps. The tool finds tempo only, not the key.",
+        },
+        {
+          q: "Can I change the BPM while the metronome is playing?",
+          a: "Yes. Drag the slider or press − / + at any time and the click follows the new tempo straight away.",
         },
         {
           q: "How do I set a metronome for 6/8 time?",
@@ -436,10 +510,6 @@ export const en: SeoContent = {
           a: "Start around 60–80 BPM, play cleanly, then speed up a few BPM at a time.",
         },
         {
-          q: "How does tap tempo work?",
-          a: "Tap the Tap tempo button in time with the music. The metronome averages the gap between your last taps and sets the BPM.",
-        },
-        {
           q: "Is an online metronome accurate?",
           a: "Yes. The clicks are scheduled ahead on the device’s audio clock rather than with ordinary timers, so the tempo doesn’t drift.",
         },
@@ -447,24 +517,25 @@ export const en: SeoContent = {
     },
 
     chords: {
-      title: "Guitar & Piano Chord Chart – Chord Finder with Sound",
+      title: "Guitar Chords & Piano Chords – Free Chord Chart with Sound",
       description:
-        "Free guitar chord chart and piano chord chart. Pick any root and chord type to see the fingering, hear the chord, try other shapes and transpose.",
+        "Guitar chords and piano chords in a free chord chart. Pick any root and chord type to see the fingering, hear the chord, try other shapes and transpose.",
       blocks: [
         {
-          h2: "Guitar chord chart with fingerings",
+          h2: "Guitar chords: a free guitar chord chart with fingerings",
           p: [
             "Pick a **root note** and a **chord type** and this **guitar chord chart** draws the fingering on the fretboard: ✕ marks a string you don’t play, ○ an open string, and each dot shows the note under your finger (the root in white). Use the arrows to see other shapes, including open chords and **barre chords** further up the neck, and press **Play** to hear it.",
           ],
         },
         {
-          h2: "Piano chords on a keyboard",
+          h2: "Piano chords: chords on piano and a piano chord chart",
           p: [
-            "Switch to **Piano** to see the chord on the keys, with every chord tone highlighted and labelled. The arrows step through **inversions** – the same notes stacked in a different order – which make it easier to move smoothly between chords.",
+            "Switch to **Piano** to see the chord on the keys, with every chord tone highlighted and labelled – a **piano chord chart** you can hear. The arrows step through **inversions**, the same notes stacked in a different order, which make it easier to move smoothly between chords.",
           ],
         },
         {
-          h2: "Chord types explained",
+          h2: "Chord finder: chord types explained",
+          p: ["This **chord finder** covers nine chord types for every root note:"],
           table: {
             head: ["Chord type", "Notes (from the root)", "Example in C"],
             rows: [
@@ -483,7 +554,7 @@ export const en: SeoContent = {
         {
           h2: "Basic guitar chords for beginners",
           p: [
-            "Most songs use a small set of **basic guitar chords**: C, G, D, A, E, Am, Em and Dm. Learn those open shapes first, then move on to barre chords like F and Bm. Practise changing between two chords in time with the [metronome](metronome), and keep your guitar in tune with the [guitar tuner](guitar).",
+            "Most songs use a small set of **basic guitar chords**: C, G, D, A, E, Am, Em and Dm. These **guitar chords for beginners** are open shapes – learn them first, then move on to barre chords like F and Bm. Practise changing between two chords in time with the [metronome](metronome), and keep your guitar in tune with the [guitar tuner](guitar).",
           ],
         },
         {
@@ -503,12 +574,20 @@ export const en: SeoContent = {
           a: "The most common Bm is a barre chord at the 2nd fret: skip the low E string and play x-2-4-4-3-2. Pick B and Minor here to see it, and use the arrows for another shape.",
         },
         {
+          q: "How do I play an E minor chord on guitar?",
+          a: "E minor is an easy open chord: with two fingers on the 5th and 4th strings at the 2nd fret, strum all six strings – 0-2-2-0-0-0. Pick E and Minor here to see it.",
+        },
+        {
+          q: "What are the notes in a C major chord?",
+          a: "C, E and G – the root, major third and perfect fifth. Pick C and Major here to see it on guitar or on the piano keys.",
+        },
+        {
           q: "What is a barre chord?",
           a: "A chord where one finger presses several strings across the same fret, acting like a movable nut. It lets you play the same shape in any key.",
         },
         {
-          q: "What notes are in a C major chord?",
-          a: "C, E and G – the root, major third and perfect fifth.",
+          q: "How do I find piano chords on the keyboard?",
+          a: "Switch to Piano, pick the root and chord type, and the keys of the chord light up with their note names. Use the arrows to try the inversions.",
         },
       ],
     },

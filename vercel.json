@@ -1,0 +1,45 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*pt(?:[-_;,].*)?$" }], "destination": "/pt/", "permanent": false },
+    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*es(?:[-_;,].*)?$" }], "destination": "/es/", "permanent": false },
+    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*fr(?:[-_;,].*)?$" }], "destination": "/fr/", "permanent": false },
+    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*de(?:[-_;,].*)?$" }], "destination": "/de/", "permanent": false },
+    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*it(?:[-_;,].*)?$" }], "destination": "/it/", "permanent": false },
+    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*ja(?:[-_;,].*)?$" }], "destination": "/ja/", "permanent": false },
+    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*ko(?:[-_;,].*)?$" }], "destination": "/ko/", "permanent": false },
+    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*zh(?:[-_;,].*)?$" }], "destination": "/zh/", "permanent": false },
+    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*ru(?:[-_;,].*)?$" }], "destination": "/ru/", "permanent": false },
+    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*pl(?:[-_;,].*)?$" }], "destination": "/pl/", "permanent": false },
+    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*nl(?:[-_;,].*)?$" }], "destination": "/nl/", "permanent": false },
+    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*tr(?:[-_;,].*)?$" }], "destination": "/tr/", "permanent": false },
+    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?:id|in)(?:[-_;,].*)?$" }], "destination": "/id/", "permanent": false },
+    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*hi(?:[-_;,].*)?$" }], "destination": "/hi/", "permanent": false },
+    { "source": "/", "destination": "/en/", "permanent": true }
+  ],
+  "rewrites": [{ "source": "/sw.js", "destination": "/serwist/sw.js" }],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Permissions-Policy", "value": "microphone=(self), camera=(), geolocation=(), payment=()" },
+        { "key": "Access-Control-Allow-Origin", "value": "https://www.wowguitar.com" },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+        }
+      ]
+    },
+    { "source": "/_next/static/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
+    {
+      "source": "/sw.js",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache" },
+        { "key": "Service-Worker-Allowed", "value": "/" }
+      ]
+    }
+  ]
+}

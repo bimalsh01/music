@@ -5,14 +5,32 @@ export const fr: SeoContent = {
   labels: { faq: "Questions fréquentes", string: "Corde", note: "Note", frequency: "Fréquence", tuning: "Accordage", notes: "Cordes (6 → 1)" },
   pages: {
     home: {
-      title: "Accordeur en Ligne, Métronome et Accords Gratuits – Music Tools",
+      title: "WowGuitar – Accordeur en Ligne, Métronome et Accords Gratuits",
       description: "Outils de musique gratuits et immédiats : accordeur guitare, ukulélé, violon, violoncelle et basse, métronome en ligne avec tap tempo, accords guitare et piano.",
       blocks: [
         {
           h2: "Des outils de musique en ligne gratuits, sans appli ni inscription",
           p: [
-            "Music Tools regroupe des outils simples et gratuits pour les musiciens, directement dans le navigateur. Ouvrez la page, c’est prêt : rien à télécharger, pas de compte. Chaque écran fait une seule chose, avec de grandes commandes utilisables l’instrument en main.",
+            "WowGuitar regroupe des outils simples et gratuits pour les musiciens, directement dans le navigateur. Ouvrez la page, c’est prêt : rien à télécharger, pas de compte. Chaque écran fait une seule chose, avec de grandes commandes utilisables l’instrument en main.",
             "Le son du micro est analysé sur votre appareil et n’est jamais envoyé sur internet. Après la première visite, les outils fonctionnent même hors connexion : l’accordeur et le métronome vous suivent en répétition.",
+          ],
+        },
+        {
+          h2: "Accordeur guitare en ligne",
+          p: [
+            "Accordez avec l’[accordeur guitare en ligne](guitar) gratuit : jouez une corde, l’accordeur la reconnaît et indique si elle est trop haute ou trop basse – accordage standard, Drop D, Open G et plus. Il y a aussi un [accordeur ukulélé](ukulele), un [accordeur violon](violin), un [accordeur violoncelle](cello), un [accordeur basse](bass) et un [accordeur chromatique](chromatic).",
+          ],
+        },
+        {
+          h2: "Métronome en ligne",
+          p: [
+            "Le [métronome en ligne](metronome) donne un clic régulier de 30 à 300 BPM avec accents et mesures. Le tap tempo trouve le BPM d’un morceau.",
+          ],
+        },
+        {
+          h2: "Accords guitare et piano",
+          p: [
+            "Cherchez un accord dans le [tableau d’accords guitare](chords) : doigté, son, autres positions et transposition – avec les accords piano sur le clavier.",
           ],
         },
         {
@@ -36,7 +54,7 @@ export const fr: SeoContent = {
       description: "Accordeur guitare en ligne gratuit avec le micro. Accordez une guitare acoustique ou électrique en standard, Drop D, Open G, DADGAD ou un demi-ton plus bas.",
       blocks: [
         {
-          h2: "Accordeur de guitare en ligne gratuit",
+          h2: "Accordeur guitare en ligne gratuit",
           p: [
             "Cet **accordeur guitare** fonctionne directement dans le navigateur, sans appli et sans compte. Touchez **Touchez pour accorder**, autorisez le micro et jouez une corde. L’accordeur reconnaît la note, choisit la corde la plus proche et indique de combien de cents elle est trop grave ou trop aiguë. Quand les barres du centre passent au vert, vous êtes à moins de 5 cents : juste pour l’oreille.",
             "Il sert d’**accordeur pour guitare acoustique** avec le micro du téléphone ou de l’ordinateur, et aussi pour **guitare électrique** : jouez-la débranchée près du micro ou approchez l’appareil de l’ampli avec un son clair. Le son est analysé sur votre appareil et n’en sort jamais.",
@@ -49,7 +67,7 @@ export const fr: SeoContent = {
           after: ["Fréquences pour La4 = 440 Hz, le diapason standard."],
         },
         {
-          h2: "Comment accorder une guitare, étape par étape",
+          h2: "Accorder la guitare : comment accorder une guitare, étape par étape",
           ordered: true,
           list: [
             "Commencez par la 6e corde (Mi grave). Jouez-la à vide et laissez-la sonner.",
@@ -127,7 +145,7 @@ export const fr: SeoContent = {
       description: "Accordeur violon en ligne gratuit. Accordez Sol Ré La Mi avec le micro ou à l’oreille grâce aux sons de référence, et réglez le La4 sur 440 ou 442 Hz.",
       blocks: [
         {
-          h2: "Accordeur violon en ligne gratuit",
+          h2: "Accordeur violon en ligne gratuit – accordeur en ligne violon",
           p: [
             "Cet **accordeur violon** écoute par le micro et affiche la note et l’écart avec la justesse. Touchez **Touchez pour accorder**, jouez une corde à l’archet (ou en pizzicato) et ajustez jusqu’à ce que les barres du centre passent au vert.",
             "Chaque bouton de corde joue aussi un **son de référence** clair, pour accorder le violon à l’oreille quand le micro n’est pas disponible.",
@@ -202,7 +220,7 @@ export const fr: SeoContent = {
           p: ["Cet **accordeur basse** accorde une basse 4 cordes en accordage standard. Touchez **Touchez pour accorder**, jouez une corde et tournez la mécanique jusqu’à ce que les barres passent au vert. Pour basse électrique et acoustique."],
         },
         {
-          h2: "Accordage standard de la basse : Mi La Ré Sol",
+          h2: "Accordage standard de la basse 4 cordes : Mi La Ré Sol",
           p: ["La basse 4 cordes s’accorde **Mi La Ré Sol** (E A D G) : les mêmes notes que les quatre cordes graves de la guitare, une octave plus bas."],
           autoTable: "tuning",
         },
@@ -261,7 +279,7 @@ export const fr: SeoContent = {
       description: "Métronome en ligne gratuit de 30 à 300 BPM avec tap tempo, accents, mesures (4/4, 3/4, 6/8) et subdivisions. Dans le navigateur, sans appli.",
       blocks: [
         {
-          h2: "Métronome en ligne gratuit",
+          h2: "Métronome en ligne gratuit : un métronome sans appli",
           p: [
             "Ce **métronome en ligne** donne une pulsation stable de 30 à 300 BPM, directement dans le navigateur, sans rien télécharger. Réglez le tempo avec le curseur ou les boutons − / +, appuyez sur **Play** et suivez le clic, le balancier et les voyants de chaque temps.",
             "Activez le **flash visuel** dans Plus et l’écran clignote à chaque temps, pour jouer son coupé ou dans le bruit. Les clics sont programmés sur l’horloge audio de l’appareil : le tempo ne dérive pas.",
@@ -317,11 +335,11 @@ export const fr: SeoContent = {
       description: "Dictionnaire d’accords guitare et piano gratuit. Choisissez une fondamentale et un type d’accord pour voir le doigté, l’écouter, changer de forme et transposer.",
       blocks: [
         {
-          h2: "Tableau d’accords de guitare avec doigtés",
+          h2: "Accords guitare : tableau d’accords avec doigtés",
           p: ["Choisissez une **fondamentale** et un **type d’accord** : ce **dictionnaire d’accords de guitare** dessine le doigté sur le manche. ✕ marque une corde à ne pas jouer, ○ une corde à vide, et chaque point indique la note sous votre doigt (la fondamentale en blanc). Les flèches montrent d’autres formes, dont les **barrés** plus haut sur le manche, et **Jouer** vous fait entendre l’accord."],
         },
         {
-          h2: "Accords de piano sur le clavier",
+          h2: "Accords piano sur le clavier",
           p: ["Passez sur **Piano** pour voir l’accord sur les touches, toutes ses notes surlignées et nommées. Les flèches parcourent les **renversements** : les mêmes notes dans un autre ordre, pour enchaîner les accords en douceur."],
         },
         {
@@ -342,7 +360,7 @@ export const fr: SeoContent = {
           },
         },
         {
-          h2: "Accords de guitare pour débutants",
+          h2: "Accords guitare faciles pour débutants",
           p: ["La plupart des chansons utilisent peu d’**accords de guitare de base** : Do (C), Sol (G), Ré (D), La (A), Mi (E), La mineur (Am), Mi mineur (Em) et Ré mineur (Dm). Apprenez d’abord ces formes ouvertes, puis passez aux barrés comme Fa (F) et Si mineur (Bm). Travaillez les changements avec le [métronome](metronome) et gardez la guitare juste avec l’[accordeur guitare](guitar)."],
         },
         {

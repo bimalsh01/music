@@ -702,7 +702,7 @@ function Headstock({
             type="button"
             onClick={() => onPick(i)}
             aria-pressed={on}
-            aria-label={`${L.string} ${n - i}, ${name}`}
+            aria-label={`${name} ${ok ? "✓" : n - i}, ${L.string} ${n - i}`}
             className="absolute flex size-[clamp(26px,min(calc(18cqw*var(--k)),calc(var(--pitch)*88cqh)),60px)] -translate-x-1/2 min-[860px]:size-[clamp(40px,calc(13cqw*var(--k)),60px)] -translate-y-1/2 cursor-pointer flex-col items-center justify-center gap-0.5 rounded-full border-none transition-colors duration-[120ms]"
             style={{
               left: `${(((p.side === "L" ? 36 : 384) - hs.vx) / hs.W) * 100}%`,
@@ -713,6 +713,7 @@ function Headstock({
             }}
           >
             <span className="font-display text-[clamp(12px,min(calc(6.2cqw*var(--k)),calc(var(--pitch)*32cqh)),21px)] leading-none font-bold min-[860px]:text-[clamp(14px,calc(4.6cqw*var(--k)),21px)]">{name}</span>
+            {" "}
             <span className="text-[10px] leading-none font-bold opacity-80">{ok ? "✓" : n - i}</span>
           </button>
         );

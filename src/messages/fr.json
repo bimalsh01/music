@@ -1,8 +1,8 @@
 {
   "site": {
-    "name": "Music Tools",
+    "name": "WowGuitar",
     "language": "Langue",
-    "home": "Accueil Music Tools",
+    "home": "Accueil WowGuitar",
     "settings": "Réglages",
     "close": "Fermer",
     "nav": {
@@ -18,8 +18,12 @@
     "footer": {
       "tools": "Outils",
       "languages": "Langues",
-      "note": "Des outils de musique gratuits qui fonctionnent dans votre navigateur. Sans inscription, sans téléchargement."
-    }
+      "note": "Des outils de musique gratuits qui fonctionnent dans votre navigateur. Sans inscription, sans téléchargement.",
+      "about": "À propos",
+      "contact": "Contact",
+      "privacy": "Confidentialité"
+    },
+    "updated": "Mis à jour le {date}"
   },
   "instruments": {
     "guitar": "Guitare",
@@ -44,16 +48,17 @@
     "metroSub": "30–300 BPM · tap tempo",
     "chords": "Accords",
     "chordsSub": "Guitare et piano",
-    "any": "Toute note"
+    "any": "Toute note",
+    "h1": "Accordeur guitare en ligne, métronome et accords guitare gratuits"
   },
   "tuner": {
     "titles": {
-      "guitar": "Accordeur de Guitare",
-      "ukulele": "Accordeur de Ukulélé",
-      "violin": "Accordeur de Violon",
-      "cello": "Accordeur de Violoncelle",
-      "bass": "Accordeur de Basse",
-      "chromatic": "Accordeur Chromatique",
+      "guitar": "Accordeur Guitare en Ligne",
+      "ukulele": "Accordeur Ukulélé en Ligne",
+      "violin": "Accordeur Violon en Ligne",
+      "cello": "Accordeur Violoncelle en Ligne",
+      "bass": "Accordeur Basse en Ligne",
+      "chromatic": "Accordeur Chromatique en Ligne",
       "cavaquinho": "Accordeur de Cavaquinho"
     },
     "instruments": "Instruments",
@@ -96,11 +101,15 @@
     "how1": "Touchez « Touchez pour accorder » et autorisez le micro.",
     "how2": "Jouez une corde. L’indicateur montre si elle est trop grave ou trop aiguë.",
     "how3": "Tournez la mécanique jusqu’à ce que les barres du centre passent au vert.",
-    "next": "Suivant : Métronome"
+    "next": "Suivant : Métronome",
+    "accuracy": {
+      "h2": "Comment nous avons testé la précision de l’accordeur",
+      "p": "Des tests automatiques envoient des sons générés à des fréquences exactes – 41,2 Hz (Mi grave de la basse), 65,41 Hz (Do grave du violoncelle), 82,41 Hz (Mi grave de la guitare), 440 Hz (La4) et 1318,5 Hz – dans la même détection de hauteur que cet accordeur, et chaque mesure doit rester à ±1 cent près. Un test dans le navigateur joue aussi un son trop haut de 20 cents à travers tout l’accordeur et vérifie qu’il affiche « Descendez » entre 17 et 23 cents."
+    }
   },
   "metronome": {
     "visual": "Balancier du métronome",
-    "title": "Métronome",
+    "title": "Métronome en Ligne",
     "timeSig": "Mesure",
     "slower": "Plus lent",
     "faster": "Plus rapide",
@@ -131,7 +140,7 @@
     "next": "Suivant : Accords"
   },
   "chords": {
-    "title": "Accords",
+    "title": "Accords Guitare et Piano",
     "instrument": "Instrument",
     "guitar": "Guitare",
     "piano": "Piano",
@@ -181,5 +190,42 @@
     "how3": "Utilisez −1 / +1 pour déplacer l’accord d’un demi-ton.",
     "next": "Suivant : Accordeur",
     "chordOn": "diagramme d’accord"
+  },
+  "pages": {
+    "about": {
+      "title": "À propos de WowGuitar – Accordeur en Ligne et Outils Musicaux",
+      "description": "WowGuitar crée des outils musicaux gratuits : accordeur guitare, accordeurs ukulélé, violon, violoncelle et basse, métronome en ligne et accords guitare.",
+      "h1": "À propos de WowGuitar",
+      "body": [
+        "WowGuitar est un ensemble d’outils musicaux en ligne et gratuits qui fonctionnent dès l’ouverture de la page : accordeur guitare, accordeurs ukulélé, violon, violoncelle et basse, accordeur chromatique, métronome en ligne avec tap tempo, et un tableau d’accords guitare et piano avec le son.",
+        "Tout fonctionne dans le navigateur – sans appli ni compte – et les outils marchent hors ligne après la première visite. Le site existe en 15 langues.",
+        "Les accordeurs lisent la note au micro avec la méthode McLeod de détection de hauteur. Le son est analysé sur votre appareil et n’est jamais envoyé. Des tests automatiques comparent la détection à des sons générés à des fréquences exactes et exigent chaque mesure à ±1 cent près.",
+        "Une question, une idée ou une erreur repérée ? Écrivez à {email}."
+      ]
+    },
+    "contact": {
+      "title": "Contact – WowGuitar",
+      "description": "Une question, un avis ou un bug dans l’accordeur, le métronome ou les accords ? Écrivez à WowGuitar à hello@wowguitar.com.",
+      "h1": "Contact",
+      "body": [
+        "Le plus rapide pour nous joindre est l’e-mail : {email}.",
+        "Indiquez la page où vous étiez, l’appareil et le navigateur utilisés et ce qui s’est passé. Pour un problème d’accordeur, précisez l’instrument et si vous avez utilisé le micro ou accordé à l’oreille.",
+        "Nous lisons tous les messages et sommes contents d’entendre parler de bugs, d’erreurs de traduction et d’idées d’outils."
+      ]
+    },
+    "privacy": {
+      "title": "Politique de Confidentialité – WowGuitar",
+      "description": "Comment WowGuitar traite vos données : le son du micro reste sur votre appareil, les réglages dans le navigateur, et Google Analytics mesure l’usage du site.",
+      "h1": "Politique de confidentialité",
+      "body": [
+        "Dernière mise à jour : {date}. Cette page explique ce que WowGuitar collecte et pourquoi.",
+        "**Micro.** Les accordeurs demandent l’accès au micro seulement quand vous touchez « Touchez pour accorder ». Le son est analysé en temps réel sur votre appareil pour trouver la note. Il n’est jamais enregistré, conservé ni envoyé à un serveur.",
+        "**Réglages dans le navigateur.** Vos choix – thème clair ou sombre, référence La4, sons de référence, tête acoustique ou électrique, volume et noms des notes – sont enregistrés dans le stockage local du navigateur. Ils ne quittent jamais votre appareil ; effacer les données du navigateur les supprime.",
+        "**Statistiques.** Nous utilisons Google Analytics, chargé via Cloudflare Zaraz, pour compter les visites et voir quelles pages sont utilisées. Il collecte des données d’usage comme les pages vues, la localisation approximative, l’appareil et le navigateur, et peut déposer des cookies Google. Google traite ces données selon sa propre politique de confidentialité : https://policies.google.com/privacy",
+        "**Hébergement.** Nos fournisseurs d’hébergement et de réseau, Vercel et Cloudflare, traitent les données de requête habituelles, comme l’adresse IP et le type de navigateur, pour servir et protéger le site.",
+        "**Pas de compte.** Nous ne demandons ni votre nom ni votre e-mail et ne vendons aucune donnée.",
+        "**Contact.** Questions sur la confidentialité : {email}."
+      ]
+    }
   }
 }

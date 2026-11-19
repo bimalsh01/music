@@ -64,7 +64,7 @@ export function SiteHeader({ locale, toolId, site }: Props) {
           {/* 15 languages don't fit a header pill: the globe jumps to the footer list. */}
           <a
             href="#languages"
-            aria-label={site.language}
+            aria-label={`${locale.toUpperCase()} – ${site.language}`}
             title={site.language}
             className="flex h-11 items-center gap-1.5 rounded-full bg-inset px-3.5 text-[13px] font-semibold text-ink no-underline"
           >

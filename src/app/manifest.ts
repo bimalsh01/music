@@ -4,9 +4,9 @@ export const dynamic = "force-static";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Music Tools",
-    short_name: "Music Tools",
-    description: "Tuner, metronome and chord lookup that work the second the page opens.",
+    name: "WowGuitar – Guitar Tuner, Metronome & Chords",
+    short_name: "WowGuitar",
+    description: "Free online guitar tuner, metronome and guitar chords that work the second the page opens.",
     start_url: "/",
     display: "standalone",
     background_color: "#090A0A",

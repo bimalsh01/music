@@ -258,11 +258,11 @@ function TransposeButton({ label, text, semi, onClick }: { label: string; text: 
     <button
       type="button"
       onClick={onClick}
-      aria-label={label}
+      aria-label={`${text} ${semi}`}
       title={label}
       className="flex size-12 flex-none cursor-pointer flex-col items-center justify-center gap-0.5 rounded-full border-none bg-inset text-ink min-[860px]:size-[60px]"
     >
-      <span className="text-[17px] leading-none font-bold">{text}</span>
+      <span className="text-[17px] leading-none font-bold">{text}</span>{" "}
       <span className="text-[10px] leading-none text-muted">{semi}</span>
     </button>
   );

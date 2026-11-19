@@ -1,8 +1,8 @@
 {
   "site": {
-    "name": "Music Tools",
+    "name": "WowGuitar",
     "language": "Dil",
-    "home": "Music Tools ana sayfa",
+    "home": "WowGuitar ana sayfa",
     "settings": "Ayarlar",
     "close": "Kapat",
     "nav": {
@@ -18,8 +18,12 @@
     "footer": {
       "tools": "Araçlar",
       "languages": "Diller",
-      "note": "Tarayıcıda çalışan ücretsiz müzik araçları. Üyelik yok, indirme yok."
-    }
+      "note": "Tarayıcıda çalışan ücretsiz müzik araçları. Üyelik yok, indirme yok.",
+      "about": "Hakkında",
+      "contact": "İletişim",
+      "privacy": "Gizlilik"
+    },
+    "updated": "{date} tarihinde güncellendi"
   },
   "instruments": {
     "guitar": "Gitar",
@@ -44,16 +48,17 @@
     "metroSub": "30–300 BPM · tap tempo",
     "chords": "Akorlar",
     "chordsSub": "Gitar ve piyano",
-    "any": "Her nota"
+    "any": "Her nota",
+    "h1": "Online gitar akort, metronom ve gitar akorları – ücretsiz"
   },
   "tuner": {
     "titles": {
-      "guitar": "Gitar Akort",
-      "ukulele": "Ukulele Akort",
-      "violin": "Keman Akort",
-      "cello": "Viyolonsel Akort",
-      "bass": "Bas Gitar Akort",
-      "chromatic": "Kromatik Akort Cihazı",
+      "guitar": "Gitar Akort Online",
+      "ukulele": "Ukulele Akort Online",
+      "violin": "Keman Akort Online",
+      "cello": "Viyolonsel Akort Online",
+      "bass": "Bas Gitar Akort Online",
+      "chromatic": "Kromatik Akort Cihazı Online",
       "cavaquinho": "Cavaquinho Akort"
     },
     "instruments": "Enstrümanlar",
@@ -96,11 +101,15 @@
     "how1": "“Akort için dokun”a basın ve mikrofona izin verin.",
     "how2": "Bir tel çalın. Gösterge pes mi tiz mi olduğunu gösterir.",
     "how3": "Ortadaki çubuklar yeşil olana kadar burguyu çevirin.",
-    "next": "Sonraki: Metronom"
+    "next": "Sonraki: Metronom",
+    "accuracy": {
+      "h2": "Akort aletinin doğruluğunu nasıl test ettik",
+      "p": "Otomatik testler tam frekanslarda üretilmiş sesleri – 41,2 Hz (bas pes Mi), 65,41 Hz (viyolonsel pes Do), 82,41 Hz (gitar pes Mi), 440 Hz (La4) ve 1318,5 Hz – bu akort aletinin kullandığı aynı perde algılamaya verir ve her ölçümün ±1 cent içinde olmasını ister. Bir tarayıcı testi de 20 cent tiz bir sesi tüm akort aletinden geçirir ve 17–23 cent ile “Düşür” gösterdiğini kontrol eder."
+    }
   },
   "metronome": {
     "visual": "Metronom sarkacı",
-    "title": "Metronom",
+    "title": "Online Metronom",
     "timeSig": "Ölçü",
     "slower": "Yavaşlat",
     "faster": "Hızlandır",
@@ -131,7 +140,7 @@
     "next": "Sonraki: Akorlar"
   },
   "chords": {
-    "title": "Akorlar",
+    "title": "Gitar ve Piyano Akorları",
     "instrument": "Enstrüman",
     "guitar": "Gitar",
     "piano": "Piyano",
@@ -181,5 +190,42 @@
     "how3": "Akoru yarım ses kaydırmak için −1 / +1 kullanın.",
     "next": "Sonraki: Akort",
     "chordOn": "akor şeması"
+  },
+  "pages": {
+    "about": {
+      "title": "WowGuitar Hakkında – Online Akort ve Müzik Araçları",
+      "description": "WowGuitar ücretsiz müzik araçları yapar: gitar akort, ukulele, keman, viyolonsel ve bas akort aletleri, online metronom ve gitar akorları.",
+      "h1": "WowGuitar hakkında",
+      "body": [
+        "WowGuitar, sayfa açılır açılmaz çalışan ücretsiz online müzik araçlarıdır: gitar akort aleti, ukulele, keman, viyolonsel ve bas gitar akort aletleri, kromatik akort cihazı, tap tempolu online metronom ve sesli gitar ve piyano akor tablosu.",
+        "Her şey tarayıcıda çalışır – uygulama ve hesap gerekmez – ve ilk ziyaretten sonra araçlar çevrimdışı da çalışır. Site 15 dilde sunulur.",
+        "Akort aletleri notayı mikrofondan McLeod yöntemiyle okur. Ses kendi cihazınızda analiz edilir ve asla yüklenmez. Otomatik testler algılamayı tam frekanslı üretilmiş seslerle karşılaştırır ve her ölçümün ±1 cent içinde olmasını ister.",
+        "Sorunuz, fikriniz ya da bulduğunuz bir hata mı var? {email} adresine yazın."
+      ]
+    },
+    "contact": {
+      "title": "İletişim – WowGuitar",
+      "description": "Akort aleti, metronom veya akorlarla ilgili soru, görüş ya da hata mı var? WowGuitar’a hello@wowguitar.com adresinden yazın.",
+      "h1": "İletişim",
+      "body": [
+        "Bize en hızlı e-postayla ulaşırsınız: {email}.",
+        "Hangi sayfada olduğunuzu, kullandığınız cihazı ve tarayıcıyı ve ne olduğunu yazın. Akort sorunlarında enstrümanı ve mikrofon mu kullandığınızı yoksa kulaktan mı akort ettiğinizi belirtin.",
+        "Her mesajı okuyoruz; hataları, yanlış çevirileri ve yeni araç fikirlerini duymaktan memnuniyet duyarız."
+      ]
+    },
+    "privacy": {
+      "title": "Gizlilik Politikası – WowGuitar",
+      "description": "WowGuitar verilerinizi nasıl işler: mikrofon sesi cihazınızda kalır, ayarlar tarayıcınızda durur ve Google Analytics site kullanımını ölçer.",
+      "h1": "Gizlilik politikası",
+      "body": [
+        "Son güncelleme: {date}. Bu sayfa WowGuitar’ın neleri ve neden topladığını açıklar.",
+        "**Mikrofon.** Akort aletleri mikrofon iznini yalnızca “Akort için dokunun”a dokunduğunuzda ister. Ses, notayı bulmak için cihazınızda anlık olarak analiz edilir. Asla kaydedilmez, saklanmaz ya da sunucuya gönderilmez.",
+        "**Tarayıcınızdaki ayarlar.** Seçimleriniz – açık veya koyu tema, La4 referansı, referans sesler, akustik veya elektro gitar kafası, ses düzeyi ve nota adları – tarayıcınızın yerel depolamasında saklanır. Cihazınızdan çıkmaz; tarayıcı verilerini silmek bunları kaldırır.",
+        "**İstatistik.** Ziyaretleri saymak ve hangi sayfaların kullanıldığını görmek için Cloudflare Zaraz üzerinden yüklenen Google Analytics kullanırız. Görüntülenen sayfalar, yaklaşık konum, cihaz ve tarayıcı gibi kullanım verilerini toplar ve Google çerezleri ayarlayabilir. Google bu verileri kendi gizlilik politikasına göre işler: https://policies.google.com/privacy",
+        "**Barındırma.** Barındırma ve ağ sağlayıcılarımız Vercel ve Cloudflare, siteyi sunmak ve korumak için IP adresi ve tarayıcı türü gibi olağan istek verilerini işler.",
+        "**Hesap yok.** Adınızı veya e-postanızı sormayız ve veri satmayız.",
+        "**İletişim.** Gizlilikle ilgili sorular: {email}."
+      ]
+    }
   }
 }

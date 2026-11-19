@@ -4,6 +4,7 @@ import { setRequestLocale } from "next-intl/server";
 import { RegisterServiceWorker } from "@/components/shell/RegisterServiceWorker";
 import { isLocale, LOCALE_INFO, locales } from "@/i18n/routing";
 import { SITE_URL } from "@/lib/seo";
+import { BRAND } from "@/lib/site";
 import { fontVariables } from "../fonts";
 import { themeBootScript } from "@/lib/theme";
 import "../globals.css";
@@ -16,7 +17,7 @@ export function generateStaticParams() {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  applicationName: "Music Tools",
+  applicationName: BRAND,
   manifest: "/manifest.webmanifest",
   icons: { icon: "/icon.svg", apple: "/apple-icon.png" },
 };

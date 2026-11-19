@@ -19,15 +19,33 @@ export const pt: SeoContent = {
   },
   pages: {
     home: {
-      title: "Afinador Online, Metrônomo e Acordes Grátis – Music Tools",
+      title: "WowGuitar – Afinador Online, Metrônomo e Acordes Grátis",
       description:
         "Ferramentas de música grátis que funcionam na hora: afinador online de violão, cavaquinho, ukulele, violino e baixo, metrônomo online e dicionário de acordes.",
       blocks: [
         {
           h2: "Ferramentas de música online e grátis",
           p: [
-            "O Music Tools reúne ferramentas simples e gratuitas para músicos, direto no navegador. Abriu a página, está pronto: sem baixar app, sem cadastro. Cada tela faz uma coisa só, com botões grandes para usar com o instrumento na mão.",
+            "O WowGuitar reúne ferramentas simples e gratuitas para músicos, direto no navegador. Abriu a página, está pronto: sem baixar app, sem cadastro. Cada tela faz uma coisa só, com botões grandes para usar com o instrumento na mão.",
             "O áudio do microfone é analisado no seu próprio aparelho e nunca é enviado para a internet. Depois da primeira visita, as ferramentas funcionam até sem conexão – o afinador e o metrônomo estão sempre à mão no ensaio.",
+          ],
+        },
+        {
+          h2: "Afinador de violão online",
+          p: [
+            "Afine com o [afinador de violão online](guitar) grátis: toque uma corda e o afinador mostra se ela está alta ou baixa – afinação padrão, Drop D, Open G e mais. Também há [afinador de ukulele](ukulele), [afinador de violino](violin), [afinador de violoncelo](cello), [afinador de baixo](bass), [afinador de cavaquinho](cavaquinho) e [afinador cromático](chromatic).",
+          ],
+        },
+        {
+          h2: "Metrônomo online",
+          p: [
+            "O [metrônomo online](metronome) marca o tempo de 30 a 300 BPM, com acentos e compassos. Toque junto com a música para descobrir o BPM da música.",
+          ],
+        },
+        {
+          h2: "Dicionário de acordes",
+          p: [
+            "Consulte qualquer acorde no [dicionário de acordes](chords): veja a posição, ouça, troque a forma e transponha – com acordes de violão e de teclado.",
           ],
         },
         {
@@ -61,7 +79,7 @@ export const pt: SeoContent = {
         "Afinador de violão online e grátis: afine pelo microfone na afinação padrão (Mi Lá Ré Sol Si Mi), Drop D, Open G e mais. Serve também para guitarra. Sem app.",
       blocks: [
         {
-          h2: "Afinador de violão online grátis",
+          h2: "Afinador de violão online grátis – afinador online pelo microfone",
           p: [
             "Este **afinador de violão online** funciona direto no navegador, sem app e sem cadastro. Toque em **Toque para afinar**, permita o microfone e toque uma corda. O afinador reconhece a nota, escolhe a corda mais próxima e mostra quantos cents ela está grave ou aguda. Quando as barras do centro ficam verdes, a corda está afinada.",
             "Também funciona como **afinador de guitarra**: toque a guitarra desligada perto do microfone, ou aproxime o celular do amplificador com som limpo. O áudio é analisado no seu aparelho e nunca sai dele.",
@@ -108,7 +126,7 @@ export const pt: SeoContent = {
           a: "Sim. Ele usa o método McLeod de detecção de altura, que mede a nota com precisão de cerca de um cent, e fica verde dentro de ±5 cents – mais preciso do que o ouvido percebe. Afine em um lugar silencioso, uma corda por vez.",
         },
         {
-          q: "Dá para afinar guitarra com este afinador?",
+          q: "Serve como afinador de guitarra?",
           a: "Sim. Guitarra e violão usam a mesma afinação padrão. Toque a guitarra desligada perto do microfone ou aproxime o celular do amplificador com som limpo.",
         },
         {
@@ -487,7 +505,7 @@ export const pt: SeoContent = {
         "Dicionário de acordes grátis: escolha a nota e o tipo de acorde para ver a posição no violão ou no teclado, ouvir o som, trocar a forma e transpor.",
       blocks: [
         {
-          h2: "Dicionário de acordes de violão",
+          h2: "Dicionário de acordes de violão com posições",
           p: [
             "Escolha a **nota fundamental** e o **tipo de acorde** e este **dicionário de acordes** mostra a posição no braço do violão: ✕ é corda que não se toca, ○ é corda solta, e cada bolinha mostra a nota do dedo (a fundamental em branco). Use as setas para ver outras formas, incluindo **pestanas** mais acima no braço, e aperte **Tocar** para ouvir.",
           ],

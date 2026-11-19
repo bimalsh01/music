@@ -4,7 +4,10 @@ import { getSeoContent, plainText, type SeoKey } from "@/content/seo";
 import type { AutoTable, Block } from "@/content/seo/types";
 import type { Locale } from "@/i18n/routing";
 import { getDictionary } from "@/i18n/dictionary";
-import { presetIds, stringsFor, type InstrumentId } from "@/lib/music/instruments";
+import { INSTRUMENT_IDS, presetIds, stringsFor, type InstrumentId } from "@/lib/music/instruments";
+import { format } from "@/i18n/format";
+import { CONTENT_UPDATED } from "@/lib/site";
+import { localDate } from "./InfoPage";
 import { midiToFreq, namingFor, noteName, octaveOf } from "@/lib/music/notes";
 import { toolPath, type ToolId } from "@/tools/registry";
 import { ChevronDown } from "./icons";
@@ -18,6 +21,8 @@ export function SeoContent({ locale, page }: { locale: Locale; page: SeoKey }) {
   const seo = content.pages[page];
   if (!seo) return null;
   const instrument = page as InstrumentId;
+  const d = getDictionary(locale);
+  const isTuner = (INSTRUMENT_IDS as readonly string[]).includes(page);
 
   return (
     <div className="flex flex-col gap-16 border-t border-inset pt-16">
@@ -35,6 +40,13 @@ export function SeoContent({ locale, page }: { locale: Locale; page: SeoKey }) {
           ))}
         </section>
       ))}
+
+      {isTuner && (
+        <section className="flex max-w-[820px] flex-col gap-5">
+          <h2 className="m-0 font-display text-[clamp(1.5rem,2.6vw,2.125rem)] leading-tight font-bold tracking-[-0.02em]">{d.tuner.accuracy.h2}</h2>
+          <p className="m-0 text-[17px] leading-[1.7] text-muted">{d.tuner.accuracy.p}</p>
+        </section>
+      )}
 
       {seo.faq.length > 0 && (
         <section className="flex max-w-[820px] flex-col gap-5">
@@ -54,6 +66,9 @@ export function SeoContent({ locale, page }: { locale: Locale; page: SeoKey }) {
           </div>
         </section>
       )}
+      <p className="m-0 text-sm text-muted">
+        <time dateTime={CONTENT_UPDATED}>{format(d.site.updated, { date: localDate(locale) })}</time>
+      </p>
     </div>
   );
 }
