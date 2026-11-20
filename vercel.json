@@ -1,6 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
+    { "source": "/:path(.*)", "has": [{ "type": "host", "value": "wowguitar.com" }], "destination": "https://www.wowguitar.com/:path", "permanent": true },
     { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*pt(?:[-_;,].*)?$" }], "destination": "/pt/", "permanent": false },
     { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*es(?:[-_;,].*)?$" }], "destination": "/es/", "permanent": false },
     { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*fr(?:[-_;,].*)?$" }], "destination": "/fr/", "permanent": false },

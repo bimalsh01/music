@@ -13,6 +13,19 @@ export function localDate(locale: Locale, iso = CONTENT_UPDATED): string {
   return new Intl.DateTimeFormat(LOCALE_INFO[locale].tag, { dateStyle: "long", timeZone: "UTC" }).format(new Date(iso));
 }
 
+const LINK_CLASS = "font-semibold text-mint underline underline-offset-[3px]";
+
+/**
+ * The contact email as a plain mailto: link. Cloudflare's Email Address Obfuscation rewrites mailto
+ * links into /cdn-cgi/l/email-protection, which crawlers report as a broken link on every page that
+ * has one. Cloudflare leaves anything between <!--email_off--> and <!--email_on--> alone, and React
+ * can only emit those comments through raw HTML. The address is a fixed constant, so this is safe.
+ */
+function EmailLink({ email }: { email: string }) {
+  const html = `<!--email_off--><a href="mailto:${email}" class="${LINK_CLASS}">${email}</a><!--email_on-->`;
+  return <span dangerouslySetInnerHTML={{ __html: html }} />;
+}
+
 /** **bold**, the contact email and https:// links inside a paragraph. */
 function Rich({ text }: { text: string }) {
   const out: ReactNode[] = [];
@@ -23,11 +36,11 @@ function Rich({ text }: { text: string }) {
   while ((m = re.exec(text))) {
     if (m.index > last) out.push(text.slice(last, m.index));
     if (m[1]) out.push(<strong key={k++} className="font-semibold text-ink">{m[1]}</strong>);
+    else if (m[2]) out.push(<EmailLink key={k++} email={m[2]} />);
     else {
-      const href = m[2] ? `mailto:${m[2]}` : m[3];
       out.push(
-        <a key={k++} href={href} className="font-semibold text-mint underline underline-offset-[3px]" rel={m[3] ? "noopener" : undefined}>
-          {m[2] ?? m[3]}
+        <a key={k++} href={m[3]} className={LINK_CLASS} rel="noopener">
+          {m[3]}
         </a>,
       );
     }
