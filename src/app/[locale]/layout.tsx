@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+import { Clarity } from "@/components/shell/Clarity";
 import { RegisterServiceWorker } from "@/components/shell/RegisterServiceWorker";
 import { isLocale, LOCALE_INFO, locales } from "@/i18n/routing";
 import { SITE_URL } from "@/lib/seo";
@@ -41,6 +42,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
       <body className="min-h-dvh" suppressHydrationWarning>
         {children}
         <RegisterServiceWorker />
+        <Clarity />
       </body>
     </html>
   );

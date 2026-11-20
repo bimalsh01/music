@@ -221,7 +221,7 @@
         "最后更新：{date}。本页说明 WowGuitar 收集哪些信息以及原因。",
         "**麦克风。** 只有在你点击“点击调音”时，调音器才会请求麦克风权限。声音在你的设备上实时分析以找出音高，从不录制、保存或发送到服务器。",
         "**浏览器中的设置。** 你的选择——浅色或深色主题、A4 标准音、参考音、原声或电吉他琴头、音量和音名——保存在浏览器的本地存储中，不会离开你的设备；清除浏览器数据即可删除。",
-        "**统计分析。** 我们通过 Cloudflare Zaraz 加载 Google Analytics，统计访问量和使用的页面。它收集浏览页面、大致位置、设备和浏览器等使用数据，并可能设置 Google Cookie。Google 按其隐私政策处理这些数据：https://policies.google.com/privacy",
+        "**统计分析。** 我们通过 Cloudflare Zaraz 加载 Google Analytics，统计访问量和使用的页面。它收集浏览页面、大致位置、设备和浏览器等使用数据，并可能设置 Google Cookie。Google 按其隐私政策处理这些数据：https://policies.google.com/privacy我们还使用 Microsoft Clarity 了解页面的使用情况：它会记录点击、滚动和鼠标移动（绝不记录麦克风音频），并可能设置 Cookie。Microsoft 依据其隐私声明处理这些数据：https://www.microsoft.com/privacy/privacystatement",
         "**托管。** 我们的托管和网络服务商 Vercel 与 Cloudflare 会处理 IP 地址、浏览器类型等常规请求数据，以提供和保护网站。",
         "**无需账号。** 我们不索要你的姓名或邮箱，也不出售数据。",
         "**联系。** 隐私相关问题：{email}"
