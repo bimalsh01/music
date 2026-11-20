@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import type { ChordsText } from "@/i18n/dictionary";
 import { format } from "@/i18n/format";
@@ -16,6 +17,7 @@ import {
   type ChordType,
   type Voicing,
 } from "@/lib/music/chords";
+import { chordPageFor, chordPagePath } from "@/lib/music/chordPages";
 import { namingChoices, namingFor, namingLabel, ROOTS, type Naming } from "@/lib/music/notes";
 import { useRehydrateSettings, useSettings } from "@/lib/store";
 import { BottomSheet, MoreToggle, Segmented, SettingsButton } from "@/components/shell/controls";
@@ -24,24 +26,64 @@ import { PageTitle } from "@/components/shell/HowTo";
 
 type Inst = "guitar" | "piano";
 
+/**
+ * Guitar/piano choice, kept across moves between chord pages (each move mounts a fresh page). Starts
+ * at guitar on every full page load, which is what the static HTML shows.
+ */
+let lastInst: Inst = "guitar";
+
 export function ChordLookup({
   locale,
   L,
   ui,
+  initial,
+  chordPages = false,
 }: {
   locale: Locale;
   L: ChordsText;
   ui: { settings: string; close: string };
+  /** Chord shown first (a chord page); defaults to C major. */
+  initial?: { root: number; type: ChordType };
+  /**
+   * On the chord pages: picking a chord that has its own page moves to that page's URL in place
+   * (client-side navigation, no reload), and the H1 follows the chord.
+   */
+  chordPages?: boolean;
 }) {
   useRehydrateSettings();
   const namingOverride = useSettings((s) => s.naming);
   const setSettings = useSettings((s) => s.set);
   const naming: Naming = namingOverride ?? namingFor(locale);
 
-  const [inst, setInst] = useState<Inst>("guitar");
-  const [root, setRoot] = useState(0);
-  const [type, setType] = useState<ChordType>("maj");
+  const router = useRouter();
+  const [inst, setInstState] = useState<Inst>(() => (chordPages ? lastInst : "guitar"));
+  const setInst = (i: Inst) => {
+    lastInst = i;
+    setInstState(i);
+  };
+  const [root, setRoot] = useState(initial?.root ?? 0);
+  const [type, setType] = useState<ChordType>(initial?.type ?? "maj");
   const [vi, setVi] = useState(0);
+
+  // Back/forward between chord pages can re-render this same instance with a new chord.
+  const initialKey = initial ? `${initial.root}-${initial.type}` : "";
+  const [seenKey, setSeenKey] = useState(initialKey);
+  if (initial && initialKey !== seenKey) {
+    setSeenKey(initialKey);
+    setRoot(initial.root);
+    setType(initial.type);
+    setVi(0);
+  }
+
+  /** Show a chord; on chord pages also move to its page when it has one. */
+  const pick = (r: number, t: ChordType) => {
+    setRoot(r);
+    setType(t);
+    setVi(0);
+    if (!chordPages) return;
+    const page = chordPageFor(r, t);
+    if (page) router.push(chordPagePath(page), { scroll: false });
+  };
   const [more, setMore] = useState(false);
   const [sheet, setSheet] = useState(false);
   const closeSheet = useCallback(() => setSheet(false), []);
@@ -60,10 +102,8 @@ export function ChordLookup({
     : pianoNotes(root, type, v);
 
   const step = (d: number) => setVi(((v + d) % varCount + varCount) % varCount);
-  const transpose = (d: number) => {
-    setRoot((root + d + 12) % 12);
-    setVi(0);
-  };
+  const transpose = (d: number) => pick((root + d + 12) % 12, type);
+  const title = chordPages ? (chordPageFor(root, type)?.h1 ?? `${chordName} Chord`) : L.title;
   const diagramAria = `${chordName} ${L.chordOn}: ${spelled}`;
 
   const settingsBody = (
@@ -83,7 +123,7 @@ export function ChordLookup({
   return (
     <section className="tool-hero flex flex-col gap-3 min-[860px]:gap-[clamp(14px,2.6svh,34px)]">
       <div className="flex items-center justify-between gap-3 min-[860px]:flex-wrap min-[860px]:items-end min-[860px]:gap-[18px]">
-        <PageTitle>{L.title}</PageTitle>
+        <PageTitle>{title}</PageTitle>
         <Segmented
           label={L.instrument}
           items={[
@@ -162,10 +202,7 @@ export function ChordLookup({
                   key={i}
                   type="button"
                   aria-pressed={root === i}
-                  onClick={() => {
-                    setRoot(i);
-                    setVi(0);
-                  }}
+                  onClick={() => pick(i, type)}
                   className={`h-10 cursor-pointer rounded-full border-none text-[15px] font-bold min-[860px]:h-[52px] ${
                     root === i ? "bg-accent text-on-accent" : "bg-inset text-ink"
                   }`}
@@ -184,10 +221,7 @@ export function ChordLookup({
                   key={ty}
                   type="button"
                   aria-pressed={type === ty}
-                  onClick={() => {
-                    setType(ty);
-                    setVi(0);
-                  }}
+                  onClick={() => pick(root, ty)}
                   className={`h-10 flex-none cursor-pointer rounded-full border-none px-4 text-sm font-semibold min-[860px]:h-11 min-[860px]:px-[18px] ${
                     type === ty ? "bg-accent text-on-accent" : "bg-inset text-ink"
                   }`}

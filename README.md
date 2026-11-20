@@ -37,5 +37,9 @@ static site to `out/`.
 - `src/messages/<lang>.json` — UI text per language (tests fail if any key is missing).
 - `src/content/seo/<lang>.ts` — keyword-targeted page content, titles and FAQs per language.
 - `src/lib/music/*` — pure music logic, ported 1:1 from the prototype and unit-tested against it.
+- `src/lib/music/chordPages.ts` — the 55 English chord pages (`/en/chords/<chord>/`): slugs and the
+  keyword H1 of each. The major chord of each root is also that root's page. Copy per chord is in
+  `src/content/chords/en.ts`; notes, finger steps and progressions come from `chordGuide.ts`.
+  The pages live in `src/app/(chords)/` (English only, outside `[locale]`).
 - `src/lib/audio/*` — Web Audio: mic + pitch detection, synth voices, metronome scheduler.
 - `src/components/*` — shell (header, controls), home, tuner, metronome, chords.

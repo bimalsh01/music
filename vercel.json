@@ -16,7 +16,9 @@
     { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*tr(?:[-_;,].*)?$" }], "destination": "/tr/", "permanent": false },
     { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?:id|in)(?:[-_;,].*)?$" }], "destination": "/id/", "permanent": false },
     { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*hi(?:[-_;,].*)?$" }], "destination": "/hi/", "permanent": false },
-    { "source": "/", "destination": "/en/", "permanent": true }
+    { "source": "/", "destination": "/en/", "permanent": true },
+    { "source": "/en/chords", "destination": "/en/chord-lookup/", "permanent": true },
+    { "source": "/en/chords/", "destination": "/en/chord-lookup/", "permanent": true }
   ],
   "rewrites": [{ "source": "/sw.js", "destination": "/serwist/sw.js" }],
   "headers": [

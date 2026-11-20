@@ -4,6 +4,9 @@ import { getDictionary } from "@/i18n/dictionary";
 import { LOCALE_INFO, locales, type Locale } from "@/i18n/routing";
 import { BRAND, CONTACT_EMAIL, CONTENT_UPDATED, INFO_PAGES, PRODUCTION_URL, type InfoPage } from "@/lib/site";
 import { getTool, homePath, toolPath, type ToolId } from "@/tools/registry";
+import { TITLE_TAILS } from "@/content/chords/en";
+import { chordShapes, chordTones, shapeLabel } from "@/lib/music/chordGuide";
+import { CHORD_PAGES, chordPagePath, ROOT_NAMES, rootPage, type ChordPage } from "@/lib/music/chordPages";
 
 /**
  * Public origin for canonical URLs, sitemap, hreflang and structured data. Production builds use the
@@ -189,5 +192,77 @@ export function faqJsonLd(locale: Locale, toolId: ToolId | null): string | null 
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: plainText(f.a) },
     })),
+  });
+}
+
+// ---------------------------------------------------------------------------------------------
+// English chord pages (/en/chords/<slug>/)
+
+/** Title, meta description and canonical for a chord page. English only, so hreflang is en + x-default. */
+export function chordMetadata(page: ChordPage): Metadata {
+  const index = CHORD_PAGES.indexOf(page);
+  const title = `${page.h1} – ${TITLE_TAILS[index % TITLE_TAILS.length]}`;
+  const description = chordDescription(page, index);
+  const path = chordPagePath(page);
+  const base = metadataFor("en", "chords", title, description);
+  return {
+    ...base,
+    alternates: { canonical: path, languages: { en: path, "x-default": path } },
+    openGraph: { ...base.openGraph, url: path },
+  };
+}
+
+function chordDescription(page: ChordPage, index: number): string {
+  const notes = chordTones(page.root, page.type).map((t) => t.note).join(", ");
+  const [first] = chordShapes(page.root, page.type, 1);
+  const where = first.kind === "open" ? `open shape ${first.tab}` : `${shapeLabel(first)} (${first.tab})`;
+  const kw = page.h1.replace(/ (Chord|Guitar Chord|Chord on Guitar)$/, "");
+  const variants = [
+    `${page.h1}: ${where}, finger by finger. Notes ${notes}, a second shape and common progressions – press Play to hear it.`,
+    `How to play ${kw} on guitar: ${where}. Fingering, sound, the notes ${notes} and the progressions it fits.`,
+    `${page.h1} chart with sound: ${where}, step-by-step fingers, the notes ${notes} and a second shape.`,
+  ];
+  return variants[index % variants.length];
+}
+
+/** WebPage + HowTo (the finger steps) + BreadcrumbList for a chord page. */
+export function chordJsonLd(page: ChordPage): string {
+  const d = getDictionary("en");
+  const path = chordPagePath(page);
+  const url = `${SITE_URL}${path}`;
+  const [shape] = chordShapes(page.root, page.type, 1);
+  const root = rootPage(page.root);
+  const crumbs = [
+    { name: d.site.name, item: `${SITE_URL}${homePath("en")}` },
+    { name: d.chords.title, item: `${SITE_URL}${toolPath("en", "chords")}` },
+    ...(root.slug === page.slug ? [] : [{ name: `${ROOT_NAMES[page.root]} chords`, item: `${SITE_URL}${chordPagePath(root)}` }]),
+    { name: page.h1, item: url },
+  ];
+  return json({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${url}#webpage`,
+        name: chordMetadata(page).title,
+        description: chordDescription(page, CHORD_PAGES.indexOf(page)),
+        url,
+        inLanguage: LOCALE_INFO.en.tag,
+        dateModified: CONTENT_UPDATED,
+        isPartOf: { "@id": SITE_ID },
+        publisher: organization(),
+      },
+      {
+        "@type": "HowTo",
+        name: `How to play the ${page.name} chord on guitar`,
+        description: `${page.name}, ${shapeLabel(shape)}: ${shape.tab}`,
+        inLanguage: LOCALE_INFO.en.tag,
+        step: shape.steps.map((text, i) => ({ "@type": "HowToStep", position: i + 1, text })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: crumbs.map((c, i) => ({ "@type": "ListItem", position: i + 1, ...c })),
+      },
+    ],
   });
 }

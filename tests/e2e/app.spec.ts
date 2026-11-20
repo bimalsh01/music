@@ -138,3 +138,50 @@ test("footer language switch keeps you on the same tool", async () => {
   await expect(page).toHaveURL(/\/pt\/afinador-de-violao\/$/);
   await browser.close();
 });
+
+test("chord pages: switching chord moves to its page without a reload", async () => {
+  const browser = await launch();
+  const page = await openPage(browser, "/en/chords/bm/");
+  await expect(page.locator("h1")).toHaveText("Bm Chord");
+  await expect(page.locator("h1")).toHaveCount(1);
+  await page.evaluate(() => ((window as unknown as { marker: number }).marker = 42));
+  const tool = page.locator(".tool-hero");
+
+  // Root C keeps the chord type (minor): C minor has its own page.
+  await tool.getByRole("group", { name: "Root note" }).getByRole("button", { name: "C", exact: true }).click();
+  await expect(page).toHaveURL(/\/en\/chords\/cm\/$/);
+  await expect(page.locator("h1")).toHaveText("Cm Chord");
+  await expect(page.getByRole("heading", { name: "Notes in the Cm chord" })).toBeVisible();
+  await expect(page).toHaveTitle(/^Cm Chord – /);
+
+  // +1 semitone → C#m.
+  await tool.getByRole("button", { name: "+1 semitone" }).click();
+  await expect(page).toHaveURL(/\/en\/chords\/c-sharp-m\/$/);
+
+  // A chord with no page of its own (C# dim) changes the chart but not the URL.
+  await tool.getByRole("group", { name: "Chord type" }).getByRole("button", { name: "dim" }).click();
+  await expect(page.locator("h1")).toHaveText("C♯dim Chord");
+  await expect(page).toHaveURL(/\/en\/chords\/c-sharp-m\/$/);
+
+  // Still the same document: no reload happened.
+  expect(await page.evaluate(() => (window as unknown as { marker?: number }).marker)).toBe(42);
+
+  await page.goBack();
+  await expect(page).toHaveURL(/\/en\/chords\/cm\/$/);
+  await expect(page.locator("h1")).toHaveText("Cm Chord");
+  await browser.close();
+});
+
+test("chord lookup lists every chord page A–Z, and the hub tool keeps its URL", async () => {
+  const browser = await launch();
+  const page = await openPage(browser, "/en/chord-lookup/");
+  const az = page.locator("section", { has: page.getByRole("heading", { name: "Guitar chords A–Z" }) });
+  await expect(az.getByRole("link")).toHaveCount(55);
+  await page.locator(".tool-hero").getByRole("group", { name: "Chord type" }).getByRole("button", { name: "Minor" }).click();
+  await expect(page).toHaveURL(/\/en\/chord-lookup\/$/);
+  await expect(page.locator("h1")).toHaveText("Guitar Chords & Piano Chords");
+  await az.getByRole("link", { name: "Bm", exact: true }).click();
+  await expect(page).toHaveURL(/\/en\/chords\/bm\/$/);
+  await expect(page.locator("h1")).toHaveText("Bm Chord");
+  await browser.close();
+});

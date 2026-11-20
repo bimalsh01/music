@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { ChordLookup } from "@/components/chords/ChordLookup";
+import { ChordIndex } from "@/components/chords/ChordPageContent";
+import { CHORD_PAGE_LOCALE } from "@/lib/music/chordPages";
 import { Metronome } from "@/components/metronome/Metronome";
 import { HowTo, PageMain } from "@/components/shell/HowTo";
 import { SeoContent } from "@/components/shell/SeoContent";
@@ -62,6 +64,7 @@ export default async function ToolPage({ params }: PageProps<"/[locale]/[tool]">
       <PageMain>
         {body}
         <HowTo title={text.how} steps={[text.how1, text.how2, text.how3]} nextLabel={text.next} nextHref={toolPath(locale, tool.next)!} />
+        {tool.kind === "chords" && locale === CHORD_PAGE_LOCALE && <ChordIndex />}
         <SeoContent locale={locale} page={tool.id} />
       </PageMain>
       <SiteFooter locale={locale} toolId={tool.id} d={d} />
